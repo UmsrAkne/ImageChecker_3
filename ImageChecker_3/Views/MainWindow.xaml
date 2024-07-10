@@ -20,7 +20,6 @@
     </Window.Resources>
 
     <Grid>
-
         <ItemsControl ItemsSource="{Binding PreviewContainer.ImageWrappers}">
 
             <ItemsControl.ItemsPanel>
@@ -55,14 +54,14 @@
                         <Image.Height>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
                                 <Binding Path="ImageFileInfo.Height" />
-                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=Window}" />
+                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                             </MultiBinding>
                         </Image.Height>
 
                         <Image.Width>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
                                 <Binding Path="ImageFileInfo.Width" />
-                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=Window}" />
+                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                             </MultiBinding>
                         </Image.Width>
                     </Image>
