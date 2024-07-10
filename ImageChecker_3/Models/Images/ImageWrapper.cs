@@ -11,6 +11,6 @@ namespace ImageChecker_3.Models.Images
 
         public Point Position { get; set; }
 
-        private ImageFileInfo ImageFileInfo { get; set; }
+        public ImageFileInfo ImageFileInfo { get; set; }
     }
 }
