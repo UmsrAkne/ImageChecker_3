@@ -43,6 +43,10 @@ namespace ImageChecker_3.Models.Images
 
         public List<ImageWrapper> GetImageWrappers(char keyChar)
         {
+            System.Diagnostics.Debug.WriteLine($"--------------------(DummyImageProvider : 46)");
+            System.Diagnostics.Debug.WriteLine($"keyChar = {keyChar} (DummyImageProvider : 46)");
+            System.Diagnostics.Debug.WriteLine($"{imageWrappers.GetValueOrDefault(keyChar).Count} 個の要素をもつリストを返します。(DummyImageProvider : 47)");
+            System.Diagnostics.Debug.WriteLine($"--------------------(DummyImageProvider : 49)");
             return imageWrappers.GetValueOrDefault(keyChar);
         }
     }
