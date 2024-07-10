@@ -8,8 +8,8 @@ namespace ImageChecker_3.Models.Images
 {
     public class ImageFileInfo : BindableBase
     {
-        private int width;
-        private int height;
+        private double width;
+        private double height;
 
         public ImageFileInfo()
         {
@@ -24,9 +24,9 @@ namespace ImageChecker_3.Models.Images
             }
         }
 
-        public int Width { get => width; set => SetProperty(ref width, value); }
+        public double Width { get => width; set => SetProperty(ref width, value); }
 
-        public int Height { get => height; set => SetProperty(ref height, value); }
+        public double Height { get => height; set => SetProperty(ref height, value); }
 
         public bool IsMatchingNamingRule { get; private set; }
 

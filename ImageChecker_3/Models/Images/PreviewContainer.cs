@@ -9,7 +9,7 @@ namespace ImageChecker_3.Models.Images
         
         public Rect ScreenSize { get; set; }
 
-        public Rect PreviewSize { get; set; } = new Rect(0, 0, 640, 360);
+        public Rect PreviewRect { get; set; } = new Rect(0, 0, 1280, 720);
 
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)
         {
