@@ -8,10 +8,7 @@ namespace ImageChecker_3.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var paramStr = (string)parameter;
-            var paramDouble = double.Parse(paramStr);
-
-            if (value is double doubleValue)
+            if (value is double doubleValue && parameter is double paramDouble)
             {
                 return doubleValue * paramDouble;
             }

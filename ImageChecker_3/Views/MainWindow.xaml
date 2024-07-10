@@ -16,7 +16,7 @@
     mc:Ignorable="d">
 
     <Window.Resources>
-        <converters:PreviewScaleConverter x:Key="PreviewScaleConverter" />
+        <converters:PreviewScaleMultiConverter x:Key="PreviewScaleMultiConverter" />
     </Window.Resources>
 
     <Grid>
@@ -25,23 +25,47 @@
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
+
                     <Canvas
-                        Width="{Binding PreviewContainer.PreviewRect.Width, Converter={StaticResource PreviewScaleConverter}, ConverterParameter=0.5}"
-                        Height="{Binding PreviewContainer.PreviewRect.Height, Converter={StaticResource PreviewScaleConverter}, ConverterParameter=0.5}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         ClipToBounds="True"
                         Left="{Binding PreviewContainer.PreviewRect.X}"
-                        Top="{Binding PreviewContainer.PreviewRect.Y}" />
+                        Top="{Binding PreviewContainer.PreviewRect.Y}">
+
+                        <Canvas.Width>
+                            <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
+                                <Binding Path="PreviewContainer.PreviewRect.Width" />
+                                <Binding Path="PreviewContainer.PreviewScale" />
+                            </MultiBinding>
+                        </Canvas.Width>
+                        <Canvas.Height>
+                            <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
+                                <Binding Path="PreviewContainer.PreviewRect.Height" />
+                                <Binding Path="PreviewContainer.PreviewScale" />
+                            </MultiBinding>
+                        </Canvas.Height>
+                    </Canvas>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type images:ImageWrapper}">
-                    <Image
-                        Width="{Binding ImageFileInfo.Width, Converter={StaticResource PreviewScaleConverter}, ConverterParameter=0.5}"
-                        Height="{Binding ImageFileInfo.Height, Converter={StaticResource PreviewScaleConverter}, ConverterParameter=0.5}"
-                        Source="{Binding ImageFileInfo.FileInfo.FullName}" />
+                    <Image Source="{Binding ImageFileInfo.FileInfo.FullName}">
+                        <Image.Height>
+                            <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
+                                <Binding Path="ImageFileInfo.Height" />
+                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=Window}" />
+                            </MultiBinding>
+                        </Image.Height>
+
+                        <Image.Width>
+                            <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
+                                <Binding Path="ImageFileInfo.Width" />
+                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=Window}" />
+                            </MultiBinding>
+                        </Image.Width>
+                    </Image>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
