@@ -20,7 +20,21 @@
     </Window.Resources>
 
     <Grid>
-        <ItemsControl ItemsSource="{Binding PreviewContainer.ImageWrappers}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ItemsControl
+            Grid.Row="0"
+            Grid.Column="0"
+            ItemsSource="{Binding PreviewContainer.ImageWrappers}">
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -28,9 +42,7 @@
                     <Canvas
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        ClipToBounds="True"
-                        Left="{Binding PreviewContainer.ScreenRect.X}"
-                        Top="{Binding PreviewContainer.ScreenRect.Y}">
+                        ClipToBounds="True">
 
                         <Canvas.Width>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
@@ -47,6 +59,13 @@
                     </Canvas>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Path=DataContext.PreviewContainer.ScreenRect.X}" />
+                    <Setter Property="Canvas.Top" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Path=DataContext.PreviewContainer.ScreenRect.Y}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type images:ImageWrapper}">
@@ -68,6 +87,24 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <!--  X 方向スライダー  -->
+        <Slider
+            Grid.Row="1"
+            Grid.Column="0"
+            Maximum="{Binding PreviewContainer.ScreenRect.Width}"
+            TickFrequency="10"
+            Value="{Binding PreviewContainer.X}" />
+
+        <!--  Y 方向スライダー  -->
+        <Slider
+            Grid.Row="0"
+            Grid.Column="1"
+            IsDirectionReversed="True"
+            Maximum="{Binding PreviewContainer.ScreenRect.Height}"
+            Orientation="Vertical"
+            TickFrequency="10"
+            Value="{Binding PreviewContainer.Y}" />
 
     </Grid>
 </Window>
