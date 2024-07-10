@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
-    Title="{Binding Title}"
+    Title="{Binding TitleBarText.Title}"
     Width="525"
     Height="350"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
