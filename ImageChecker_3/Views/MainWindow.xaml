@@ -29,18 +29,18 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         ClipToBounds="True"
-                        Left="{Binding PreviewContainer.PreviewRect.X}"
-                        Top="{Binding PreviewContainer.PreviewRect.Y}">
+                        Left="{Binding PreviewContainer.ScreenRect.X}"
+                        Top="{Binding PreviewContainer.ScreenRect.Y}">
 
                         <Canvas.Width>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                <Binding Path="PreviewContainer.PreviewRect.Width" />
+                                <Binding Path="PreviewContainer.ScreenRect.Width" />
                                 <Binding Path="PreviewContainer.PreviewScale" />
                             </MultiBinding>
                         </Canvas.Width>
                         <Canvas.Height>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                <Binding Path="PreviewContainer.PreviewRect.Height" />
+                                <Binding Path="PreviewContainer.ScreenRect.Height" />
                                 <Binding Path="PreviewContainer.PreviewScale" />
                             </MultiBinding>
                         </Canvas.Height>
