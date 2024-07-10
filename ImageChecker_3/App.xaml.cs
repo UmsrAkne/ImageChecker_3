@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using ImageChecker_3.Models.Images;
 using ImageChecker_3.Views;
 using Prism.Ioc;
 
@@ -16,6 +18,11 @@ namespace ImageChecker_3
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            #if DEBUG
+                containerRegistry.Register<IImageWrapperProvider, DummyImageProvider>();
+            #else
+                containerRegistry.Register<IImageWrapperProvider, ImageWrapperProvider>();
+            #endif
         }
     }
 }
