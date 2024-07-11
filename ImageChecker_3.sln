@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageChecker_3", "ImageChecker_3\ImageChecker_3.csproj", "{56864820-6017-4F7D-B9C6-03ABBBD3D13A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageChecker_3Test", "ImageChecker_3Test\ImageChecker_3Test.csproj", "{B067A605-59FE-4347-8E56-BA0F6A23F4A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{56864820-6017-4F7D-B9C6-03ABBBD3D13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56864820-6017-4F7D-B9C6-03ABBBD3D13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56864820-6017-4F7D-B9C6-03ABBBD3D13A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B067A605-59FE-4347-8E56-BA0F6A23F4A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B067A605-59FE-4347-8E56-BA0F6A23F4A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B067A605-59FE-4347-8E56-BA0F6A23F4A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B067A605-59FE-4347-8E56-BA0F6A23F4A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
