@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
 
 namespace ImageChecker_3.Views.Converters
@@ -8,9 +9,11 @@ namespace ImageChecker_3.Views.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values.Length == 2 && values[0] is double width && values[1] is double scale)
+            var doubles = values.OfType<double>();
+            var enumerable = doubles as double[] ?? doubles.ToArray();
+            if (enumerable.Length != 0)
             {
-                return width * scale;
+                return enumerable.Aggregate((now, next) => now * next);
             }
 
             return Binding.DoNothing;
