@@ -8,7 +8,7 @@ namespace ImageChecker_3.Models.Images
     public class PreviewContainer : BindableBase
     {
         private double previewScale = 0.5;
-        private Rect screenRect = new Rect(0, 0, 1280, 720);
+        private BindableRect screenRect = new (0, 0, 1280, 720);
         private double scale = 1.0;
 
         public ObservableCollection<ImageWrapper> ImageWrappers { get; set; } = new ();
@@ -16,18 +16,10 @@ namespace ImageChecker_3.Models.Images
         /// <summary>
         /// 実際のプレイ時の画面のサイズを表します。
         /// </summary>
-        public Rect ScreenRect
+        public BindableRect ScreenRect
         {
             get => screenRect;
-            set
-            {
-                if (SetProperty(ref screenRect, value))
-                {
-                    RaisePropertyChanged(nameof(RelativePosition));
-                    RaisePropertyChanged(nameof(X));
-                    RaisePropertyChanged(nameof(Y));
-                }
-            }
+            set => SetProperty(ref screenRect, value);
         }
 
         /// <summary>
@@ -61,7 +53,7 @@ namespace ImageChecker_3.Models.Images
         {
             get
             {
-                var sRect = ScreenRect with { X = 0, Y = 0, };
+                var sRect = new Rect(0, 0, ScreenRect.Width, ScreenRect.Height);
                 var imgRect = new Rect(ScreenRect.X, ScreenRect.Y, MaxImageSize.Width * Scale, MaxImageSize.Height * Scale);
                 var imgCenter = new Point((imgRect.Width / 2) + imgRect.X, (imgRect.Height / 2) + imgRect.Y);
                 var sRectCenter = new Point(sRect.Width / 2, sRect.Height / 2);
@@ -72,13 +64,23 @@ namespace ImageChecker_3.Models.Images
         public double X
         {
             get => ScreenRect.X;
-            set => ScreenRect = ScreenRect with { X = value, };
+            set
+            {
+                ScreenRect.X = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(RelativePosition));
+            }
         }
 
         public double Y
         {
             get => ScreenRect.Y;
-            set => ScreenRect = ScreenRect with { Y = value, };
+            set
+            {
+                ScreenRect.Y = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(RelativePosition));
+            }
         }
 
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)

@@ -1,4 +1,5 @@
 using System.Windows;
+using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
 using NUnit.Framework;
 
@@ -45,7 +46,7 @@ namespace ImageChecker_3Test.Models
         public void RelativePositionTest_画面サイズ1480(double scale, double x, double y)
         {
             previewContainer.Scale = scale;
-            previewContainer.ScreenRect = new Rect(0, 0, 1480, 720);
+            previewContainer.ScreenRect = new BindableRect(0, 0, 1480, 720);
             Assert.That(new Point(previewContainer.X, previewContainer.Y), Is.EqualTo(new Point(0, 0)));
 
             previewContainer.X = 100;
