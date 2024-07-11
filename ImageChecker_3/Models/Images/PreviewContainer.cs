@@ -19,7 +19,15 @@ namespace ImageChecker_3.Models.Images
         public Rect ScreenRect
         {
             get => screenRect;
-            set => SetProperty(ref screenRect, value);
+            set
+            {
+                if (SetProperty(ref screenRect, value))
+                {
+                    RaisePropertyChanged(nameof(RelativePosition));
+                    RaisePropertyChanged(nameof(X));
+                    RaisePropertyChanged(nameof(Y));
+                }
+            }
         }
 
         /// <summary>
@@ -36,7 +44,30 @@ namespace ImageChecker_3.Models.Images
         /// <summary>
         /// 実際のプレイ時に表示される画像のスケールです。
         /// </summary>
-        public double Scale { get => scale; set => SetProperty(ref scale, value); }
+        public double Scale
+        {
+            get => scale;
+            set
+            {
+                SetProperty(ref scale, value);
+                RaisePropertyChanged(nameof(RelativePosition));
+            }
+        }
+
+        /// <summary>
+        /// スクリーン中央を基準とした、表示中の画像の相対位置を取得します。
+        /// </summary>
+        public Point RelativePosition
+        {
+            get
+            {
+                var sRect = ScreenRect with { X = 0, Y = 0, };
+                var imgRect = new Rect(ScreenRect.X, ScreenRect.Y, MaxImageSize.Width * Scale, MaxImageSize.Height * Scale);
+                var imgCenter = new Point((imgRect.Width / 2) + imgRect.X, (imgRect.Height / 2) + imgRect.Y);
+                var sRectCenter = new Point(sRect.Width / 2, sRect.Height / 2);
+                return new Point(imgCenter.X - sRectCenter.X, imgCenter.Y - sRectCenter.Y);
+            }
+        }
 
         public double X
         {

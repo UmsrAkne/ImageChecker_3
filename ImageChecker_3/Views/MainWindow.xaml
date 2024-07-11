@@ -66,8 +66,22 @@
 
             <ItemsControl.ItemContainerStyle>
                 <Style TargetType="ContentPresenter">
-                    <Setter Property="Canvas.Left" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Path=DataContext.PreviewContainer.ScreenRect.X}" />
-                    <Setter Property="Canvas.Top" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Path=DataContext.PreviewContainer.ScreenRect.Y}" />
+                    <Setter Property="Canvas.Left">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
+                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
+                                <Binding Path="DataContext.PreviewContainer.ScreenRect.X" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Canvas.Top">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
+                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
+                                <Binding Path="DataContext.PreviewContainer.ScreenRect.Y" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </ItemsControl.ItemContainerStyle>
 
@@ -99,19 +113,13 @@
             x:Name="XSlider"
             Grid.Row="1"
             Grid.Column="0"
+            Maximum="{Binding PreviewContainer.ScreenRect.Width}"
             TickFrequency="10"
             Value="{Binding PreviewContainer.X}">
-            <Slider.Maximum>
-                <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                    <Binding Path="PreviewContainer.MaxImageSize.Width" />
-                    <Binding Path="PreviewContainer.PreviewScale" />
-                </MultiBinding>
-            </Slider.Maximum>
             <Slider.Minimum>
                 <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
                     <Binding Path="PreviewContainer.MaxImageSize.Width" />
                     <Binding Path="PreviewContainer.Scale" />
-                    <Binding Path="PreviewContainer.PreviewScale" />
                 </MultiBinding>
             </Slider.Minimum>
         </Slider>
@@ -121,20 +129,14 @@
             Grid.Row="0"
             Grid.Column="1"
             IsDirectionReversed="True"
+            Maximum="{Binding PreviewContainer.ScreenRect.Height}"
             Orientation="Vertical"
             TickFrequency="10"
             Value="{Binding PreviewContainer.Y}">
-            <Slider.Maximum>
-                <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                    <Binding Path="PreviewContainer.MaxImageSize.Height" />
-                    <Binding Path="PreviewContainer.PreviewScale" />
-                </MultiBinding>
-            </Slider.Maximum>
             <Slider.Minimum>
                 <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
                     <Binding Path="PreviewContainer.MaxImageSize.Height" />
                     <Binding Path="PreviewContainer.Scale" />
-                    <Binding Path="PreviewContainer.PreviewScale" />
                 </MultiBinding>
             </Slider.Minimum>
         </Slider>
@@ -149,32 +151,29 @@
             TickFrequency="0.5"
             Value="{Binding PreviewContainer.Scale}" />
 
+        <!--  PreviewContainer の各値の表示用エリア  -->
         <StackPanel
             Grid.Row="3"
             Grid.Column="0"
             Orientation="Horizontal">
 
             <TextBlock Text="X :" />
-            <ContentControl Width="50">
-                <ContentControl.Content>
-                    <MultiBinding Converter="{StaticResource DivideConverter}">
-                        <Binding Path="PreviewContainer.ScreenRect.X" />
-                        <Binding Path="PreviewContainer.PreviewScale" />
-                    </MultiBinding>
-                </ContentControl.Content>
-            </ContentControl>
+            <TextBlock Width="50" Text="{Binding PreviewContainer.X}" />
+
+            <Border Margin="10,0" />
+
+            <TextBlock Text="relX :" />
+            <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.X}" />
 
             <Border Margin="10,0" />
 
             <TextBlock Text="Y :" />
-            <ContentControl Width="50">
-                <ContentControl.Content>
-                    <MultiBinding Converter="{StaticResource DivideConverter}">
-                        <Binding Path="PreviewContainer.ScreenRect.Y" />
-                        <Binding Path="PreviewContainer.PreviewScale" />
-                    </MultiBinding>
-                </ContentControl.Content>
-            </ContentControl>
+            <TextBlock Width="50" Text="{Binding PreviewContainer.Y}" />
+
+            <Border Margin="10,0" />
+
+            <TextBlock Text="relY :" />
+            <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.Y}" />
 
             <Border Margin="10,0" />
 
