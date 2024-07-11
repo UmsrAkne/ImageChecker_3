@@ -28,15 +28,29 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ItemsControl
+        <StackPanel
             Grid.Row="0"
+            Margin="2"
+            Orientation="Horizontal">
+            <TextBlock Text="Screen Width : " />
+            <TextBox Width="40" Text="{Binding PreviewContainer.ScreenRect.Width}" />
+
+            <Border Margin="10,0" />
+
+            <TextBlock Text="Preview Scale :" />
+            <TextBox Width="30" Text="{Binding PreviewContainer.PreviewScale}" />
+        </StackPanel>
+
+        <ItemsControl
+            Grid.Row="1"
             Grid.Column="0"
             ItemsSource="{Binding PreviewContainer.ImageWrappers}">
 
@@ -111,7 +125,7 @@
         <!--  X 方向スライダー  -->
         <Slider
             x:Name="XSlider"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             Maximum="{Binding PreviewContainer.ScreenRect.Width}"
             TickFrequency="10"
@@ -126,7 +140,7 @@
 
         <!--  Y 方向スライダー  -->
         <Slider
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="1"
             IsDirectionReversed="True"
             Maximum="{Binding PreviewContainer.ScreenRect.Height}"
@@ -143,7 +157,7 @@
 
         <!--  Scale スライダー  -->
         <Slider
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="0"
             IsSnapToTickEnabled="True"
             Maximum="4"
@@ -153,7 +167,7 @@
 
         <!--  PreviewContainer の各値の表示用エリア  -->
         <StackPanel
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="0"
             Orientation="Horizontal">
 
