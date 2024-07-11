@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using Prism.Mvvm;
 
@@ -20,6 +21,11 @@ namespace ImageChecker_3.Models.Images
             get => screenRect;
             set => SetProperty(ref screenRect, value);
         }
+
+        /// <summary>
+        /// このコンテナの中に格納されている画像のうち、一番大きな画像のサイズを取得します。
+        /// </summary>
+        public Size MaxImageSize { get; private set; }
 
         /// <summary>
         /// 実際の画面のサイズに対する、プレビュー領域のサイズ比です。
@@ -48,6 +54,12 @@ namespace ImageChecker_3.Models.Images
         {
             ImageWrappers.Clear();
             ImageWrappers.AddRange(new[] { a, b, c, d, });
+
+            MaxImageSize = new Size(
+                ImageWrappers.Max(w => w.ImageFileInfo.Width),
+                ImageWrappers.Max(w => w.ImageFileInfo.Height));
+
+            RaisePropertyChanged(nameof(MaxImageSize));
         }
     }
 }
