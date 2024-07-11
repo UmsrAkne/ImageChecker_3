@@ -27,8 +27,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -122,22 +120,6 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <!--  X 方向スライダー  -->
-        <Slider
-            x:Name="XSlider"
-            Grid.Row="2"
-            Grid.Column="0"
-            Maximum="{Binding PreviewContainer.ScreenRect.Width}"
-            TickFrequency="10"
-            Value="{Binding PreviewContainer.X}">
-            <Slider.Minimum>
-                <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
-                    <Binding Path="PreviewContainer.MaxImageSize.Width" />
-                    <Binding Path="PreviewContainer.Scale" />
-                </MultiBinding>
-            </Slider.Minimum>
-        </Slider>
-
         <!--  Y 方向スライダー  -->
         <Slider
             Grid.Row="1"
@@ -155,44 +137,57 @@
             </Slider.Minimum>
         </Slider>
 
-        <!--  Scale スライダー  -->
-        <Slider
-            Grid.Row="3"
-            Grid.Column="0"
-            IsSnapToTickEnabled="True"
-            Maximum="4"
-            Minimum="1"
-            TickFrequency="0.5"
-            Value="{Binding PreviewContainer.Scale}" />
+        <StackPanel Grid.Row="2" Grid.Column="0">
 
-        <!--  PreviewContainer の各値の表示用エリア  -->
-        <StackPanel
-            Grid.Row="4"
-            Grid.Column="0"
-            Orientation="Horizontal">
+            <!--  X 方向スライダー  -->
+            <Slider
+                x:Name="XSlider"
+                Maximum="{Binding PreviewContainer.ScreenRect.Width}"
+                TickFrequency="10"
+                Value="{Binding PreviewContainer.X}">
+                <Slider.Minimum>
+                    <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
+                        <Binding Path="PreviewContainer.MaxImageSize.Width" />
+                        <Binding Path="PreviewContainer.Scale" />
+                    </MultiBinding>
+                </Slider.Minimum>
+            </Slider>
 
-            <TextBlock Text="X :" />
-            <TextBlock Width="50" Text="{Binding PreviewContainer.X}" />
+            <!--  Scale スライダー  -->
+            <Slider
+                IsSnapToTickEnabled="True"
+                Maximum="4"
+                Minimum="1"
+                TickFrequency="0.5"
+                Value="{Binding PreviewContainer.Scale}" />
 
-            <Border Margin="10,0" />
+            <!--  PreviewContainer の各値の表示用エリア  -->
+            <StackPanel Orientation="Horizontal">
 
-            <TextBlock Text="relX :" />
-            <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.X}" />
+                <TextBlock Text="X :" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.X}" />
 
-            <Border Margin="10,0" />
+                <Border Margin="10,0" />
 
-            <TextBlock Text="Y :" />
-            <TextBlock Width="50" Text="{Binding PreviewContainer.Y}" />
+                <TextBlock Text="relX :" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.X}" />
 
-            <Border Margin="10,0" />
+                <Border Margin="10,0" />
 
-            <TextBlock Text="relY :" />
-            <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.Y}" />
+                <TextBlock Text="Y :" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.Y}" />
 
-            <Border Margin="10,0" />
+                <Border Margin="10,0" />
 
-            <TextBlock Text="Scale :" />
-            <TextBlock Width="50" Text="{Binding PreviewContainer.Scale}" />
+                <TextBlock Text="relY :" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.Y}" />
+
+                <Border Margin="10,0" />
+
+                <TextBlock Text="Scale :" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.Scale}" />
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>
