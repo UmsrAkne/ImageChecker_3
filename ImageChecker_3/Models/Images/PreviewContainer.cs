@@ -8,6 +8,7 @@ namespace ImageChecker_3.Models.Images
     {
         private double previewScale = 0.5;
         private Rect screenRect = new Rect(0, 0, 1280, 720);
+        private double scale = 1.0;
 
         public ObservableCollection<ImageWrapper> ImageWrappers { get; set; } = new ();
 
@@ -25,6 +26,11 @@ namespace ImageChecker_3.Models.Images
         /// 例えば、このプロパティの値が 0.5 ならば、画面サイズに対してプレビュー領域が半分の大きさとなります。
         /// </summary>
         public double PreviewScale { get => previewScale; set => SetProperty(ref previewScale, value); }
+
+        /// <summary>
+        /// 実際のプレイ時に表示される画像のスケールです。
+        /// </summary>
+        public double Scale { get => scale; set => SetProperty(ref scale, value); }
 
         public double X
         {

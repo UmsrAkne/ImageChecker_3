@@ -10,7 +10,6 @@
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     Title="{Binding TitleBarText.Title}"
     Width="800"
-    Height="400"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
@@ -23,7 +22,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -73,6 +73,7 @@
                         <Image.Height>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
                                 <Binding Path="ImageFileInfo.Height" />
+                                <Binding Path="DataContext.PreviewContainer.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                                 <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                             </MultiBinding>
                         </Image.Height>
@@ -80,6 +81,7 @@
                         <Image.Width>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
                                 <Binding Path="ImageFileInfo.Width" />
+                                <Binding Path="DataContext.PreviewContainer.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                                 <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                             </MultiBinding>
                         </Image.Width>
@@ -105,6 +107,16 @@
             Orientation="Vertical"
             TickFrequency="10"
             Value="{Binding PreviewContainer.Y}" />
+
+        <!--  Scale スライダー  -->
+        <Slider
+            Grid.Row="2"
+            Grid.Column="0"
+            IsSnapToTickEnabled="True"
+            Maximum="4"
+            Minimum="1"
+            TickFrequency="0.5"
+            Value="{Binding PreviewContainer.Scale}" />
 
     </Grid>
 </Window>
