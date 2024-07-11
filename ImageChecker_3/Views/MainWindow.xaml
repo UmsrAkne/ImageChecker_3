@@ -7,6 +7,7 @@
     xmlns:images="clr-namespace:ImageChecker_3.Models.Images"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     Title="{Binding TitleBarText.Title}"
     Width="800"
@@ -16,6 +17,7 @@
 
     <Window.Resources>
         <converters:PreviewScaleMultiConverter x:Key="PreviewScaleMultiConverter" />
+        <converters:NegativeMultiplierConverter x:Key="NegativeMultiplierConverter" />
         <converters:DivideConverter x:Key="DivideConverter" />
     </Window.Resources>
 
@@ -105,6 +107,12 @@
                     <Binding Path="PreviewContainer.PreviewScale" />
                 </MultiBinding>
             </Slider.Maximum>
+            <Slider.Minimum>
+                <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
+                    <Binding Path="PreviewContainer.ScreenRect.Width" />
+                    <Binding Path="PreviewContainer.PreviewScale" />
+                </MultiBinding>
+            </Slider.Minimum>
         </Slider>
 
         <!--  Y 方向スライダー  -->
@@ -121,6 +129,12 @@
                     <Binding Path="PreviewContainer.PreviewScale" />
                 </MultiBinding>
             </Slider.Maximum>
+            <Slider.Minimum>
+                <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
+                    <Binding Path="PreviewContainer.ScreenRect.Height" />
+                    <Binding Path="PreviewContainer.PreviewScale" />
+                </MultiBinding>
+            </Slider.Minimum>
         </Slider>
 
         <!--  Scale スライダー  -->
