@@ -49,5 +49,10 @@ namespace ImageChecker_3.Models.Images
             System.Diagnostics.Debug.WriteLine($"--------------------(DummyImageProvider : 49)");
             return imageWrappers.GetValueOrDefault(keyChar);
         }
+
+        public void Load(string directoryPath)
+        {
+            System.Diagnostics.Debug.WriteLine($"Load() が実行されました。指定パス : {directoryPath}(DummyImageProvider : 55)");
+        }
     }
 }

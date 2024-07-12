@@ -8,5 +8,9 @@ namespace ImageChecker_3.Models.Images
         {
             return new List<ImageWrapper>();
         }
+
+        public void Load(string directoryPath)
+        {
+        }
     }
 }
