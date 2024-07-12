@@ -7,7 +7,7 @@ namespace ImageChecker_3.Models.Images
         private readonly Dictionary<char, List<ImageWrapper>> imageWrappers = new ()
         {
             {
-                'a', new List<ImageWrapper>()
+                'A', new List<ImageWrapper>()
                 {
                     new (new ImageFileInfo(@"C:\MyFiles\temp\pngs\A0101.png") { Width = 1280, Height = 720, }),
                     new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
@@ -16,7 +16,7 @@ namespace ImageChecker_3.Models.Images
                 }
             },
             {
-                'b', new List<ImageWrapper>()
+                'B', new List<ImageWrapper>()
                 {
                     new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
                     new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 2, }),
@@ -24,7 +24,7 @@ namespace ImageChecker_3.Models.Images
                 }
             },
             {
-                'c', new List<ImageWrapper>()
+                'C', new List<ImageWrapper>()
                 {
                     new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
                     new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 2, }),
@@ -32,7 +32,7 @@ namespace ImageChecker_3.Models.Images
                 }
             },
             {
-                'd', new List<ImageWrapper>()
+                'D', new List<ImageWrapper>()
                 {
                     new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
                     new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 2, }),
