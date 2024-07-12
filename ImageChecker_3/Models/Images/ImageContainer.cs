@@ -14,12 +14,13 @@ namespace ImageChecker_3.Models.Images
         private int selectedIndex;
         private ImageWrapper currentFile;
         private bool isEnabled = true;
-        
+        private List<ImageWrapper> imageWrappers = new List<ImageWrapper>();
+
         public ImageContainer(string keyChar)
         {
             this.keyChar = keyChar;
         }
-        
+
         public event EventHandler CurrentFileChanged;
 
         public List<ImageWrapper> FilteredFiles
@@ -66,23 +67,20 @@ namespace ImageChecker_3.Models.Images
             }
         }
 
-        private List<ImageWrapper> Files { get; set; } = new List<ImageWrapper>();
-
-        public void Load(IEnumerable<string> filePaths)
+        public List<ImageWrapper> ImageWrappers
         {
-            Files = filePaths
-                .Where(path => path.EndsWith(".png") || path.EndsWith(".jpg"))
-                .Where(path => Path.GetFileName(path).Contains(keyChar))
-                .Select(path => new ImageWrapper(new ImageFileInfo(path)))
-                .ToList();
-
-            FilteredFiles = Files.ToList();
-            CurrentFile = Files.FirstOrDefault();
-            IsEnabled = Files.Count > 0;
-            
-            if (Files.Count == 0)
+            private get => imageWrappers;
+            set
             {
-                Drawing = false;
+                if (SetProperty(ref imageWrappers, value))
+                {
+                    CurrentFile = value.FirstOrDefault();
+                    IsEnabled = value.Count > 0;
+                    if (ImageWrappers.Count == 0)
+                    {
+                        Drawing = false;
+                    }
+                }
             }
         }
 
@@ -95,7 +93,7 @@ namespace ImageChecker_3.Models.Images
 
             var groupIndex = baseImageFile.ImageFileInfo.Index;
 
-            FilteredFiles = Files.Where(imageFile => imageFile.ImageFileInfo.Index == groupIndex).ToList();
+            FilteredFiles = ImageWrappers.Where(imageFile => imageFile.ImageFileInfo.Index == groupIndex).ToList();
             CurrentFile = FilteredFiles.FirstOrDefault();
         }
 
