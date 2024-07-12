@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 using Prism.Mvvm;
@@ -34,6 +35,8 @@ namespace ImageChecker_3.Models.Images
 
         public int SubIndex { get; set; }
 
+        public char KeyChar { get; set; }
+
         public FileInfo FileInfo { get; set; }
 
         public override string ToString()
@@ -67,9 +70,10 @@ namespace ImageChecker_3.Models.Images
             }
 
             IsMatchingNamingRule = true;
-            var matches = Regex.Matches(FileInfo.Name, @"[ABCD](\d\d)(\d\d)");
-            Index = int.Parse(matches[0].Groups[1].Value);
-            SubIndex = int.Parse(matches[0].Groups[2].Value);
+            var matches = Regex.Matches(FileInfo.Name, @"([ABCD])(\d\d)(\d\d)");
+            KeyChar = matches[0].Groups[1].Value.FirstOrDefault();
+            Index = int.Parse(matches[0].Groups[2].Value);
+            SubIndex = int.Parse(matches[0].Groups[3].Value);
         }
     }
 }
