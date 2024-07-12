@@ -13,10 +13,10 @@ namespace ImageChecker_3.ViewModels
             ImageWrapperProvider = new DummyImageProvider();
 
             PreviewContainer.SetImageWrappers(
-                ImageWrapperProvider.GetImageWrappers('a').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('b').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('c').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('d').FirstOrDefault());
+                ImageWrapperProvider.GetImageWrappers('A').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('B').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
         }
 
         public MainWindowViewModel(IImageWrapperProvider imageWrapperProvider)
@@ -24,10 +24,10 @@ namespace ImageChecker_3.ViewModels
             ImageWrapperProvider = imageWrapperProvider;
 
             PreviewContainer.SetImageWrappers(
-                ImageWrapperProvider.GetImageWrappers('a').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('b').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('c').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('d').FirstOrDefault());
+                ImageWrapperProvider.GetImageWrappers('A').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('B').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
         }
 
         public TitleBarText TitleBarText { get; set; } = new ();
@@ -50,10 +50,10 @@ namespace ImageChecker_3.ViewModels
             ImageWrapperProvider.Load(directoryPath);
 
             PreviewContainer.SetImageWrappers(
-                ImageWrapperProvider.GetImageWrappers('a').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('b').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('c').FirstOrDefault(),
-                ImageWrapperProvider.GetImageWrappers('d').FirstOrDefault());
+                ImageWrapperProvider.GetImageWrappers('A').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('B').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
+                ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
         }
     }
 }
