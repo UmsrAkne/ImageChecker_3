@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -58,6 +59,18 @@ namespace ImageChecker_3.Models.Images
                 var imgCenter = new Point((imgRect.Width / 2) + imgRect.X, (imgRect.Height / 2) + imgRect.Y);
                 var sRectCenter = new Point(sRect.Width / 2, sRect.Height / 2);
                 return new Point(imgCenter.X - sRectCenter.X, imgCenter.Y - sRectCenter.Y);
+            }
+
+            set
+            {
+                // 任意の拡大率の画像が画面中央にセットされる座標を算出。
+                var sRect = new Rect(0, 0, ScreenRect.Width, ScreenRect.Height);
+                var imgX = (((MaxImageSize.Width * Scale) - sRect.Width) / 2) * -1;
+                var imgY = (((MaxImageSize.Height * Scale) - sRect.Height) / 2) * -1;
+
+                // 座標をセット。imgX,Y の座標が、相対座標 (0,0) であるので、それにそのまま value を足せば良い。
+                ScreenRect.X = imgX + value.X;
+                ScreenRect.Y = imgY + value.Y;
             }
         }
 
