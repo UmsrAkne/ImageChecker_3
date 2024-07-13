@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 
 namespace ImageChecker_3.Models.Images
 {
@@ -10,33 +11,69 @@ namespace ImageChecker_3.Models.Images
                 'A', new List<ImageWrapper>()
                 {
                     new (new ImageFileInfo(@"C:\MyFiles\temp\pngs\A0101.png") { Width = 1280, Height = 720, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 2, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 3, }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 2, FileInfo = new FileInfo("A0102.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 3, FileInfo = new FileInfo("A0103.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 4, FileInfo = new FileInfo("A0104.png"),
+                    }),
                 }
             },
             {
                 'B', new List<ImageWrapper>()
                 {
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 2, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 3, }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 1, FileInfo = new FileInfo("B0101.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 2, FileInfo = new FileInfo("B0102.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 3, FileInfo = new FileInfo("B0103.png"),
+                    }),
                 }
             },
             {
                 'C', new List<ImageWrapper>()
                 {
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 2, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 3, }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 1, FileInfo = new FileInfo("C0101.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 2, FileInfo = new FileInfo("C0102.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 3, FileInfo = new FileInfo("C0103.png"),
+                    }),
                 }
             },
             {
                 'D', new List<ImageWrapper>()
                 {
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 1, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 2, }),
-                    new (new ImageFileInfo() { Width = 1280, Height = 720, Index = 1, SubIndex = 3, }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 1, FileInfo = new FileInfo("D0101.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 2, FileInfo = new FileInfo("D0102.png"),
+                    }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 3, FileInfo = new FileInfo("D0103.png"),
+                    }),
                 }
             },
         };
