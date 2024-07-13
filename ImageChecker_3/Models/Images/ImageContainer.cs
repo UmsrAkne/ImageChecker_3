@@ -19,6 +19,7 @@ namespace ImageChecker_3.Models.Images
         public ImageContainer(string keyChar)
         {
             this.keyChar = keyChar;
+            Index = new List<string> { "A", "B", "C", "D", }.IndexOf(keyChar);
         }
 
         public event EventHandler CurrentFileChanged;
@@ -83,6 +84,8 @@ namespace ImageChecker_3.Models.Images
                 }
             }
         }
+
+        public int Index { get; private set; }
 
         public void SelectSameGroupImages(ImageWrapper baseImageFile)
         {
