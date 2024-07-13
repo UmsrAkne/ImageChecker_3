@@ -14,11 +14,6 @@
     mc:Ignorable="d">
 
     <DockPanel>
-        <TextBlock Text="{Binding KeyChar}" />
-        <TextBlock Text="{Binding KeyChar}" />
-        <TextBlock Text="{Binding KeyChar}" />
-        <TextBlock Text="{Binding KeyChar}" />
-
         <DockPanel Margin="3,2" DockPanel.Dock="Top">
             <CheckBox IsChecked="{Binding IsEnabled}" />
             <ComboBox
