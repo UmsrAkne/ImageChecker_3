@@ -87,9 +87,18 @@ namespace ImageChecker_3.Models.Images
 
         public int Index { get; private set; }
 
+        public string KeyChar => keyChar;
+
         public void SelectSameGroupImages(ImageWrapper baseImageFile)
         {
             if (keyChar == "A")
+            {
+                FilteredFiles = ImageWrappers;
+                CurrentFile = FilteredFiles.FirstOrDefault();
+                return;
+            }
+
+            if (baseImageFile == null)
             {
                 return;
             }

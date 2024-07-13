@@ -77,6 +77,12 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('B').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
+
+            foreach (var ic in ImageContainers)
+            {
+                ic.ImageWrappers = ImageWrapperProvider.GetImageWrappers(ic.KeyChar.First());
+                ic.SelectSameGroupImages(ImageWrapperProvider.GetImageWrappers('A').FirstOrDefault());
+            }
         }
     }
 }

@@ -14,6 +14,11 @@
     mc:Ignorable="d">
 
     <DockPanel>
+        <TextBlock Text="{Binding KeyChar}" />
+        <TextBlock Text="{Binding KeyChar}" />
+        <TextBlock Text="{Binding KeyChar}" />
+        <TextBlock Text="{Binding KeyChar}" />
+
         <DockPanel Margin="3,2" DockPanel.Dock="Top">
             <CheckBox IsChecked="{Binding IsEnabled}" />
             <ComboBox
@@ -70,7 +75,7 @@
                             </Border.Style>
 
                             <StackPanel Margin="2,0">
-                                <Image Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=ActualWidth}" />
+                                <Image Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=ActualWidth}" Source="{Binding ImageFileInfo.FileInfo.FullName}" />
                                 <TextBlock Text="{Binding ImageFileInfo.FileInfo.Name}" />
 
                                 <StackPanel Orientation="Horizontal">

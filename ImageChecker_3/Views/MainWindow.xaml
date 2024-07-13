@@ -221,7 +221,7 @@
             <!--  アイテムのテンプレート  -->
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <views:ImageSelectionBox />
+                    <views:ImageSelectionBox DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
 
