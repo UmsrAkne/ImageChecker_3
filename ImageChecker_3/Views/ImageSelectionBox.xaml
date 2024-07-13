@@ -78,7 +78,7 @@
                             </Border.Style>
 
                             <StackPanel Margin="2,0">
-                                <Image Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=ActualWidth}">
+                                <Image>
                                     <Image.Style>
                                         <Style TargetType="Image">
                                             <Style.Triggers>
