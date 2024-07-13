@@ -24,6 +24,7 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
 
+            LoadImages(string.Empty);
             FourthColumnLength = new GridLength(0);
         }
 
@@ -37,6 +38,7 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
 
+            LoadImages(string.Empty);
             FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
         }
 
@@ -65,11 +67,6 @@ namespace ImageChecker_3.ViewModels
         /// <param name="directoryPath">画像ファイルを含むディレクトリのパスを指定します。</param>
         public void LoadImages(string directoryPath)
         {
-            if (string.IsNullOrWhiteSpace(directoryPath) || !Directory.Exists(directoryPath))
-            {
-                return;
-            }
-
             ImageWrapperProvider.Load(directoryPath);
 
             PreviewContainer.SetImageWrappers(
