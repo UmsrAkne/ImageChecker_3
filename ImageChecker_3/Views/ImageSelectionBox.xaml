@@ -78,7 +78,17 @@
                             </Border.Style>
 
                             <StackPanel Margin="2,0">
-                                <Image Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=ActualWidth}" Source="{Binding ImageFileInfo.FileInfo.FullName}" />
+                                <Image Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=ActualWidth}">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ImageFileInfo.FileInfo.Exists}" Value="True">
+                                                    <Setter Property="Source" Value="{Binding ImageFileInfo.FileInfo.FullName}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
                                 <TextBlock Text="{Binding ImageFileInfo.FileInfo.Name}" />
 
                                 <StackPanel Orientation="Horizontal">
