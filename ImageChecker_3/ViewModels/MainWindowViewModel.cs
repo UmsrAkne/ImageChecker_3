@@ -8,6 +8,8 @@ using Prism.Mvvm;
 
 namespace ImageChecker_3.ViewModels
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
+    // DI コンテナにより生成されるクラスのため、手動によるインスタンス化はしない。
     public class MainWindowViewModel : BindableBase
     {
         private GridLength fourthColumnLength;
@@ -40,13 +42,8 @@ namespace ImageChecker_3.ViewModels
 
         public TitleBarText TitleBarText { get; set; } = new ();
 
-        public List<ImageContainer> ImageContainers { get; private set; } = new ()
-        {
-            new ImageContainer("A"),
-            new ImageContainer("B"),
-            new ImageContainer("C"),
-            new ImageContainer("D"),
-        };
+        public List<ImageContainer> ImageContainers { get; private set; }
+            = new[] { "A", "B", "C", "D", }.Select(key => new ImageContainer(key)).ToList();
 
         /// <summary>
         /// Grid の ４列目の幅を設定するためのプロパティです。
