@@ -1,0 +1,97 @@
+<UserControl
+    x:Class="ImageChecker_3.Views.ImageSelectionBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:images="clr-namespace:ImageChecker_3.Models.Images"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
+    x:Name="Root"
+    d:DataContext="{d:DesignInstance images:ImageContainer}"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+
+    <DockPanel>
+        <DockPanel Margin="3,2" DockPanel.Dock="Top">
+            <CheckBox IsChecked="{Binding IsEnabled}" />
+            <ComboBox
+                x:Name="ComboBox"
+                Margin="3,0"
+                IsEnabled="{Binding IsEnabled}"
+                ItemsSource="{Binding FilteredFiles}"
+                SelectedItem="{Binding CurrentFile}">
+
+                <!-- <i:Interaction.Triggers> -->
+                <!--     <i:EventTrigger EventName="SelectionChanged"> -->
+                <!--         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.SelectableImageFilterCommand)}" CommandParameter="{Binding SelectedItem, ElementName=ComboBox}" /> -->
+                <!--     </i:EventTrigger> -->
+                <!-- </i:Interaction.Triggers> -->
+            </ComboBox>
+        </DockPanel>
+
+        <ListBox
+            x:Name="ListBox"
+            HorizontalAlignment="Stretch"
+            IsEnabled="{Binding IsEnabled}"
+            ItemsSource="{Binding FilteredFiles}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            SelectedItem="{Binding CurrentFile}"
+            VirtualizingPanel.ScrollUnit="Pixel">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type images:ImageWrapper}">
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="ListBox.IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.5" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Border Margin="0,5" BorderThickness="4,0,0,0">
+
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                            <Setter Property="BorderBrush" Value="Tomato" />
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                            <StackPanel Margin="2,0">
+                                <Image Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=ActualWidth}" />
+                                <TextBlock Text="{Binding ImageFileInfo.FileInfo.Name}" />
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ImageFileInfo.Width}" />
+                                    <TextBlock Text=" x " />
+                                    <TextBlock Text="{Binding ImageFileInfo.Height}" />
+                                </StackPanel>
+                                <Border Height="2" Background="Black" />
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+
+            <!-- <i:Interaction.Triggers> -->
+            <!--     <i:EventTrigger EventName="SelectionChanged"> -->
+            <!--         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.SelectableImageFilterCommand)}" CommandParameter="{Binding SelectedItem, ElementName=ListBox}" /> -->
+            <!--     </i:EventTrigger> -->
+            <!-- </i:Interaction.Triggers> -->
+
+        </ListBox>
+    </DockPanel>
+</UserControl>

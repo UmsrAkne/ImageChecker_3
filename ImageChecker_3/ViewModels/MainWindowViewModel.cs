@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Windows;
 using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
 using Prism.Mvvm;
@@ -8,6 +10,8 @@ namespace ImageChecker_3.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private GridLength fourthColumnLength;
+
         public MainWindowViewModel()
         {
             ImageWrapperProvider = new DummyImageProvider();
@@ -17,6 +21,8 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('B').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
+
+            FourthColumnLength = new GridLength(0);
         }
 
         public MainWindowViewModel(IImageWrapperProvider imageWrapperProvider)
@@ -28,9 +34,29 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('B').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
+
+            FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
         }
 
         public TitleBarText TitleBarText { get; set; } = new ();
+
+        public List<ImageContainer> ImageContainers { get; private set; } = new ()
+        {
+            new ImageContainer("A"),
+            new ImageContainer("B"),
+            new ImageContainer("C"),
+            new ImageContainer("D"),
+        };
+
+        /// <summary>
+        /// Grid の ４列目の幅を設定するためのプロパティです。
+        /// 表示されている・表示されておらずスペースも確保されていない のどちらかの状態です。
+        /// </summary>
+        public GridLength FourthColumnLength
+        {
+            get => fourthColumnLength;
+            private set => SetProperty(ref fourthColumnLength, value);
+        }
 
         public PreviewContainer PreviewContainer { get; private set; } = new ();
 
