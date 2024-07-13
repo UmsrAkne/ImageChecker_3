@@ -28,6 +28,14 @@
                 ItemsSource="{Binding FilteredFiles}"
                 SelectedItem="{Binding CurrentFile}">
 
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type images:ImageWrapper}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ImageFileInfo.FileInfo.Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
                 <!-- <i:Interaction.Triggers> -->
                 <!--     <i:EventTrigger EventName="SelectionChanged"> -->
                 <!--         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.SelectableImageFilterCommand)}" CommandParameter="{Binding SelectedItem, ElementName=ComboBox}" /> -->
