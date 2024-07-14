@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -8,7 +7,7 @@ namespace ImageChecker_3.Models.Images
 {
     public class PreviewContainer : BindableBase
     {
-        private double previewScale = 0.5;
+        private double previewScale = 0.4;
         private BindableRect screenRect = new (0, 0, 1280, 720);
         private double scale = 1.0;
 

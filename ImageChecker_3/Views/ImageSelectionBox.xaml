@@ -23,6 +23,14 @@
                 ItemsSource="{Binding FilteredFiles}"
                 SelectedItem="{Binding CurrentFile}">
 
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type images:ImageWrapper}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ImageFileInfo.FileInfo.Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
                 <!-- <i:Interaction.Triggers> -->
                 <!--     <i:EventTrigger EventName="SelectionChanged"> -->
                 <!--         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.SelectableImageFilterCommand)}" CommandParameter="{Binding SelectedItem, ElementName=ComboBox}" /> -->
@@ -70,7 +78,17 @@
                             </Border.Style>
 
                             <StackPanel Margin="2,0">
-                                <Image Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=ActualWidth}" />
+                                <Image>
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ImageFileInfo.FileInfo.Exists}" Value="True">
+                                                    <Setter Property="Source" Value="{Binding ImageFileInfo.FileInfo.FullName}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
                                 <TextBlock Text="{Binding ImageFileInfo.FileInfo.Name}" />
 
                                 <StackPanel Orientation="Horizontal">

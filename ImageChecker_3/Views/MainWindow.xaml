@@ -109,7 +109,17 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type images:ImageWrapper}">
-                    <Image Source="{Binding ImageFileInfo.FileInfo.FullName}">
+                    <Image>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ImageFileInfo.FileInfo.Exists}" Value="True">
+                                        <Setter Property="Source" Value="{Binding ImageFileInfo.FileInfo.FullName}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+
                         <Image.Height>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
                                 <Binding Path="ImageFileInfo.Height" />
@@ -221,7 +231,7 @@
             <!--  アイテムのテンプレート  -->
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <views:ImageSelectionBox />
+                    <views:ImageSelectionBox DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
 

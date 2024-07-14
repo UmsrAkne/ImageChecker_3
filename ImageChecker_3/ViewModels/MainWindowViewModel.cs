@@ -8,6 +8,8 @@ using Prism.Mvvm;
 
 namespace ImageChecker_3.ViewModels
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
+    // DI コンテナにより生成されるクラスのため、手動によるインスタンス化はしない。
     public class MainWindowViewModel : BindableBase
     {
         private GridLength fourthColumnLength;
@@ -22,6 +24,7 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
 
+            LoadImages(string.Empty);
             FourthColumnLength = new GridLength(0);
         }
 
@@ -35,18 +38,14 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
 
+            LoadImages(string.Empty);
             FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
         }
 
         public TitleBarText TitleBarText { get; set; } = new ();
 
-        public List<ImageContainer> ImageContainers { get; private set; } = new ()
-        {
-            new ImageContainer("A"),
-            new ImageContainer("B"),
-            new ImageContainer("C"),
-            new ImageContainer("D"),
-        };
+        public List<ImageContainer> ImageContainers { get; private set; }
+            = new[] { "A", "B", "C", "D", }.Select(key => new ImageContainer(key)).ToList();
 
         /// <summary>
         /// Grid の ４列目の幅を設定するためのプロパティです。
@@ -68,11 +67,6 @@ namespace ImageChecker_3.ViewModels
         /// <param name="directoryPath">画像ファイルを含むディレクトリのパスを指定します。</param>
         public void LoadImages(string directoryPath)
         {
-            if (string.IsNullOrWhiteSpace(directoryPath) || !Directory.Exists(directoryPath))
-            {
-                return;
-            }
-
             ImageWrapperProvider.Load(directoryPath);
 
             PreviewContainer.SetImageWrappers(
@@ -80,6 +74,12 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('B').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
+
+            foreach (var ic in ImageContainers)
+            {
+                ic.ImageWrappers = ImageWrapperProvider.GetImageWrappers(ic.KeyChar.First());
+                ic.SelectSameGroupImages(ImageWrapperProvider.GetImageWrappers('A').FirstOrDefault());
+            }
         }
     }
 }

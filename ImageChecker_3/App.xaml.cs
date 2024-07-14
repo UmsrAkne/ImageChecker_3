@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using ImageChecker_3.Models.Images;
 using ImageChecker_3.Views;
 using Prism.Ioc;
