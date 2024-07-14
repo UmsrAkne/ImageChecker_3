@@ -12,6 +12,7 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     xmlns:views="clr-namespace:ImageChecker_3.Views"
+    x:Name="Window"
     Title="{Binding TitleBarText.Title}"
     Width="1024"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
@@ -91,16 +92,16 @@
                     <Setter Property="Canvas.Left">
                         <Setter.Value>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
-                                <Binding Path="DataContext.PreviewContainer.ScreenRect.X" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
+                                <Binding ElementName="Window" Path="DataContext.PreviewContainer.PreviewScale" />
+                                <Binding ElementName="Window" Path="DataContext.PreviewContainer.ScreenRect.X" />
                             </MultiBinding>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Canvas.Top">
                         <Setter.Value>
                             <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
-                                <Binding Path="DataContext.PreviewContainer.ScreenRect.Y" RelativeSource="{RelativeSource FindAncestor, AncestorType=ItemsControl}" />
+                                <Binding ElementName="Window" Path="DataContext.PreviewContainer.PreviewScale" />
+                                <Binding ElementName="Window" Path="DataContext.PreviewContainer.ScreenRect.Y" />
                             </MultiBinding>
                         </Setter.Value>
                     </Setter>
