@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -110,6 +111,12 @@ namespace ImageChecker_3.Models.Images
             }
 
             RaisePropertyChanged(nameof(MaxImageSize));
+        }
+
+        public void SetImageWrappers(IEnumerable<ImageWrapper> imageWrappers)
+        {
+            var ws = imageWrappers.ToList();
+            SetImageWrappers(ws[0], ws[1], ws[2], ws[3]);
         }
     }
 }

@@ -31,6 +31,12 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
 
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
                 <!-- <i:Interaction.Triggers> -->
                 <!--     <i:EventTrigger EventName="SelectionChanged"> -->
                 <!--         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.SelectableImageFilterCommand)}" CommandParameter="{Binding SelectedItem, ElementName=ComboBox}" /> -->
@@ -103,6 +109,12 @@
                 </DataTemplate>
 
             </ListBox.ItemTemplate>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
 
             <!-- <i:Interaction.Triggers> -->
             <!--     <i:EventTrigger EventName="SelectionChanged"> -->

@@ -28,10 +28,7 @@ namespace ImageChecker_3.Models.Images
             {
                 'B', new List<ImageWrapper>()
                 {
-                    new (new ImageFileInfo()
-                    {
-                        Width = 1280, Height = 720, Index = 1, SubIndex = 1, FileInfo = new FileInfo("B0101.png"),
-                    }),
+                    new (new ImageFileInfo(@"C:\MyFiles\temp\pngs\B0101.png") { Width = 1280, Height = 720, }),
                     new (new ImageFileInfo()
                     {
                         Width = 1280, Height = 720, Index = 1, SubIndex = 2, FileInfo = new FileInfo("B0102.png"),
