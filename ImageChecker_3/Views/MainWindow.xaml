@@ -23,7 +23,6 @@
     <Window.Resources>
         <converters:PreviewScaleMultiConverter x:Key="PreviewScaleMultiConverter" />
         <converters:NegativeMultiplierConverter x:Key="NegativeMultiplierConverter" />
-        <converters:DivideConverter x:Key="DivideConverter" />
         <converters:TruncateDoubleConverter x:Key="TruncateDoubleConverter" />
     </Window.Resources>
 
