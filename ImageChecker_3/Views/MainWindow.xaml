@@ -24,6 +24,7 @@
         <converters:PreviewScaleMultiConverter x:Key="PreviewScaleMultiConverter" />
         <converters:NegativeMultiplierConverter x:Key="NegativeMultiplierConverter" />
         <converters:DivideConverter x:Key="DivideConverter" />
+        <converters:TruncateDoubleConverter x:Key="TruncateDoubleConverter" />
     </Window.Resources>
 
     <i:Interaction.Behaviors>
@@ -186,22 +187,22 @@
             <StackPanel Orientation="Horizontal">
 
                 <TextBlock Text="X :" />
-                <TextBlock Width="50" Text="{Binding PreviewContainer.X}" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.X, Converter={StaticResource TruncateDoubleConverter}}" />
 
                 <Border Margin="10,0" />
 
                 <TextBlock Text="relX :" />
-                <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.X}" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.X, Converter={StaticResource TruncateDoubleConverter}}" />
 
                 <Border Margin="10,0" />
 
                 <TextBlock Text="Y :" />
-                <TextBlock Width="50" Text="{Binding PreviewContainer.Y}" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.Y, Converter={StaticResource TruncateDoubleConverter}}" />
 
                 <Border Margin="10,0" />
 
                 <TextBlock Text="relY :" />
-                <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.Y}" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.RelativePosition.Y, Converter={StaticResource TruncateDoubleConverter}}" />
 
                 <Border Margin="10,0" />
 
