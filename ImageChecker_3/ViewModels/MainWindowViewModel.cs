@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace ImageChecker_3.ViewModels
@@ -58,6 +59,15 @@ namespace ImageChecker_3.ViewModels
         }
 
         public PreviewContainer PreviewContainer { get; private set; } = new ();
+
+        /// <summary>
+        /// ImageContainers の内容に応じて、PreviewImageContainer を更新します。
+        /// </summary>
+        public DelegateCommand UpdatePreviewImagesCommand => new DelegateCommand(() =>
+        {
+            PreviewContainer.SetImageWrappers(
+                ImageContainers.Select(c => c.IsEnabled ? c.CurrentFile : null));
+        });
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }
 

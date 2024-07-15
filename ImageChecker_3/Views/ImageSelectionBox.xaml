@@ -15,7 +15,7 @@
 
     <DockPanel>
         <DockPanel Margin="3,2" DockPanel.Dock="Top">
-            <CheckBox IsChecked="{Binding IsEnabled}" />
+            <CheckBox Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" IsChecked="{Binding IsEnabled}" />
             <ComboBox
                 x:Name="ComboBox"
                 Margin="3,0"
@@ -30,6 +30,12 @@
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
 
                 <!-- <i:Interaction.Triggers> -->
                 <!--     <i:EventTrigger EventName="SelectionChanged"> -->
@@ -103,6 +109,12 @@
                 </DataTemplate>
 
             </ListBox.ItemTemplate>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
 
             <!-- <i:Interaction.Triggers> -->
             <!--     <i:EventTrigger EventName="SelectionChanged"> -->

@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace ImageChecker_3.Models.Images
@@ -95,21 +98,64 @@ namespace ImageChecker_3.Models.Images
             }
         }
 
+        public DelegateCommand<Position?> SetPositionCommand => new DelegateCommand<Position?>((param) =>
+        {
+            switch (param)
+            {
+                case Position.TopRight:
+                    X = ((MaxImageSize.Width * Scale) - ScreenRect.Width) * -1;
+                    Y = 0;
+                    break;
+                case Position.Left:
+                    X = 0;
+                    break;
+                case Position.BottomLeft:
+                    X = 0;
+                    Y = ((MaxImageSize.Height * Scale) - ScreenRect.Height) * -1;
+                    break;
+                case Position.Bottom:
+                    Y = ((MaxImageSize.Height * Scale) - ScreenRect.Height) * -1;
+                    break;
+                case Position.BottomRight:
+                    X = ((MaxImageSize.Width * Scale) - ScreenRect.Width) * -1;
+                    Y = ((MaxImageSize.Height * Scale) - ScreenRect.Height) * -1;
+                    break;
+                case Position.Right:
+                    X = ((MaxImageSize.Width * Scale) - ScreenRect.Width) * -1;
+                    break;
+                case Position.Top:
+                    Y = 0;
+                    break;
+                case Position.TopLeft:
+                    X = 0;
+                    Y = 0;
+                    break;
+                case null:
+                    break;
+            }
+        });
+
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)
         {
             ImageWrappers.Clear();
             ImageWrappers.AddRange(new[] { a, b, c, d, });
 
-            var notNulls = ImageWrappers.Where(w => w != null);
+            var notNulls = ImageWrappers.Where(w => w != null).ToList();
 
             if (notNulls.Any())
             {
                 MaxImageSize = new Size(
-                    ImageWrappers.Max(w => w.ImageFileInfo.Width),
-                    ImageWrappers.Max(w => w.ImageFileInfo.Height));
+                    notNulls.Max(w => w.ImageFileInfo.Width),
+                    notNulls.Max(w => w.ImageFileInfo.Height));
             }
 
             RaisePropertyChanged(nameof(MaxImageSize));
+        }
+
+        public void SetImageWrappers(IEnumerable<ImageWrapper> imageWrappers)
+        {
+            var ws = imageWrappers.ToList();
+            SetImageWrappers(ws[0], ws[1], ws[2], ws[3]);
         }
     }
 }
