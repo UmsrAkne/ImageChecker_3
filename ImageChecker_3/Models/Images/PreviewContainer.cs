@@ -101,13 +101,13 @@ namespace ImageChecker_3.Models.Images
             ImageWrappers.Clear();
             ImageWrappers.AddRange(new[] { a, b, c, d, });
 
-            var notNulls = ImageWrappers.Where(w => w != null);
+            var notNulls = ImageWrappers.Where(w => w != null).ToList();
 
             if (notNulls.Any())
             {
                 MaxImageSize = new Size(
-                    ImageWrappers.Max(w => w.ImageFileInfo.Width),
-                    ImageWrappers.Max(w => w.ImageFileInfo.Height));
+                    notNulls.Max(w => w.ImageFileInfo.Width),
+                    notNulls.Max(w => w.ImageFileInfo.Height));
             }
 
             RaisePropertyChanged(nameof(MaxImageSize));

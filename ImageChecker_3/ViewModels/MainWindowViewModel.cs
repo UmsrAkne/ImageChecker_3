@@ -65,7 +65,8 @@ namespace ImageChecker_3.ViewModels
         /// </summary>
         public DelegateCommand UpdatePreviewImagesCommand => new DelegateCommand(() =>
         {
-            PreviewContainer.SetImageWrappers(ImageContainers.Select(c => c.CurrentFile));
+            PreviewContainer.SetImageWrappers(
+                ImageContainers.Select(c => c.IsEnabled ? c.CurrentFile : null));
         });
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }

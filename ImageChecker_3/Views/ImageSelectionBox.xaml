@@ -15,7 +15,7 @@
 
     <DockPanel>
         <DockPanel Margin="3,2" DockPanel.Dock="Top">
-            <CheckBox IsChecked="{Binding IsEnabled}" />
+            <CheckBox Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" IsChecked="{Binding IsEnabled}" />
             <ComboBox
                 x:Name="ComboBox"
                 Margin="3,0"
