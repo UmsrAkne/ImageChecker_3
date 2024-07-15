@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace ImageChecker_3.Models.Images
@@ -95,6 +97,43 @@ namespace ImageChecker_3.Models.Images
                 RaisePropertyChanged(nameof(RelativePosition));
             }
         }
+
+        public DelegateCommand<Position?> SetPositionCommand => new DelegateCommand<Position?>((param) =>
+        {
+            switch (param)
+            {
+                case Position.TopRight:
+                    X = ((MaxImageSize.Width * Scale) - ScreenRect.Width) * -1;
+                    Y = 0;
+                    break;
+                case Position.Left:
+                    X = 0;
+                    break;
+                case Position.BottomLeft:
+                    X = 0;
+                    Y = ((MaxImageSize.Height * Scale) - ScreenRect.Height) * -1;
+                    break;
+                case Position.Bottom:
+                    Y = ((MaxImageSize.Height * Scale) - ScreenRect.Height) * -1;
+                    break;
+                case Position.BottomRight:
+                    X = ((MaxImageSize.Width * Scale) - ScreenRect.Width) * -1;
+                    Y = ((MaxImageSize.Height * Scale) - ScreenRect.Height) * -1;
+                    break;
+                case Position.Right:
+                    X = ((MaxImageSize.Width * Scale) - ScreenRect.Width) * -1;
+                    break;
+                case Position.Top:
+                    Y = 0;
+                    break;
+                case Position.TopLeft:
+                    X = 0;
+                    Y = 0;
+                    break;
+                case null:
+                    break;
+            }
+        });
 
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)
         {
