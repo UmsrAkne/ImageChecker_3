@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using ImageChecker_3.Models.Images;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ namespace ImageChecker_3Test.Models.Images
     public class ImageBoundsCalculatorTest
     {
         [Test]
-        public void GetOpaquePixelBounds_AllOpaquePixels_ReturnsFullImage()
+        public async Task GetOpaquePixelBounds_AllOpaquePixels_ReturnsFullImage()
         {
             var imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "partially_opaque_image.png");
 
@@ -23,7 +24,7 @@ namespace ImageChecker_3Test.Models.Images
 
             var expected = new Int32Rect(1, 1, 2, 2); // Assuming the image is 100x100
 
-            var actual = ImageBoundsCalculator.GetOpaquePixelBounds(imagePath);
+            var actual = await ImageBoundsCalculator.GetOpaquePixelBoundsAsync(imagePath);
 
             Assert.AreEqual(expected, actual);
         }
