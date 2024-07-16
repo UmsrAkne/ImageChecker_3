@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -131,6 +132,25 @@ namespace ImageChecker_3.Models.Images
                     Y = 0;
                     break;
                 case null:
+                    break;
+            }
+        });
+
+        public DelegateCommand<Position?> MovePreviewImageCommand => new DelegateCommand<Position?>((param) =>
+        {
+            switch (param)
+            {
+                case Position.Left:
+                    X += 20;
+                    break;
+                case Position.Bottom:
+                    Y += 20;
+                    break;
+                case Position.Right:
+                    X -= 20;
+                    break;
+                case Position.Top:
+                    Y -= 20;
                     break;
             }
         });

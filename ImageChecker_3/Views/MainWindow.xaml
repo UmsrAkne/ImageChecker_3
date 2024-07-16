@@ -51,6 +51,26 @@
             CommandParameter="{Binding PreviewContainer}"
             Modifiers="Shift+Control" />
 
+        <KeyBinding
+            Key="K"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Top}" />
+
+        <KeyBinding
+            Key="J"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Bottom}" />
+
+        <KeyBinding
+            Key="L"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Left}" />
+
+        <KeyBinding
+            Key="H"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Right}" />
+
     </Window.InputBindings>
 
     <i:Interaction.Behaviors>
