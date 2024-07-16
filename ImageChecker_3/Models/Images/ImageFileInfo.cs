@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Media.Imaging;
 using Prism.Mvvm;
 
@@ -38,6 +39,8 @@ namespace ImageChecker_3.Models.Images
         public char KeyChar { get; set; }
 
         public FileInfo FileInfo { get; set; }
+
+        public Int32Rect OpaqueRange { get; set; } = default;
 
         public override string ToString()
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
@@ -74,10 +75,32 @@ namespace ImageChecker_3.ViewModels
         private IImageWrapperProvider ImageWrapperProvider { get; set; }
 
         /// <summary>
+        /// 指定されたディレクトリのパスから画像ファイルを読み込みます。その後、非同期で透明領域をカットした画像のプレビュー生成します。
+        /// </summary>
+        /// <param name="directoryPath">画像ファイルを含むディレクトリのパスを指定します。</param>
+        /// <returns>非同期処理を表すタスク。</returns>
+        public async Task LoadImagesAsync(string directoryPath)
+        {
+            LoadImages(directoryPath);
+
+            var ws = new List<ImageWrapper>();
+            ws.AddRange(ImageWrapperProvider.GetImageWrappers('A'));
+            ws.AddRange(ImageWrapperProvider.GetImageWrappers('B'));
+            ws.AddRange(ImageWrapperProvider.GetImageWrappers('C'));
+            ws.AddRange(ImageWrapperProvider.GetImageWrappers('D'));
+
+            foreach (var w in ws.Where(w => w.ImageFileInfo.FileInfo.Exists))
+            {
+                w.ImageFileInfo.OpaqueRange =
+                    await ImageBoundsCalculator.GetOpaquePixelBoundsAsync(w.ImageFileInfo.FileInfo.FullName);
+            }
+        }
+
+        /// <summary>
         /// 指定されたディレクトリのパスから画像ファイルを読み込みます。
         /// </summary>
         /// <param name="directoryPath">画像ファイルを含むディレクトリのパスを指定します。</param>
-        public void LoadImages(string directoryPath)
+        private void LoadImages(string directoryPath)
         {
             ImageWrapperProvider.Load(directoryPath);
 
