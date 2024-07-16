@@ -27,6 +27,33 @@
         <converters:TruncateDoubleConverter x:Key="TruncateDoubleConverter" />
     </Window.Resources>
 
+    <Window.InputBindings>
+        <KeyBinding
+            Key="I"
+            Command="{Binding TagGenerator.CopyImageTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Control" />
+
+        <KeyBinding
+            Key="D"
+            Command="{Binding TagGenerator.CopyDrawTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Control" />
+
+        <KeyBinding
+            Key="I"
+            Command="{Binding TagGenerator.CopyAnimationImageTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Shift+Control" />
+
+        <KeyBinding
+            Key="D"
+            Command="{Binding TagGenerator.CopyAnimationDrawTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Shift+Control" />
+
+    </Window.InputBindings>
+
     <i:Interaction.Behaviors>
         <behaviors:DragAndDropBehavior />
     </i:Interaction.Behaviors>
