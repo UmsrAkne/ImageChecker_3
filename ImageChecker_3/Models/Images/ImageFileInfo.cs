@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Prism.Mvvm;
 
@@ -11,6 +13,8 @@ namespace ImageChecker_3.Models.Images
     {
         private double width;
         private double height;
+        private Int32Rect opaqueRange;
+        private ImageSource croppedImage = new BitmapImage();
 
         public ImageFileInfo()
         {
@@ -39,6 +43,34 @@ namespace ImageChecker_3.Models.Images
 
         public FileInfo FileInfo { get; set; }
 
+        public Int32Rect OpaqueRange
+        {
+            get => opaqueRange;
+            set
+            {
+                if (opaqueRange == value)
+                {
+                    return;
+                }
+
+                opaqueRange = value;
+
+                var bitmap = new BitmapImage(new Uri(FileInfo.FullName));
+                var croppedBitmap = new CroppedBitmap(bitmap, opaqueRange);
+                CroppedImage = croppedBitmap;
+            }
+        }
+
+        /// <summary>
+        /// FileInfo の示すパスの画像が格納されます。
+        /// もし画像に完全に透明な領域が存在する場合、それをカットした ImageSource が格納されます。
+        /// </summary>
+        public ImageSource CroppedImage
+        {
+            get => croppedImage;
+            private set => SetProperty(ref croppedImage, value);
+        }
+
         public override string ToString()
         {
             return FileInfo.Name;
@@ -62,6 +94,7 @@ namespace ImageChecker_3.Models.Images
 
             Width = bitmap.PixelWidth;
             Height = bitmap.PixelHeight;
+            CroppedImage = bitmap;
 
             // 画像ファイル名が特定の命名規則に沿っていれば、ファイル名に関するプロパティも設定する。
             if (!Regex.Match(FileInfo.Name, @"[ABCD]\d\d\d\d").Success)

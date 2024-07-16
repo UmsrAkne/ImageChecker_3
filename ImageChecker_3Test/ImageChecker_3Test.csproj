@@ -17,4 +17,10 @@
       <ProjectReference Include="..\ImageChecker_3\ImageChecker_3.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="partially_opaque_image.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

@@ -40,7 +40,7 @@ namespace ImageChecker_3.Views.Behaviors
             {
                 // files の要素数が 1 でドロップアイテムがディレクトリならば、画像用ディレクトリがドロップされたということなので
                 // ディレクトリの内容をロードして渡す。
-                vm.LoadImages(files.FirstOrDefault());
+                _ = vm.LoadImagesAsync(files.FirstOrDefault());
             }
         }
 
