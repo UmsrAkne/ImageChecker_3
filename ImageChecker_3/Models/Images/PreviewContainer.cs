@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using Prism.Commands;
@@ -14,7 +15,7 @@ namespace ImageChecker_3.Models.Images
         private BindableRect screenRect = new (0, 0, 1280, 720);
         private double scale = 1.0;
 
-        public ObservableCollection<ImageWrapper> ImageWrappers { get; set; } = new ();
+        public ObservableCollection<ImageWrapper> ImageWrappers { get; set; } = new () { null, null, null, null, };
 
         /// <summary>
         /// 実際のプレイ時の画面のサイズを表します。
@@ -135,6 +136,25 @@ namespace ImageChecker_3.Models.Images
             }
         });
 
+        public DelegateCommand<Position?> MovePreviewImageCommand => new DelegateCommand<Position?>((param) =>
+        {
+            switch (param)
+            {
+                case Position.Left:
+                    X += 20;
+                    break;
+                case Position.Bottom:
+                    Y += 20;
+                    break;
+                case Position.Right:
+                    X -= 20;
+                    break;
+                case Position.Top:
+                    Y -= 20;
+                    break;
+            }
+        });
+
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)
         {
             ImageWrappers.Clear();
@@ -156,6 +176,19 @@ namespace ImageChecker_3.Models.Images
         {
             var ws = imageWrappers.ToList();
             SetImageWrappers(ws[0], ws[1], ws[2], ws[3]);
+        }
+
+        /// <summary>
+        /// コンテナに入力されている画像ファイル名のリストを取得します。
+        /// </summary>
+        /// <returns>リストの要素数は常に 4 です。ファイル名が入力されていない箇所には string.Empty が入力されます。</returns>
+        public List<string> GetImageFileNames()
+        {
+            return ImageWrappers
+                .Select(w => w != null
+                    ? Path.GetFileNameWithoutExtension(w.ImageFileInfo.FileInfo.Name)
+                    : string.Empty)
+                .ToList();
         }
     }
 }

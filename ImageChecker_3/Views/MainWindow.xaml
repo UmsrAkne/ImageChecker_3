@@ -10,7 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:ImageChecker_3.Models"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     xmlns:views="clr-namespace:ImageChecker_3.Views"
     x:Name="Window"
@@ -26,6 +25,53 @@
         <converters:NegativeMultiplierConverter x:Key="NegativeMultiplierConverter" />
         <converters:TruncateDoubleConverter x:Key="TruncateDoubleConverter" />
     </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding
+            Key="I"
+            Command="{Binding TagGenerator.CopyImageTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Control" />
+
+        <KeyBinding
+            Key="D"
+            Command="{Binding TagGenerator.CopyDrawTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Control" />
+
+        <KeyBinding
+            Key="I"
+            Command="{Binding TagGenerator.CopyAnimationImageTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Shift+Control" />
+
+        <KeyBinding
+            Key="D"
+            Command="{Binding TagGenerator.CopyAnimationDrawTagCommand}"
+            CommandParameter="{Binding PreviewContainer}"
+            Modifiers="Shift+Control" />
+
+        <KeyBinding
+            Key="K"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Top}" />
+
+        <KeyBinding
+            Key="J"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Bottom}" />
+
+        <KeyBinding
+            Key="L"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Left}" />
+
+        <KeyBinding
+            Key="H"
+            Command="{Binding PreviewContainer.MovePreviewImageCommand}"
+            CommandParameter="{x:Static models:Position.Right}" />
+
+    </Window.InputBindings>
 
     <i:Interaction.Behaviors>
         <behaviors:DragAndDropBehavior />

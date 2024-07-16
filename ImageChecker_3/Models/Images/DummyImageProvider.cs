@@ -42,10 +42,7 @@ namespace ImageChecker_3.Models.Images
             {
                 'C', new List<ImageWrapper>()
                 {
-                    new (new ImageFileInfo()
-                    {
-                        Width = 1280, Height = 720, Index = 1, SubIndex = 1, FileInfo = new FileInfo("C0101.png"),
-                    }),
+                    new (new ImageFileInfo(@"C:\MyFiles\temp\pngs\C0101.png") { Width = 1280, Height = 720, }),
                     new (new ImageFileInfo()
                     {
                         Width = 1280, Height = 720, Index = 1, SubIndex = 2, FileInfo = new FileInfo("C0102.png"),
@@ -59,10 +56,7 @@ namespace ImageChecker_3.Models.Images
             {
                 'D', new List<ImageWrapper>()
                 {
-                    new (new ImageFileInfo()
-                    {
-                        Width = 1280, Height = 720, Index = 1, SubIndex = 1, FileInfo = new FileInfo("D0101.png"),
-                    }),
+                    new (new ImageFileInfo(@"C:\MyFiles\temp\pngs\D0101.png") { Width = 1280, Height = 720, }),
                     new (new ImageFileInfo()
                     {
                         Width = 1280, Height = 720, Index = 1, SubIndex = 2, FileInfo = new FileInfo("D0102.png"),
