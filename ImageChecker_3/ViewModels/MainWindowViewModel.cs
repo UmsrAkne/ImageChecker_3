@@ -48,6 +48,8 @@ namespace ImageChecker_3.ViewModels
         public List<ImageContainer> ImageContainers { get; private set; }
             = new[] { "A", "B", "C", "D", }.Select(key => new ImageContainer(key)).ToList();
 
+        public TagGenerator TagGenerator { get; private set; } = new ();
+
         /// <summary>
         /// Grid の ４列目の幅を設定するためのプロパティです。
         /// 表示されている・表示されておらずスペースも確保されていない のどちらかの状態です。
