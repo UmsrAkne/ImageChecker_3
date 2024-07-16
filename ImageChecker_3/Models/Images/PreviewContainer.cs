@@ -14,7 +14,7 @@ namespace ImageChecker_3.Models.Images
         private BindableRect screenRect = new (0, 0, 1280, 720);
         private double scale = 1.0;
 
-        public ObservableCollection<ImageWrapper> ImageWrappers { get; set; } = new () { null, null, null, null };
+        public ObservableCollection<ImageWrapper> ImageWrappers { get; set; } = new () { null, null, null, null, };
 
         /// <summary>
         /// 実際のプレイ時の画面のサイズを表します。

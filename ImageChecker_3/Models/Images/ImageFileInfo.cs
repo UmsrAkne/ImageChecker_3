@@ -80,7 +80,7 @@ namespace ImageChecker_3.Models.Images
         /// 指定したパスの画像ファイルを読み込み、このオブジェクトのプロパティに情報をセットします。
         /// </summary>
         /// <param name="imageFilePath">画像ファイルの絶対パス</param>
-        public void LoadImageInfo(string imageFilePath)
+        private void LoadImageInfo(string imageFilePath)
         {
             FileInfo = new FileInfo(imageFilePath);
 

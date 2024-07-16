@@ -10,7 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:ImageChecker_3.Models"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     xmlns:views="clr-namespace:ImageChecker_3.Views"
     x:Name="Window"
