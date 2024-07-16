@@ -41,6 +41,8 @@ namespace ImageChecker_3.ViewModels
 
             LoadImages(string.Empty);
             FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
+            AppSettings = AppSettings.LoadFromFile(AppSettings.SettingFileName);
+            TagGenerator.SetSettings(AppSettings);
         }
 
         public TitleBarText TitleBarText { get; set; } = new ();
@@ -61,6 +63,8 @@ namespace ImageChecker_3.ViewModels
         }
 
         public PreviewContainer PreviewContainer { get; private set; } = new ();
+
+        private AppSettings AppSettings { get; set; }
 
         /// <summary>
         /// ImageContainers の内容に応じて、PreviewImageContainer を更新します。

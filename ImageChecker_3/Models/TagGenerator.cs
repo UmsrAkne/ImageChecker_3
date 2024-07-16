@@ -47,13 +47,13 @@ namespace ImageChecker_3.Models
             Clipboard.SetText(GetTag(AnimationDrawTagText, param));
         });
 
-        private string ImageTagText { get; set; } = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
+        private string ImageTagText { get; set; } = string.Empty;
 
-        private string DrawTagText { get; set; } = @"<draw b=""$b"" c=""$c"" d=""$d"" />";
+        private string DrawTagText { get; set; } = string.Empty;
 
-        private string AnimationImageTagText { get; set; } = @"<anime name=""image"" a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
+        private string AnimationImageTagText { get; set; } = string.Empty;
 
-        private string AnimationDrawTagText { get; set; } = @"<anime name=""draw"" b=""$b"" c=""$c"" d=""$d"" />";
+        private string AnimationDrawTagText { get; set; } = string.Empty;
 
         public static string GetTag(string baseText, PreviewContainer previewContainer)
         {
@@ -67,6 +67,14 @@ namespace ImageChecker_3.Models
                 .Replace("$scale", previewContainer.Scale.ToString("0.0", CultureInfo.InvariantCulture))
                 .Replace("$x", ((int)relPosition.X).ToString(CultureInfo.CurrentCulture))
                 .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture));
+        }
+
+        public void SetSettings(AppSettings appSettings)
+        {
+            ImageTagText = appSettings.ImageTagText;
+            DrawTagText = appSettings.DrawTagText;
+            AnimationImageTagText = appSettings.AnimationImageTagText;
+            AnimationDrawTagText = appSettings.AnimationDrawTagText;
         }
     }
 }
