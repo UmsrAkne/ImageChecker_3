@@ -26,7 +26,7 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type images:ImageWrapper}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ImageFileInfo.FileInfo.Name}" />
+                            <TextBlock Text="{Binding ImageFileInfo.FileNameWithoutExtension}" />
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>

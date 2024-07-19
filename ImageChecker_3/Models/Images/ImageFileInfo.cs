@@ -43,6 +43,9 @@ namespace ImageChecker_3.Models.Images
 
         public FileInfo FileInfo { get; set; }
 
+        public string FileNameWithoutExtension =>
+            FileInfo != null ? Path.GetFileNameWithoutExtension(FileInfo.Name) : string.Empty;
+
         public Int32Rect OpaqueRange
         {
             get => opaqueRange;
