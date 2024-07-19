@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.Windows;
 using ImageChecker_3.Models.Images;
@@ -7,6 +8,8 @@ namespace ImageChecker_3.Models
 {
     public class TagGenerator
     {
+        public event EventHandler TagGenerated;
+
         public DelegateCommand<PreviewContainer> CopyImageTagCommand => new ((param) =>
         {
             if (param == null)
@@ -14,7 +17,9 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.Image;
             Clipboard.SetText(GetTag(ImageTagText, param));
+            TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
         public DelegateCommand<PreviewContainer> CopyDrawTagCommand => new ((param) =>
@@ -24,7 +29,9 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.Draw;
             Clipboard.SetText(GetTag(DrawTagText, param));
+            TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
         public DelegateCommand<PreviewContainer> CopyAnimationImageTagCommand => new ((param) =>
@@ -34,7 +41,9 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.AnimationImage;
             Clipboard.SetText(GetTag(AnimationImageTagText, param));
+            TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
         public DelegateCommand<PreviewContainer> CopyAnimationDrawTagCommand => new ((param) =>
@@ -44,7 +53,9 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.AnimationDraw;
             Clipboard.SetText(GetTag(AnimationDrawTagText, param));
+            TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
         private string ImageTagText { get; set; } = string.Empty;

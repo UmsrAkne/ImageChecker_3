@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
+using ImageChecker_3.Views;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 
 namespace ImageChecker_3.ViewModels
 {
@@ -13,6 +16,7 @@ namespace ImageChecker_3.ViewModels
     // DI コンテナにより生成されるクラスのため、手動によるインスタンス化はしない。
     public class MainWindowViewModel : BindableBase
     {
+        private readonly IDialogService dialogService;
         private GridLength fourthColumnLength;
 
         public MainWindowViewModel()
@@ -25,11 +29,18 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
 
+            for (var i = 0; i < 10; i++)
+            {
+                var p = PreviewContainer.Clone();
+                p.PreviewScale = 0.1;
+                PreviewContainerHistory.Insert(0, p);
+            }
+
             LoadImages(string.Empty);
             FourthColumnLength = new GridLength(0);
         }
 
-        public MainWindowViewModel(IImageWrapperProvider imageWrapperProvider)
+        public MainWindowViewModel(IImageWrapperProvider imageWrapperProvider, IDialogService dialogService)
         {
             ImageWrapperProvider = imageWrapperProvider;
 
@@ -43,6 +54,15 @@ namespace ImageChecker_3.ViewModels
             FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
             AppSettings = AppSettings.LoadFromFile(AppSettings.SettingFileName);
             TagGenerator.SetSettings(AppSettings);
+
+            TagGenerator.TagGenerated += (_, _) =>
+            {
+                var p = PreviewContainer.Clone();
+                p.PreviewScale = 0.1;
+                PreviewContainerHistory.Insert(0, p);
+            };
+
+            this.dialogService = dialogService;
         }
 
         public TitleBarText TitleBarText { get; set; } = new ();
@@ -64,7 +84,7 @@ namespace ImageChecker_3.ViewModels
 
         public PreviewContainer PreviewContainer { get; private set; } = new ();
 
-        private AppSettings AppSettings { get; set; }
+        public ObservableCollection<PreviewContainer> PreviewContainerHistory { get; set; } = new ();
 
         /// <summary>
         /// ImageContainers の内容に応じて、PreviewImageContainer を更新します。
@@ -74,6 +94,14 @@ namespace ImageChecker_3.ViewModels
             PreviewContainer.SetImageWrappers(
                 ImageContainers.Select(c => c.IsEnabled ? c.CurrentFile : null));
         });
+
+        public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
+        {
+            var param = new DialogParameters { { nameof(AppSettings), AppSettings }, };
+            dialogService.ShowDialog(nameof(SettingPage), param, (_) => { });
+        });
+
+        private AppSettings AppSettings { get; init; }
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }
 

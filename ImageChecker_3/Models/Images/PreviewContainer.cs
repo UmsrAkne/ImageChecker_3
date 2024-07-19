@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -15,7 +14,7 @@ namespace ImageChecker_3.Models.Images
         private BindableRect screenRect = new (0, 0, 1280, 720);
         private double scale = 1.0;
 
-        public ObservableCollection<ImageWrapper> ImageWrappers { get; set; } = new () { null, null, null, null, };
+        public ObservableCollection<ImageWrapper> ImageWrappers { get; private init; } = new () { null, null, null, null, };
 
         /// <summary>
         /// 実際のプレイ時の画面のサイズを表します。
@@ -72,8 +71,8 @@ namespace ImageChecker_3.Models.Images
                 var imgY = (((MaxImageSize.Height * Scale) - sRect.Height) / 2) * -1;
 
                 // 座標をセット。imgX,Y の座標が、相対座標 (0,0) であるので、それにそのまま value を足せば良い。
-                ScreenRect.X = imgX + value.X;
-                ScreenRect.Y = imgY + value.Y;
+                X = imgX + value.X;
+                Y = imgY + value.Y;
             }
         }
 
@@ -98,6 +97,12 @@ namespace ImageChecker_3.Models.Images
                 RaisePropertyChanged(nameof(RelativePosition));
             }
         }
+
+        /// <summary>
+        /// このプレビューコンテナから、タグを生成した際に、そのタグのタイプが入力されます。
+        /// デフォルトでは TagType.NoType(0) が割り当てられています。
+        /// </summary>
+        public TagType TagType { get; set; }
 
         public DelegateCommand<Position?> SetPositionCommand => new DelegateCommand<Position?>((param) =>
         {
@@ -155,6 +160,17 @@ namespace ImageChecker_3.Models.Images
             }
         });
 
+        public DelegateCommand ResetPositionCommand => new DelegateCommand(() =>
+        {
+            RelativePosition = default;
+        });
+
+        public DelegateCommand ResetPositionAndScaleCommand => new DelegateCommand(() =>
+        {
+            Scale = 1.0;
+            RelativePosition = default;
+        });
+
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)
         {
             ImageWrappers.Clear();
@@ -189,6 +205,25 @@ namespace ImageChecker_3.Models.Images
                     ? Path.GetFileNameWithoutExtension(w.ImageFileInfo.FileInfo.Name)
                     : string.Empty)
                 .ToList();
+        }
+
+        /// <summary>
+        /// このオブジェクトのディープコピーを取得します。
+        /// </summary>
+        /// <returns>このオブジェクトのプロパティがコピーされた新しいオブジェクト。</returns>
+        public PreviewContainer Clone()
+        {
+            return new PreviewContainer
+            {
+                PreviewScale = PreviewScale,
+                ScreenRect = new BindableRect(ScreenRect.X, ScreenRect.Y, ScreenRect.Width, ScreenRect.Height),
+                Scale = Scale,
+                ImageWrappers = new ObservableCollection<ImageWrapper>(ImageWrappers),
+                MaxImageSize = MaxImageSize,
+                X = X,
+                Y = Y,
+                TagType = TagType,
+            };
         }
     }
 }
