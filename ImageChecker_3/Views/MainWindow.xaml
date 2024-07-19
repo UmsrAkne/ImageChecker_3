@@ -93,6 +93,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -123,7 +124,10 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel
+            x:Name="StackPanel"
+            Grid.Row="1"
+            Grid.Column="0">
             <StackPanel.Resources>
                 <Style TargetType="Button">
                     <Setter Property="Width" Value="30" />
@@ -244,9 +248,30 @@
 
         </StackPanel>
 
+        <ListBox
+            Grid.Row="3"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Width="{Binding ActualWidth, ElementName=StackPanel}"
+            ItemsSource="{Binding PreviewContainerHistory}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type images:PreviewContainer}">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <views:PreviewScreenArea />
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
         <ItemsControl
             Grid.Row="0"
-            Grid.RowSpan="4"
+            Grid.RowSpan="5"
             Grid.Column="2"
             ItemsSource="{Binding ImageContainers}">
             <ItemsControl.ItemsPanel>

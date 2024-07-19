@@ -201,5 +201,23 @@ namespace ImageChecker_3.Models.Images
                     : string.Empty)
                 .ToList();
         }
+
+        /// <summary>
+        /// このオブジェクトのディープコピーを取得します。
+        /// </summary>
+        /// <returns>このオブジェクトのプロパティがコピーされた新しいオブジェクト。</returns>
+        public PreviewContainer Clone()
+        {
+            return new PreviewContainer
+            {
+                PreviewScale = PreviewScale,
+                ScreenRect = new BindableRect(ScreenRect.X, ScreenRect.Y, ScreenRect.Width, ScreenRect.Height),
+                Scale = Scale,
+                ImageWrappers = ImageWrappers,
+                MaxImageSize = MaxImageSize,
+                X = X,
+                Y = Y,
+            };
+        }
     }
 }
