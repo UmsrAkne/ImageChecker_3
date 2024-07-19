@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
+using ImageChecker_3.Views;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 
 namespace ImageChecker_3.ViewModels
 {
@@ -14,6 +16,7 @@ namespace ImageChecker_3.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private GridLength fourthColumnLength;
+        private readonly IDialogService dialogService;
 
         public MainWindowViewModel()
         {
@@ -29,7 +32,7 @@ namespace ImageChecker_3.ViewModels
             FourthColumnLength = new GridLength(0);
         }
 
-        public MainWindowViewModel(IImageWrapperProvider imageWrapperProvider)
+        public MainWindowViewModel(IImageWrapperProvider imageWrapperProvider, IDialogService dialogService)
         {
             ImageWrapperProvider = imageWrapperProvider;
 
@@ -43,6 +46,8 @@ namespace ImageChecker_3.ViewModels
             FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
             AppSettings = AppSettings.LoadFromFile(AppSettings.SettingFileName);
             TagGenerator.SetSettings(AppSettings);
+
+            this.dialogService = dialogService;
         }
 
         public TitleBarText TitleBarText { get; set; } = new ();
@@ -73,6 +78,12 @@ namespace ImageChecker_3.ViewModels
         {
             PreviewContainer.SetImageWrappers(
                 ImageContainers.Select(c => c.IsEnabled ? c.CurrentFile : null));
+        });
+
+        public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
+        {
+            var param = new DialogParameters { { "param", AppSettings }, };
+            dialogService.ShowDialog(nameof(SettingPage), param, (_) => { });
         });
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }

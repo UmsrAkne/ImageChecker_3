@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using ImageChecker_3.Models.Images;
+using ImageChecker_3.ViewModels;
 using ImageChecker_3.Views;
 using Prism.Ioc;
 
@@ -22,6 +23,8 @@ namespace ImageChecker_3
             #else
                 containerRegistry.Register<IImageWrapperProvider, ImageWrapperProvider>();
             #endif
+
+                containerRegistry.RegisterDialog<SettingPage, SettingPageViewModel>();
         }
     }
 }

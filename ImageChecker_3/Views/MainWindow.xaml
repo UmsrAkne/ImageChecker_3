@@ -104,15 +104,24 @@
 
         <StackPanel
             Grid.Row="0"
-            Margin="2"
-            Orientation="Horizontal">
-            <TextBlock Text="Screen Width : " />
-            <TextBox Width="40" Text="{Binding PreviewContainer.ScreenRect.Width}" />
+            Grid.Column="0"
+            Grid.ColumnSpan="3">
+            <Menu>
+                <MenuItem Header="Setting">
+                    <MenuItem Command="{Binding ShowSettingPageCommand}" Header="Show SettingPage" />
+                </MenuItem>
+            </Menu>
 
-            <Border Margin="10,0" />
+            <StackPanel Margin="2" Orientation="Horizontal">
+                <TextBlock Text="Screen Width : " />
+                <TextBox Width="40" Text="{Binding PreviewContainer.ScreenRect.Width}" />
 
-            <TextBlock Text="Preview Scale :" />
-            <TextBox Width="30" Text="{Binding PreviewContainer.PreviewScale}" />
+                <Border Margin="10,0" />
+
+                <TextBlock Text="Preview Scale :" />
+                <TextBox Width="30" Text="{Binding PreviewContainer.PreviewScale}" />
+            </StackPanel>
+
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0">
