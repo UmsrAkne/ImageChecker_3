@@ -45,5 +45,20 @@ namespace ImageChecker_3.Models
             var json = JsonConvert.SerializeObject(this, Formatting.Indented);
             File.WriteAllText(filePath, json);
         }
+
+        /// <summary>
+        /// 引数に入力された別のオブジェクトと、このオブジェクトが等価であるかを判定します。
+        /// </summary>
+        /// <param name="other">別のオブジェクトを入力します。</param>
+        /// <returns>入力されたオブジェクトとこのオブジェクトが等価であるか。</returns>
+        public bool IsEqualTo(AppSettings other)
+        {
+            var a = ImageTagText == other.ImageTagText;
+            var b = DrawTagText == other.DrawTagText;
+            var c = AnimationImageTagText == other.AnimationImageTagText;
+            var d = AnimationDrawTagText == other.AnimationDrawTagText;
+
+            return a && b && c && d;
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace ImageChecker_3.ViewModels
 
         public PreviewContainer PreviewContainer { get; private set; } = new ();
 
-        private AppSettings AppSettings { get; set; }
+        private AppSettings AppSettings { get; init; }
 
         /// <summary>
         /// ImageContainers の内容に応じて、PreviewImageContainer を更新します。
@@ -82,7 +82,7 @@ namespace ImageChecker_3.ViewModels
 
         public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
         {
-            var param = new DialogParameters { { "param", AppSettings }, };
+            var param = new DialogParameters { { nameof(AppSettings), AppSettings }, };
             dialogService.ShowDialog(nameof(SettingPage), param, (_) => { });
         });
 

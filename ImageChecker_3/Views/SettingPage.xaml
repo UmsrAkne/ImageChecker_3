@@ -11,17 +11,23 @@
     mc:Ignorable="d">
 
     <StackPanel Margin="3">
-        <TextBlock Text="Image tag :" />
-        <TextBox />
+        <TextBlock Margin="0,1" Text="Image tag :" />
+        <TextBox Text="{Binding AppSettings.ImageTagText, UpdateSourceTrigger=PropertyChanged}" />
 
-        <TextBlock Text="Draw tag :" />
-        <TextBox />
+        <Border Margin="0,3" Background="Black" />
 
-        <TextBlock Text="Image tag (Animation) :" />
-        <TextBox />
+        <TextBlock Margin="0,1" Text="Draw tag :" />
+        <TextBox Text="{Binding AppSettings.DrawTagText, UpdateSourceTrigger=PropertyChanged}" />
 
-        <TextBlock Text="Draw tag (Animation) :" />
-        <TextBox />
+        <Border Margin="0,3" Background="Black" />
+
+        <TextBlock Margin="0,1" Text="Image tag (Animation) :" />
+        <TextBox Text="{Binding AppSettings.AnimationImageTagText, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Border Margin="0,3" Background="Black" />
+
+        <TextBlock Margin="0,1" Text="Draw tag (Animation) :" />
+        <TextBox Text="{Binding AppSettings.AnimationDrawTagText, UpdateSourceTrigger=PropertyChanged}" />
 
         <Border
             Height="1"
