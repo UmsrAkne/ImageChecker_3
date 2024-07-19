@@ -72,8 +72,8 @@ namespace ImageChecker_3.Models.Images
                 var imgY = (((MaxImageSize.Height * Scale) - sRect.Height) / 2) * -1;
 
                 // 座標をセット。imgX,Y の座標が、相対座標 (0,0) であるので、それにそのまま value を足せば良い。
-                ScreenRect.X = imgX + value.X;
-                ScreenRect.Y = imgY + value.Y;
+                X = imgX + value.X;
+                Y = imgY + value.Y;
             }
         }
 
