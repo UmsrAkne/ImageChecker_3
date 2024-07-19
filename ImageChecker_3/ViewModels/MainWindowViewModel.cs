@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,13 @@ namespace ImageChecker_3.ViewModels
                 ImageWrapperProvider.GetImageWrappers('C').FirstOrDefault(),
                 ImageWrapperProvider.GetImageWrappers('D').FirstOrDefault());
 
+            for (var i = 0; i < 10; i++)
+            {
+                var p = PreviewContainer.Clone();
+                p.PreviewScale = 0.1;
+                PreviewContainerHistory.Insert(0, p);
+            }
+
             LoadImages(string.Empty);
             FourthColumnLength = new GridLength(0);
         }
@@ -46,6 +54,13 @@ namespace ImageChecker_3.ViewModels
             FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
             AppSettings = AppSettings.LoadFromFile(AppSettings.SettingFileName);
             TagGenerator.SetSettings(AppSettings);
+
+            TagGenerator.TagGenerated += (_, _) =>
+            {
+                var p = PreviewContainer.Clone();
+                p.PreviewScale = 0.1;
+                PreviewContainerHistory.Insert(0, p);
+            };
 
             this.dialogService = dialogService;
         }
@@ -68,6 +83,8 @@ namespace ImageChecker_3.ViewModels
         }
 
         public PreviewContainer PreviewContainer { get; private set; } = new ();
+
+        public ObservableCollection<PreviewContainer> PreviewContainerHistory { get; set; } = new ();
 
         private AppSettings AppSettings { get; init; }
 

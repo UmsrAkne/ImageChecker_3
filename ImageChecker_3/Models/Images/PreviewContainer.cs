@@ -99,6 +99,12 @@ namespace ImageChecker_3.Models.Images
             }
         }
 
+        /// <summary>
+        /// このプレビューコンテナから、タグを生成した際に、そのタグのタイプが入力されます。
+        /// デフォルトでは TagType.NoType(0) が割り当てられています。
+        /// </summary>
+        public TagType TagType { get; set; }
+
         public DelegateCommand<Position?> SetPositionCommand => new DelegateCommand<Position?>((param) =>
         {
             switch (param)
@@ -200,6 +206,25 @@ namespace ImageChecker_3.Models.Images
                     ? Path.GetFileNameWithoutExtension(w.ImageFileInfo.FileInfo.Name)
                     : string.Empty)
                 .ToList();
+        }
+
+        /// <summary>
+        /// このオブジェクトのディープコピーを取得します。
+        /// </summary>
+        /// <returns>このオブジェクトのプロパティがコピーされた新しいオブジェクト。</returns>
+        public PreviewContainer Clone()
+        {
+            return new PreviewContainer
+            {
+                PreviewScale = PreviewScale,
+                ScreenRect = new BindableRect(ScreenRect.X, ScreenRect.Y, ScreenRect.Width, ScreenRect.Height),
+                Scale = Scale,
+                ImageWrappers = new ObservableCollection<ImageWrapper>(ImageWrappers),
+                MaxImageSize = MaxImageSize,
+                X = X,
+                Y = Y,
+                TagType = TagType,
+            };
         }
     }
 }
