@@ -160,6 +160,12 @@ namespace ImageChecker_3.Models.Images
             RelativePosition = default;
         });
 
+        public DelegateCommand ResetPositionAndScaleCommand => new DelegateCommand(() =>
+        {
+            Scale = 1.0;
+            RelativePosition = default;
+        });
+
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)
         {
             ImageWrappers.Clear();

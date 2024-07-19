@@ -76,6 +76,11 @@
             Command="{Binding PreviewContainer.ResetPositionCommand}"
             Modifiers="Control" />
 
+        <KeyBinding
+            Key="d1"
+            Command="{Binding PreviewContainer.ResetPositionAndScaleCommand}"
+            Modifiers="Control" />
+
     </Window.InputBindings>
 
     <i:Interaction.Behaviors>
