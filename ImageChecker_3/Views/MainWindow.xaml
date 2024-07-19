@@ -257,7 +257,19 @@
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type images:PreviewContainer}">
                     <Border BorderBrush="Gray" BorderThickness="1">
-                        <views:PreviewScreenArea />
+                        <StackPanel Margin="3">
+                            <views:PreviewScreenArea />
+
+                            <TextBlock Text="{Binding TagType}" />
+                            <TextBlock Text="{Binding ImageWrappers[0].ImageFileInfo.FileNameWithoutExtension, StringFormat=A : {0}}" />
+                            <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />
+                            <TextBlock Text="{Binding ImageWrappers[2].ImageFileInfo.FileNameWithoutExtension, StringFormat=C : {0}}" />
+                            <TextBlock Text="{Binding ImageWrappers[3].ImageFileInfo.FileNameWithoutExtension, StringFormat=D : {0}}" />
+                            <TextBlock Text="{Binding Scale, StringFormat=Scale :}" />
+                            <TextBlock Text="{Binding X, StringFormat=X :}" />
+                            <TextBlock Text="{Binding Y, StringFormat=Y :}" />
+
+                        </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>

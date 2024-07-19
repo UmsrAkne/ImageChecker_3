@@ -17,6 +17,7 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.Image;
             Clipboard.SetText(GetTag(ImageTagText, param));
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
@@ -28,6 +29,7 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.Draw;
             Clipboard.SetText(GetTag(DrawTagText, param));
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
@@ -39,6 +41,7 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.AnimationImage;
             Clipboard.SetText(GetTag(AnimationImageTagText, param));
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
@@ -50,6 +53,7 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            param.TagType = TagType.AnimationDraw;
             Clipboard.SetText(GetTag(AnimationDrawTagText, param));
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });

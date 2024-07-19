@@ -99,6 +99,12 @@ namespace ImageChecker_3.Models.Images
             }
         }
 
+        /// <summary>
+        /// このプレビューコンテナから、タグを生成した際に、そのタグのタイプが入力されます。
+        /// デフォルトでは TagType.NoType(0) が割り当てられています。
+        /// </summary>
+        public TagType TagType { get; set; }
+
         public DelegateCommand<Position?> SetPositionCommand => new DelegateCommand<Position?>((param) =>
         {
             switch (param)
@@ -217,6 +223,7 @@ namespace ImageChecker_3.Models.Images
                 MaxImageSize = MaxImageSize,
                 X = X,
                 Y = Y,
+                TagType = TagType,
             };
         }
     }
