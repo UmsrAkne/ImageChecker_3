@@ -71,6 +71,11 @@
             Command="{Binding PreviewContainer.MovePreviewImageCommand}"
             CommandParameter="{x:Static models:Position.Right}" />
 
+        <KeyBinding
+            Key="d0"
+            Command="{Binding PreviewContainer.ResetPositionCommand}"
+            Modifiers="Control" />
+
     </Window.InputBindings>
 
     <i:Interaction.Behaviors>

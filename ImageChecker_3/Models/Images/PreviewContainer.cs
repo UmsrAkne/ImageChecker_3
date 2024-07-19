@@ -155,6 +155,11 @@ namespace ImageChecker_3.Models.Images
             }
         });
 
+        public DelegateCommand ResetPositionCommand => new DelegateCommand(() =>
+        {
+            RelativePosition = default;
+        });
+
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)
         {
             ImageWrappers.Clear();
