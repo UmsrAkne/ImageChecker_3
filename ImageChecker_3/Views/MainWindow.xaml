@@ -21,7 +21,6 @@
     mc:Ignorable="d">
 
     <Window.Resources>
-        <converters:PreviewScaleMultiConverter x:Key="PreviewScaleMultiConverter" />
         <converters:NegativeMultiplierConverter x:Key="NegativeMultiplierConverter" />
         <converters:TruncateDoubleConverter x:Key="TruncateDoubleConverter" />
     </Window.Resources>
@@ -152,85 +151,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <Button CommandParameter="{x:Static models:Position.Left}" Content="0" />
-                <ItemsControl ItemsSource="{Binding PreviewContainer.ImageWrappers}">
-
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-
-                            <Canvas
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                ClipToBounds="True">
-
-                                <Canvas.Width>
-                                    <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                        <Binding Path="PreviewContainer.ScreenRect.Width" />
-                                        <Binding Path="PreviewContainer.PreviewScale" />
-                                    </MultiBinding>
-                                </Canvas.Width>
-                                <Canvas.Height>
-                                    <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                        <Binding Path="PreviewContainer.ScreenRect.Height" />
-                                        <Binding Path="PreviewContainer.PreviewScale" />
-                                    </MultiBinding>
-                                </Canvas.Height>
-                            </Canvas>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-
-                    <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="ContentPresenter">
-                            <Setter Property="Canvas.Left">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                        <Binding ElementName="Window" Path="DataContext.PreviewContainer.PreviewScale" />
-                                        <Binding ElementName="Window" Path="DataContext.PreviewContainer.ScreenRect.X" />
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Canvas.Top">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                        <Binding ElementName="Window" Path="DataContext.PreviewContainer.PreviewScale" />
-                                        <Binding ElementName="Window" Path="DataContext.PreviewContainer.ScreenRect.Y" />
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
-
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type images:ImageWrapper}">
-                            <Image>
-                                <Image.Style>
-                                    <Style TargetType="Image">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ImageFileInfo.FileInfo.Exists}" Value="True">
-                                                <Setter Property="Source" Value="{Binding ImageFileInfo.FileInfo.FullName}" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-
-                                <Image.Height>
-                                    <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                        <Binding Path="ImageFileInfo.Height" />
-                                        <Binding Path="DataContext.PreviewContainer.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                        <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                    </MultiBinding>
-                                </Image.Height>
-
-                                <Image.Width>
-                                    <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                                        <Binding Path="ImageFileInfo.Width" />
-                                        <Binding Path="DataContext.PreviewContainer.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                        <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                    </MultiBinding>
-                                </Image.Width>
-                            </Image>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <views:PreviewScreenArea />
                 <Button CommandParameter="{x:Static models:Position.Right}" Content="180" />
             </StackPanel>
 
