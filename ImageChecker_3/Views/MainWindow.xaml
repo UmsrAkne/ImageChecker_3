@@ -151,7 +151,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <Button CommandParameter="{x:Static models:Position.Left}" Content="0" />
-                <views:PreviewScreenArea />
+                <views:PreviewScreenArea DataContext="{Binding PreviewContainer}" />
                 <Button CommandParameter="{x:Static models:Position.Right}" Content="180" />
             </StackPanel>
 

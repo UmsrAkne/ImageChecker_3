@@ -6,16 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:images="clr-namespace:ImageChecker_3.Models.Images"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     x:Name="UserControl"
-    d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
+    d:DataContext="{d:DesignInstance images:PreviewContainer}"
     mc:Ignorable="d">
 
     <UserControl.Resources>
         <converters:PreviewScaleMultiConverter x:Key="PreviewScaleMultiConverter" />
     </UserControl.Resources>
 
-    <ItemsControl ItemsSource="{Binding PreviewContainer.ImageWrappers}">
+    <ItemsControl ItemsSource="{Binding ImageWrappers}">
 
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -27,14 +26,14 @@
 
                     <Canvas.Width>
                         <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                            <Binding Path="PreviewContainer.ScreenRect.Width" />
-                            <Binding Path="PreviewContainer.PreviewScale" />
+                            <Binding Path="ScreenRect.Width" />
+                            <Binding Path="PreviewScale" />
                         </MultiBinding>
                     </Canvas.Width>
                     <Canvas.Height>
                         <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                            <Binding Path="PreviewContainer.ScreenRect.Height" />
-                            <Binding Path="PreviewContainer.PreviewScale" />
+                            <Binding Path="ScreenRect.Height" />
+                            <Binding Path="PreviewScale" />
                         </MultiBinding>
                     </Canvas.Height>
                 </Canvas>
@@ -46,16 +45,16 @@
                 <Setter Property="Canvas.Left">
                     <Setter.Value>
                         <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                            <Binding ElementName="UserControl" Path="DataContext.PreviewContainer.PreviewScale" />
-                            <Binding ElementName="UserControl" Path="DataContext.PreviewContainer.ScreenRect.X" />
+                            <Binding ElementName="UserControl" Path="DataContext.PreviewScale" />
+                            <Binding ElementName="UserControl" Path="DataContext.ScreenRect.X" />
                         </MultiBinding>
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Canvas.Top">
                     <Setter.Value>
                         <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
-                            <Binding ElementName="UserControl" Path="DataContext.PreviewContainer.PreviewScale" />
-                            <Binding ElementName="UserControl" Path="DataContext.PreviewContainer.ScreenRect.Y" />
+                            <Binding ElementName="UserControl" Path="DataContext.PreviewScale" />
+                            <Binding ElementName="UserControl" Path="DataContext.ScreenRect.Y" />
                         </MultiBinding>
                     </Setter.Value>
                 </Setter>
@@ -78,16 +77,16 @@
                     <Image.Height>
                         <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
                             <Binding Path="ImageFileInfo.Height" />
-                            <Binding Path="DataContext.PreviewContainer.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                            <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                            <Binding Path="DataContext.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                            <Binding Path="DataContext.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                         </MultiBinding>
                     </Image.Height>
 
                     <Image.Width>
                         <MultiBinding Converter="{StaticResource PreviewScaleMultiConverter}">
                             <Binding Path="ImageFileInfo.Width" />
-                            <Binding Path="DataContext.PreviewContainer.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                            <Binding Path="DataContext.PreviewContainer.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                            <Binding Path="DataContext.Scale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                            <Binding Path="DataContext.PreviewScale" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
                         </MultiBinding>
                     </Image.Width>
                 </Image>
