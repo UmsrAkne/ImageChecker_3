@@ -16,8 +16,8 @@ namespace ImageChecker_3.ViewModels
     // DI コンテナにより生成されるクラスのため、手動によるインスタンス化はしない。
     public class MainWindowViewModel : BindableBase
     {
-        private GridLength fourthColumnLength;
         private readonly IDialogService dialogService;
+        private GridLength fourthColumnLength;
 
         public MainWindowViewModel()
         {
@@ -86,8 +86,6 @@ namespace ImageChecker_3.ViewModels
 
         public ObservableCollection<PreviewContainer> PreviewContainerHistory { get; set; } = new ();
 
-        private AppSettings AppSettings { get; init; }
-
         /// <summary>
         /// ImageContainers の内容に応じて、PreviewImageContainer を更新します。
         /// </summary>
@@ -102,6 +100,8 @@ namespace ImageChecker_3.ViewModels
             var param = new DialogParameters { { nameof(AppSettings), AppSettings }, };
             dialogService.ShowDialog(nameof(SettingPage), param, (_) => { });
         });
+
+        private AppSettings AppSettings { get; init; }
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }
 
