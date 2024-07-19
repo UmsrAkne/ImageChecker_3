@@ -219,7 +219,7 @@ namespace ImageChecker_3.Models.Images
                 PreviewScale = PreviewScale,
                 ScreenRect = new BindableRect(ScreenRect.X, ScreenRect.Y, ScreenRect.Width, ScreenRect.Height),
                 Scale = Scale,
-                ImageWrappers = ImageWrappers,
+                ImageWrappers = new ObservableCollection<ImageWrapper>(ImageWrappers),
                 MaxImageSize = MaxImageSize,
                 X = X,
                 Y = Y,
