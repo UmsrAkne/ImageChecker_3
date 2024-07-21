@@ -59,6 +59,13 @@ namespace ImageChecker_3.ViewModels
             {
                 var p = PreviewContainer.Clone();
                 p.PreviewScale = 0.1;
+                if (p.TagType is TagType.Draw or TagType.AnimationDraw)
+                {
+                    var l = p.ImageWrappers.ToList();
+                    l[0] = null;
+                    p.SetImageWrappers(l);
+                }
+
                 PreviewContainerHistory.Insert(0, p);
             };
 
