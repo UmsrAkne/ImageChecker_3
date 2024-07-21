@@ -25,9 +25,9 @@ namespace ImageChecker_3Test.Models
         }
 
         [Test]
-        [TestCase(1.0, 100, 200)]
-        [TestCase(1.5, 420, 380)]
-        [TestCase(2.0, 740, 560)]
+        [TestCase(1.0, 100, -200)]
+        [TestCase(1.5, 420, -380)]
+        [TestCase(2.0, 740, -560)]
         public void RelativePositionTest(double scale, double x, double y)
         {
             previewContainer.Scale = scale;
@@ -41,9 +41,9 @@ namespace ImageChecker_3Test.Models
         }
 
         [Test]
-        [TestCase(1.0, 0, 200)]
-        [TestCase(1.5, 320, 380)]
-        [TestCase(2.0, 640, 560)]
+        [TestCase(1.0, 0, -200)]
+        [TestCase(1.5, 320, -380)]
+        [TestCase(2.0, 640, -560)]
         public void RelativePositionTest_画面サイズ1480(double scale, double x, double y)
         {
             previewContainer.Scale = scale;
@@ -58,8 +58,8 @@ namespace ImageChecker_3Test.Models
         }
 
         [Test]
-        [TestCase(100, 200, 100, 200)]
-        [TestCase(-100, -200, -100, -200)]
+        [TestCase(100, 200, 100, -200)]
+        [TestCase(-100, -200, -100, 200)]
         [TestCase(0, 0, 0, 0)]
         public void RelativePositionSetterTest(double x, double y, double exceptX, double exceptY)
         {
@@ -73,8 +73,8 @@ namespace ImageChecker_3Test.Models
         }
 
         [Test]
-        [TestCase(100, 200, 100, 200)]
-        [TestCase(-100, -200, -100, -200)]
+        [TestCase(100, 200, 100, -200)]
+        [TestCase(-100, -200, -100, 200)]
         [TestCase(0, 0, 0, 0)]
         public void RelativePositionSetterTest_Scale2(double x, double y, double exceptX, double exceptY)
         {

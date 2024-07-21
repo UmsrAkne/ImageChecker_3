@@ -60,7 +60,7 @@ namespace ImageChecker_3.Models.Images
                 var imgRect = new Rect(ScreenRect.X, ScreenRect.Y, MaxImageSize.Width * Scale, MaxImageSize.Height * Scale);
                 var imgCenter = new Point((imgRect.Width / 2) + imgRect.X, (imgRect.Height / 2) + imgRect.Y);
                 var sRectCenter = new Point(sRect.Width / 2, sRect.Height / 2);
-                return new Point(imgCenter.X - sRectCenter.X, imgCenter.Y - sRectCenter.Y);
+                return new Point(imgCenter.X - sRectCenter.X, -(imgCenter.Y - sRectCenter.Y));
             }
 
             set
