@@ -269,9 +269,9 @@
                             <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />
                             <TextBlock Text="{Binding ImageWrappers[2].ImageFileInfo.FileNameWithoutExtension, StringFormat=C : {0}}" />
                             <TextBlock Text="{Binding ImageWrappers[3].ImageFileInfo.FileNameWithoutExtension, StringFormat=D : {0}}" />
-                            <TextBlock Text="{Binding Scale, StringFormat=Scale :}" />
-                            <TextBlock Text="{Binding X, StringFormat=X :}" />
-                            <TextBlock Text="{Binding Y, StringFormat=Y :}" />
+                            <TextBlock Text="{Binding Scale, StringFormat=Scale : {0}}" />
+                            <TextBlock Text="{Binding X, StringFormat=X : {0}}" />
+                            <TextBlock Text="{Binding Y, StringFormat=Y : {0}}" />
 
                         </StackPanel>
                     </Border>
