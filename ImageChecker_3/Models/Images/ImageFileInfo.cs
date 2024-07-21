@@ -102,6 +102,7 @@ namespace ImageChecker_3.Models.Images
             // 画像ファイル名が特定の命名規則に沿っていれば、ファイル名に関するプロパティも設定する。
             if (!Regex.Match(FileInfo.Name, @"[ABCD]\d\d\d\d").Success)
             {
+                KeyChar = 'A';
                 return;
             }
 
