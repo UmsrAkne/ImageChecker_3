@@ -31,7 +31,7 @@ namespace ImageChecker_3Test.Models
 
             var tagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
             var actual = TagGenerator.GetTag(tagText, previewContainer);
-            var expect = @"<image a=""A0101"" b=""B0101"" c=""C0101"" d=""D0101"" x=""10"" y=""20"" scale=""1.0"" />";
+            var expect = @"<image a=""A0101"" b=""B0101"" c=""C0101"" d=""D0101"" x=""10"" y=""-20"" scale=""1.0"" />";
 
             Assert.That(actual, Is.EqualTo(expect));
         }
