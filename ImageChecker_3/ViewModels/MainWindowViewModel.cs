@@ -69,6 +69,14 @@ namespace ImageChecker_3.ViewModels
                 PreviewContainerHistory.Insert(0, p);
             };
 
+            ImageContainers.First().CurrentFileChanged += (sender, _) =>
+            {
+                foreach (var ic in ImageContainers.Where(c => c.KeyChar.First() != 'A'))
+                {
+                    ic.SelectSameGroupImages(((ImageContainer)sender)?.CurrentFile);
+                }
+            };
+
             this.dialogService = dialogService;
         }
 
