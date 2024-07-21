@@ -8,10 +8,10 @@ namespace ImageChecker_3.Models
     {
         public static readonly string SettingFileName = "appSetting.json";
 
-        private string imageTagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
-        private string drawTagText = @"<draw b=""$b"" c=""$c"" d=""$d"" />";
-        private string animationImageTagText = @"<anime name=""image"" a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
-        private string animationDrawTagText = @"<anime name=""draw"" b=""$b"" c=""$c"" d=""$d"" />";
+        private string imageTagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""0"" />";
+        private string drawTagText = @"<draw b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""0"" />";
+        private string animationImageTagText = @"<anime name=""image"" a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""0"" />";
+        private string animationDrawTagText = @"<anime name=""draw"" b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""0"" />";
 
         public string ImageTagText { get => imageTagText; set => SetProperty(ref imageTagText, value); }
 
