@@ -36,17 +36,10 @@
                         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-
-                <!-- <i:Interaction.Triggers> -->
-                <!--     <i:EventTrigger EventName="SelectionChanged"> -->
-                <!--         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.SelectableImageFilterCommand)}" CommandParameter="{Binding SelectedItem, ElementName=ComboBox}" /> -->
-                <!--     </i:EventTrigger> -->
-                <!-- </i:Interaction.Triggers> -->
             </ComboBox>
         </DockPanel>
 
         <ListBox
-            x:Name="ListBox"
             HorizontalAlignment="Stretch"
             IsEnabled="{Binding IsEnabled}"
             ItemsSource="{Binding FilteredFiles}"
@@ -105,12 +98,6 @@
                     <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-
-            <!-- <i:Interaction.Triggers> -->
-            <!--     <i:EventTrigger EventName="SelectionChanged"> -->
-            <!--         <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.SelectableImageFilterCommand)}" CommandParameter="{Binding SelectedItem, ElementName=ListBox}" /> -->
-            <!--     </i:EventTrigger> -->
-            <!-- </i:Interaction.Triggers> -->
 
         </ListBox>
     </DockPanel>
