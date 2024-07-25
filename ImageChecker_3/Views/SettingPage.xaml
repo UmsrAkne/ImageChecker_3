@@ -7,10 +7,23 @@
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     Title="SettingPage"
     Width="800"
+    Background="{StaticResource BackgroundBrush}"
     d:DataContext="{d:DesignInstance viewModels:SettingPageViewModel}"
     mc:Ignorable="d">
 
     <StackPanel Margin="3">
+
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+                <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+            </Style>
+        </StackPanel.Resources>
+
         <TextBlock Margin="0,1" Text="Image tag :" />
         <TextBox AcceptsTab="True" Text="{Binding AppSettings.ImageTagText, UpdateSourceTrigger=PropertyChanged}" />
 
