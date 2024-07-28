@@ -13,6 +13,7 @@ namespace ImageChecker_3.Models.Images
         private double previewScale = 0.4;
         private BindableRect screenRect = new (0, 0, 1280, 720);
         private double scale = 1.0;
+        private bool isSelected;
 
         public ObservableCollection<ImageWrapper> ImageWrappers { get; private init; } = new () { null, null, null, null, };
 
@@ -103,6 +104,11 @@ namespace ImageChecker_3.Models.Images
         /// デフォルトでは TagType.NoType(0) が割り当てられています。
         /// </summary>
         public TagType TagType { get; set; }
+
+        /// <summary>
+        /// プレビューコンテナの履歴エリアで、選択中のアイテムを取得するための使用します。
+        /// </summary>
+        public bool IsSelected { get => isSelected; set => SetProperty(ref isSelected, value); }
 
         public DelegateCommand<Position?> SetPositionCommand => new DelegateCommand<Position?>((param) =>
         {

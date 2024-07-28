@@ -274,6 +274,23 @@
                                     <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
                                 </Style>
                             </StackPanel.Resources>
+
+                            <!-- listBox.IsSelected が true のときだけこれを表示したい -->
+                            <Border Height="5" Background="Tomato" Margin="0,2">
+                                <Border.Style>
+                                	<Style TargetType="Border">
+                                		<Style.Triggers>
+                                			<DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                			    <Setter Property="Visibility" Value="Visible" />
+                                			</DataTrigger>
+                                			<DataTrigger Binding="{Binding IsSelected}" Value="False">
+                                			    <Setter Property="Visibility" Value="Hidden" />
+                                			</DataTrigger>
+                                		</Style.Triggers>
+                                	</Style>
+                                </Border.Style>
+                            </Border>
+
                             <views:PreviewScreenArea />
 
                             <TextBlock Text="{Binding TagType}" />
@@ -289,6 +306,12 @@
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                </Style>
+            </ListBox.ItemContainerStyle>
 
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

@@ -27,6 +27,11 @@ namespace ImageChecker_3.Models.Images
             {
                 LoadImageInfo(filePath);
             }
+
+            if (!string.IsNullOrWhiteSpace(filePath))
+            {
+                FileInfo = new FileInfo(filePath);
+            }
         }
 
         public double Width { get => width; set => SetProperty(ref width, value); }
