@@ -120,12 +120,20 @@
 
             <StackPanel Margin="2" Orientation="Horizontal">
                 <TextBlock Text="Screen Width : " />
-                <TextBox Width="40" Text="{Binding PreviewContainer.ScreenRect.Width}" />
+                <TextBox
+                    Width="40"
+                    Background="{StaticResource BackgroundBrush}"
+                    Foreground="{StaticResource ForegroundBrush}"
+                    Text="{Binding PreviewContainer.ScreenRect.Width}" />
 
                 <Border Margin="10,0" />
 
                 <TextBlock Text="Preview Scale :" />
-                <TextBox Width="30" Text="{Binding PreviewContainer.PreviewScale}" />
+                <TextBox
+                    Width="30"
+                    Background="{StaticResource BackgroundBrush}"
+                    Foreground="{StaticResource ForegroundBrush}"
+                    Text="{Binding PreviewContainer.PreviewScale}" />
             </StackPanel>
 
         </StackPanel>
@@ -275,19 +283,22 @@
                                 </Style>
                             </StackPanel.Resources>
 
-                            <!-- listBox.IsSelected が true のときだけこれを表示したい -->
-                            <Border Height="5" Background="Tomato" Margin="0,2">
+                            <!--  listBox.IsSelected が true のときだけこれを表示したい  -->
+                            <Border
+                                Height="5"
+                                Margin="0,2"
+                                Background="Tomato">
                                 <Border.Style>
-                                	<Style TargetType="Border">
-                                		<Style.Triggers>
-                                			<DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                			    <Setter Property="Visibility" Value="Visible" />
-                                			</DataTrigger>
-                                			<DataTrigger Binding="{Binding IsSelected}" Value="False">
-                                			    <Setter Property="Visibility" Value="Hidden" />
-                                			</DataTrigger>
-                                		</Style.Triggers>
-                                	</Style>
+                                    <Style TargetType="Border">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
                                 </Border.Style>
                             </Border>
 
