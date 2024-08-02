@@ -197,45 +197,62 @@
         </StackPanel>
 
         <!--  Y 方向スライダー  -->
-        <Slider
+        <DockPanel
             Grid.Row="1"
             Grid.Column="1"
-            IsDirectionReversed="True"
-            Maximum="{Binding PreviewContainer.ScreenRect.Height}"
-            Orientation="Vertical"
-            TickFrequency="10"
-            Value="{Binding PreviewContainer.Y}">
-            <Slider.Minimum>
-                <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
-                    <Binding Path="PreviewContainer.MaxImageSize.Height" />
-                    <Binding Path="PreviewContainer.Scale" />
-                </MultiBinding>
-            </Slider.Minimum>
-        </Slider>
+            Margin="3,0">
 
-        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                DockPanel.Dock="Top"
+                Text="Y" />
 
-            <!--  X 方向スライダー  -->
             <Slider
-                x:Name="XSlider"
-                Maximum="{Binding PreviewContainer.ScreenRect.Width}"
+                IsDirectionReversed="True"
+                Maximum="{Binding PreviewContainer.ScreenRect.Height}"
+                Orientation="Vertical"
                 TickFrequency="10"
-                Value="{Binding PreviewContainer.X}">
+                Value="{Binding PreviewContainer.Y}">
                 <Slider.Minimum>
                     <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
-                        <Binding Path="PreviewContainer.MaxImageSize.Width" />
+                        <Binding Path="PreviewContainer.MaxImageSize.Height" />
                         <Binding Path="PreviewContainer.Scale" />
                     </MultiBinding>
                 </Slider.Minimum>
             </Slider>
 
+        </DockPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+
+            <!--  X 方向スライダー  -->
+            <DockPanel Margin="0,3">
+                <TextBlock Margin="8,0" Text="X" />
+                <Slider
+                    x:Name="XSlider"
+                    Maximum="{Binding PreviewContainer.ScreenRect.Width}"
+                    TickFrequency="10"
+                    Value="{Binding PreviewContainer.X}">
+                    <Slider.Minimum>
+                        <MultiBinding Converter="{StaticResource NegativeMultiplierConverter}">
+                            <Binding Path="PreviewContainer.MaxImageSize.Width" />
+                            <Binding Path="PreviewContainer.Scale" />
+                        </MultiBinding>
+                    </Slider.Minimum>
+                </Slider>
+            </DockPanel>
+
             <!--  Scale スライダー  -->
-            <Slider
-                IsSnapToTickEnabled="True"
-                Maximum="4"
-                Minimum="1"
-                TickFrequency="0.5"
-                Value="{Binding PreviewContainer.Scale}" />
+            <DockPanel Margin="0,4">
+                <TextBlock Margin="8,0" Text="Scale" />
+                <Slider
+                    IsSnapToTickEnabled="True"
+                    Maximum="4"
+                    Minimum="1"
+                    TickFrequency="0.5"
+                    Value="{Binding PreviewContainer.Scale}" />
+            </DockPanel>
 
             <!--  PreviewContainer の各値の表示用エリア  -->
             <StackPanel Orientation="Horizontal">
