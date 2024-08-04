@@ -292,46 +292,55 @@
             ItemsSource="{Binding PreviewContainerHistory}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type images:PreviewContainer}">
-                    <Border BorderBrush="Gray" BorderThickness="1">
-                        <StackPanel Margin="3">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
-                                </Style>
-                            </StackPanel.Resources>
+                    <ContentControl>
 
-                            <!--  listBox.IsSelected が true のときだけこれを表示したい  -->
-                            <Border
-                                Height="5"
-                                Margin="0,2"
-                                Background="Tomato">
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                <Setter Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsSelected}" Value="False">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Path=DataContext.RestorePreviewContainerCommand}" CommandParameter="{Binding}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <Border BorderBrush="Gray" BorderThickness="1">
+                            <StackPanel Margin="3">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
                                     </Style>
-                                </Border.Style>
-                            </Border>
+                                </StackPanel.Resources>
 
-                            <views:PreviewScreenArea />
+                                <Border
+                                    Height="5"
+                                    Margin="0,2"
+                                    Background="Tomato">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
 
-                            <TextBlock Text="{Binding TagType}" />
-                            <TextBlock Text="{Binding ImageWrappers[0].ImageFileInfo.FileNameWithoutExtension, StringFormat=A : {0}}" />
-                            <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />
-                            <TextBlock Text="{Binding ImageWrappers[2].ImageFileInfo.FileNameWithoutExtension, StringFormat=C : {0}}" />
-                            <TextBlock Text="{Binding ImageWrappers[3].ImageFileInfo.FileNameWithoutExtension, StringFormat=D : {0}}" />
-                            <TextBlock Text="{Binding Scale, StringFormat=Scale : {0}}" />
-                            <TextBlock Text="{Binding X, StringFormat=X : {0}}" />
-                            <TextBlock Text="{Binding Y, StringFormat=Y : {0}}" />
+                                <views:PreviewScreenArea />
 
-                        </StackPanel>
-                    </Border>
+                                <TextBlock Text="{Binding TagType}" />
+                                <TextBlock Text="{Binding ImageWrappers[0].ImageFileInfo.FileNameWithoutExtension, StringFormat=A : {0}}" />
+                                <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />
+                                <TextBlock Text="{Binding ImageWrappers[2].ImageFileInfo.FileNameWithoutExtension, StringFormat=C : {0}}" />
+                                <TextBlock Text="{Binding ImageWrappers[3].ImageFileInfo.FileNameWithoutExtension, StringFormat=D : {0}}" />
+                                <TextBlock Text="{Binding Scale, StringFormat=Scale : {0}}" />
+                                <TextBlock Text="{Binding X, StringFormat=X : {0}}" />
+                                <TextBlock Text="{Binding Y, StringFormat=Y : {0}}" />
+
+                            </StackPanel>
+                        </Border>
+                    </ContentControl>
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
 

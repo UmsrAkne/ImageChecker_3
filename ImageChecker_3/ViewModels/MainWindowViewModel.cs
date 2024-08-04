@@ -58,6 +58,7 @@ namespace ImageChecker_3.ViewModels
             TagGenerator.TagGenerated += (_, _) =>
             {
                 var p = PreviewContainer.Clone();
+                p.SaveStatus();
                 p.PreviewScale = 0.1;
                 if (p.TagType is TagType.Draw or TagType.AnimationDraw)
                 {
@@ -114,6 +115,23 @@ namespace ImageChecker_3.ViewModels
         {
             var param = new DialogParameters { { nameof(AppSettings), AppSettings }, };
             dialogService.ShowDialog(nameof(SettingPage), param, (_) => { });
+        });
+
+        /// <summary>
+        /// 現在のPreviewContainerの状態を、コマンドパラメーターに与えられたオブジェクトに基づいて書き換えます。
+        /// </summary>
+        public DelegateCommand<PreviewContainer> RestorePreviewContainerCommand => new DelegateCommand<PreviewContainer>((param) =>
+        {
+            var images = param.LoadImageWrappers().ToList();
+            PreviewContainer.SetImageWrappers(images);
+            PreviewContainer.Scale = param.Scale;
+            PreviewContainer.RelativePosition = param.RelativePosition;
+            PreviewContainer.ScreenRect = param.ScreenRect.Clone();
+
+            for (var i = 0; i < ImageContainers.Count; i++)
+            {
+                ImageContainers[i].CurrentFile = images[i];
+            }
         });
 
         private AppSettings AppSettings { get; init; }
