@@ -14,6 +14,7 @@ namespace ImageChecker_3.Models.Images
         private BindableRect screenRect = new (0, 0, 1280, 720);
         private double scale = 1.0;
         private bool isSelected;
+        private List<ImageWrapper> originalImageWrappers;
 
         public ObservableCollection<ImageWrapper> ImageWrappers { get; private init; } = new () { null, null, null, null, };
 
@@ -230,6 +231,20 @@ namespace ImageChecker_3.Models.Images
                 Y = Y,
                 TagType = TagType,
             };
+        }
+
+        /// <summary>
+        /// 現在のImageWrappersをコピーして内部に保存します。
+        /// LoadImageWrappers() で保存したリストを取得できます。
+        /// </summary>
+        public void SaveStatus()
+        {
+            originalImageWrappers = new List<ImageWrapper>(ImageWrappers);
+        }
+
+        public IEnumerable<ImageWrapper> LoadImageWrappers()
+        {
+            return originalImageWrappers;
         }
     }
 }

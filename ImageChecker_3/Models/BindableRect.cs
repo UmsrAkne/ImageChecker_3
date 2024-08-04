@@ -24,5 +24,10 @@ namespace ImageChecker_3.Models
         public double X { get => x; set => SetProperty(ref x, value); }
 
         public double Y { get => y; set => SetProperty(ref y, value); }
+
+        public BindableRect Clone()
+        {
+            return new BindableRect(X, Y, Width, Height);
+        }
     }
 }
