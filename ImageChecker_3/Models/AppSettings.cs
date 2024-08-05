@@ -6,7 +6,8 @@ namespace ImageChecker_3.Models
 {
     public class AppSettings : BindableBase
     {
-        public static readonly string SettingFileName = "appSetting.json";
+        // ReSharper disable once ArrangeModifiersOrder
+        public const string SettingFileName = "appSetting.json";
 
         private string imageTagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""0"" />";
         private string drawTagText = @"<draw b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""0"" />";
