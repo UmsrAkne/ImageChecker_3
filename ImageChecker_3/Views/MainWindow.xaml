@@ -281,6 +281,41 @@
                 <TextBlock Width="50" Text="{Binding PreviewContainer.Scale}" />
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Width :" />
+                <TextBlock Text="{Binding PreviewContainer.MaxImageSize.Width}" />
+
+                <Border Margin="10,0" />
+
+                <TextBlock Text="Width(Scaled) :" />
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MultiplyConverter}">
+                            <Binding Path="PreviewContainer.MaxImageSize.Width" />
+                            <Binding Path="PreviewContainer.Scale" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <Border Margin="10,0" />
+
+                <TextBlock Text="Height :" />
+                <TextBlock Text="{Binding PreviewContainer.MaxImageSize.Height}" />
+
+                <Border Margin="10,0" />
+
+                <TextBlock Text="height(Scaled) :" />
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MultiplyConverter}">
+                            <Binding Path="PreviewContainer.MaxImageSize.Height" />
+                            <Binding Path="PreviewContainer.Scale" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+            </StackPanel>
+
         </StackPanel>
 
         <ListBox
