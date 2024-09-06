@@ -134,6 +134,20 @@ namespace ImageChecker_3.ViewModels
             }
         });
 
+        public DelegateCommand<PreviewContainer> DeleteHistoryCommand => new DelegateCommand<PreviewContainer>((param) =>
+        {
+            if (param == null)
+            {
+                return;
+            }
+
+            var index = PreviewContainerHistory.IndexOf(param);
+            if (index != -1)
+            {
+                PreviewContainerHistory.RemoveAt(index);
+            }
+        });
+
         private AppSettings AppSettings { get; init; }
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }

@@ -319,12 +319,21 @@
         </StackPanel>
 
         <ListBox
+            Name="ListBox"
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.Column="0"
             Width="{Binding ActualWidth, ElementName=StackPanel}"
             Background="Transparent"
             ItemsSource="{Binding PreviewContainerHistory}">
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="Back"
+                    Command="{Binding DeleteHistoryCommand}"
+                    CommandParameter="{Binding ElementName=ListBox, Path=SelectedItem}" />
+
+            </ListBox.InputBindings>
+
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type images:PreviewContainer}">
                     <ContentControl>
