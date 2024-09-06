@@ -134,6 +134,30 @@ namespace ImageChecker_3.ViewModels
             }
         });
 
+        /// <summary>
+        /// 現在のPreviewContainerの位置を、コマンドパラメーターに与えられたオブジェクトに基づいて書き換えます。
+        /// </summary>
+        public DelegateCommand<PreviewContainer> RestorePositionFromPcCommand => new DelegateCommand<PreviewContainer>((param) =>
+        {
+            PreviewContainer.Scale = param.Scale;
+            PreviewContainer.RelativePosition = param.RelativePosition;
+            PreviewContainer.ScreenRect = param.ScreenRect.Clone();
+        });
+
+        public DelegateCommand<PreviewContainer> DeleteHistoryCommand => new DelegateCommand<PreviewContainer>((param) =>
+        {
+            if (param == null)
+            {
+                return;
+            }
+
+            var index = PreviewContainerHistory.IndexOf(param);
+            if (index != -1)
+            {
+                PreviewContainerHistory.RemoveAt(index);
+            }
+        });
+
         private AppSettings AppSettings { get; init; }
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }
