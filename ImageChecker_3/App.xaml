@@ -5,7 +5,7 @@
     xmlns:converters="clr-namespace:ImageChecker_3.Views.Converters"
     xmlns:prism="http://prismlibrary.com/">
     <Application.Resources>
-        <SolidColorBrush x:Key="BackgroundBrush" Color="#222255" />
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#333344" />
         <SolidColorBrush x:Key="ForegroundBrush" Color="WhiteSmoke" />
         <converters:MultiplyConverter x:Key="MultiplyConverter" />
     </Application.Resources>

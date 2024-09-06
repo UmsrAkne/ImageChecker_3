@@ -128,7 +128,7 @@
 
                 <Border Margin="10,0" />
 
-                <TextBlock Text="Preview Scale :" />
+                <TextBlock Text="Preview Scale : " />
                 <TextBox
                     Width="30"
                     Background="{StaticResource BackgroundBrush}"
