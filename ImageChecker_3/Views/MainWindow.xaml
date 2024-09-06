@@ -381,6 +381,13 @@
                                 <TextBlock Text="{Binding X, StringFormat=X : {0}}" />
                                 <TextBlock Text="{Binding Y, StringFormat=Y : {0}}" />
 
+                                <!--  PreviewContainer から位置だけを抽出してセットするボタン。ListBoxItem に含まれるため、ダブルクリックした場合は EventTrigger を拾ってしまう。  -->
+                                <Button
+                                    Height="24"
+                                    Margin="8"
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=DataContext.RestorePositionFromPcCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="位置をセット" />
                             </StackPanel>
                         </Border>
                     </ContentControl>
