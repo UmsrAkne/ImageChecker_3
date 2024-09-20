@@ -7,8 +7,8 @@
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     Title="SettingPage"
     Width="800"
-    Background="{StaticResource BackgroundBrush}"
     d:DataContext="{d:DesignInstance viewModels:SettingPageViewModel}"
+    Background="{StaticResource BackgroundBrush}"
     mc:Ignorable="d">
 
     <StackPanel Margin="3">
@@ -41,6 +41,11 @@
 
         <TextBlock Margin="0,1" Text="Draw tag (Animation) :" />
         <TextBox AcceptsTab="True" Text="{Binding AppSettings.AnimationDrawTagText, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Border Margin="0,3" Background="Black" />
+
+        <TextBlock Margin="0,1" Text="Slide tag (Animation) :" />
+        <TextBox AcceptsTab="True" Text="{Binding AppSettings.SlideTagText, UpdateSourceTrigger=PropertyChanged}" />
 
         <Border
             Height="1"
