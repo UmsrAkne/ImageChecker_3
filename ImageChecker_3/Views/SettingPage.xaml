@@ -24,27 +24,27 @@
             </Style>
         </StackPanel.Resources>
 
-        <TextBlock Margin="0,1" Text="Image tag :" />
+        <TextBlock Margin="0,1" Text="Image tag (Ctrl + I) :" />
         <TextBox AcceptsTab="True" Text="{Binding AppSettings.ImageTagText, UpdateSourceTrigger=PropertyChanged}" />
 
         <Border Margin="0,3" Background="Black" />
 
-        <TextBlock Margin="0,1" Text="Draw tag :" />
+        <TextBlock Margin="0,1" Text="Draw tag (Ctrl + D) :" />
         <TextBox AcceptsTab="True" Text="{Binding AppSettings.DrawTagText, UpdateSourceTrigger=PropertyChanged}" />
 
         <Border Margin="0,3" Background="Black" />
 
-        <TextBlock Margin="0,1" Text="Image tag (Animation) :" />
+        <TextBlock Margin="0,1" Text="Image tag (Animation) (Ctrl + Shift + I):" />
         <TextBox AcceptsTab="True" Text="{Binding AppSettings.AnimationImageTagText, UpdateSourceTrigger=PropertyChanged}" />
 
         <Border Margin="0,3" Background="Black" />
 
-        <TextBlock Margin="0,1" Text="Draw tag (Animation) :" />
+        <TextBlock Margin="0,1" Text="Draw tag (Animation) (Ctrl + Shift + D):" />
         <TextBox AcceptsTab="True" Text="{Binding AppSettings.AnimationDrawTagText, UpdateSourceTrigger=PropertyChanged}" />
 
         <Border Margin="0,3" Background="Black" />
 
-        <TextBlock Margin="0,1" Text="Slide tag (Animation) :" />
+        <TextBlock Margin="0,1" Text="Slide tag (Animation) (Ctrl + S):" />
         <TextBox AcceptsTab="True" Text="{Binding AppSettings.SlideTagText, UpdateSourceTrigger=PropertyChanged}" />
 
         <Border
