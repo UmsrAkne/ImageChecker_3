@@ -50,6 +50,7 @@ namespace ImageChecker_3.ViewModels
                 DrawTagText = AppSettings.DrawTagText,
                 AnimationImageTagText = AppSettings.AnimationImageTagText,
                 AnimationDrawTagText = AppSettings.AnimationDrawTagText,
+                SlideTagText = AppSettings.SlideTagText,
             };
         }
     }
