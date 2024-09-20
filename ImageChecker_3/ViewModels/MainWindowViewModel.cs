@@ -37,6 +37,7 @@ namespace ImageChecker_3.ViewModels
             }
 
             LoadImages(string.Empty);
+            SlideController = new SlideController(PreviewContainer);
             FourthColumnLength = new GridLength(0);
         }
 
@@ -54,6 +55,7 @@ namespace ImageChecker_3.ViewModels
             FourthColumnLength = new GridLength(1.0, GridUnitType.Star);
             AppSettings = AppSettings.LoadFromFile(AppSettings.SettingFileName);
             TagGenerator.SetSettings(AppSettings);
+            SlideController = new SlideController(PreviewContainer);
 
             TagGenerator.TagGenerated += (_, _) =>
             {
@@ -101,6 +103,8 @@ namespace ImageChecker_3.ViewModels
         public PreviewContainer PreviewContainer { get; private set; } = new ();
 
         public ObservableCollection<PreviewContainer> PreviewContainerHistory { get; set; } = new ();
+
+        public SlideController SlideController { get; private set; }
 
         /// <summary>
         /// ImageContainers の内容に応じて、PreviewImageContainer を更新します。
