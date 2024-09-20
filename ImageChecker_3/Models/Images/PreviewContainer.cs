@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -231,6 +232,26 @@ namespace ImageChecker_3.Models.Images
                 Y = Y,
                 TagType = TagType,
             };
+        }
+
+        /// <summary>
+        /// 入力された角度と距離に基づいて、画像を移動させます。
+        /// </summary>
+        /// <param name="degree">度単位で角度を入力します。</param>
+        /// <param name="distance">移動させる距離を入力します。</param>
+        public void MoveImage(double degree, double distance)
+        {
+            if (distance == 0)
+            {
+                return;
+            }
+
+            var radian = degree * (Math.PI / 180.0);
+            var deltaX = distance * Math.Cos(radian);
+            var deltaY = distance * Math.Sin(radian);
+
+            X += deltaX;
+            Y -= deltaY;
         }
 
         /// <summary>
