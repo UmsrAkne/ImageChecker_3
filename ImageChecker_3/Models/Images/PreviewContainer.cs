@@ -241,6 +241,11 @@ namespace ImageChecker_3.Models.Images
         /// <param name="distance">移動させる距離を入力します。</param>
         public void MoveImage(double degree, double distance)
         {
+            if (distance == 0)
+            {
+                return;
+            }
+
             var radian = degree * (Math.PI / 180.0);
             var deltaX = distance * Math.Cos(radian);
             var deltaY = distance * Math.Sin(radian);
