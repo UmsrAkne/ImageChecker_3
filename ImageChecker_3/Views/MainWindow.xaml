@@ -72,6 +72,12 @@
             CommandParameter="{x:Static models:Position.Right}" />
 
         <KeyBinding
+            Key="S"
+            Command="{Binding TagGenerator.CopySlideTagCommand}"
+            CommandParameter="{Binding SlideController}"
+            Modifiers="Control" />
+
+        <KeyBinding
             Key="d0"
             Command="{Binding PreviewContainer.ResetPositionCommand}"
             Modifiers="Control" />

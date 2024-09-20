@@ -58,6 +58,16 @@ namespace ImageChecker_3.Models
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
+        public DelegateCommand<SlideController> CopySlideTagCommand => new DelegateCommand<SlideController>((param) =>
+        {
+            if (param == null)
+            {
+                return;
+            }
+
+            Clipboard.SetText(GetTag(SlideTagText, param));
+        });
+
         private string ImageTagText { get; set; } = string.Empty;
 
         private string DrawTagText { get; set; } = string.Empty;
@@ -65,6 +75,8 @@ namespace ImageChecker_3.Models
         private string AnimationImageTagText { get; set; } = string.Empty;
 
         private string AnimationDrawTagText { get; set; } = string.Empty;
+
+        private string SlideTagText { get; set; } = string.Empty;
 
         public static string GetTag(string baseText, PreviewContainer previewContainer)
         {
@@ -80,12 +92,21 @@ namespace ImageChecker_3.Models
                 .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture));
         }
 
+        public static string GetTag(string baseText, SlideController slideController)
+        {
+            return baseText
+                .Replace("$distance", slideController.Duration.ToString("0", CultureInfo.InvariantCulture))
+                .Replace("$degree", slideController.Duration.ToString("0", CultureInfo.InvariantCulture))
+                .Replace("$duration", slideController.Duration.ToString("0", CultureInfo.InvariantCulture));
+        }
+
         public void SetSettings(AppSettings appSettings)
         {
             ImageTagText = appSettings.ImageTagText;
             DrawTagText = appSettings.DrawTagText;
             AnimationImageTagText = appSettings.AnimationImageTagText;
             AnimationDrawTagText = appSettings.AnimationDrawTagText;
+            SlideTagText = appSettings.SlideTagText;
         }
     }
 }

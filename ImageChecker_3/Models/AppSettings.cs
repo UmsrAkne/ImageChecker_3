@@ -13,7 +13,7 @@ namespace ImageChecker_3.Models
         private string drawTagText = @"<draw b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""0"" />";
         private string animationImageTagText = @"<anime name=""image"" a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""0"" />";
         private string animationDrawTagText = @"<anime name=""draw"" b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""0"" />";
-        private string slideTag = @"<anime name=""slide"" duration=""$duration"" distance=""$distance"" degree=""$degree"" />";
+        private string slideTagText = @"<anime name=""slide"" duration=""$duration"" distance=""$distance"" degree=""$degree"" />";
 
         public string ImageTagText { get => imageTagText; set => SetProperty(ref imageTagText, value); }
 
@@ -31,7 +31,7 @@ namespace ImageChecker_3.Models
             set => SetProperty(ref animationDrawTagText, value);
         }
 
-        public string SlideTag { get => slideTag; set => SetProperty(ref slideTag, value); }
+        public string SlideTagText { get => slideTagText; set => SetProperty(ref slideTagText, value); }
 
         public static AppSettings LoadFromFile(string filePath)
         {
@@ -61,7 +61,7 @@ namespace ImageChecker_3.Models
             var b = DrawTagText == other.DrawTagText;
             var c = AnimationImageTagText == other.AnimationImageTagText;
             var d = AnimationDrawTagText == other.AnimationDrawTagText;
-            var e = SlideTag == other.SlideTag;
+            var e = SlideTagText == other.SlideTagText;
 
             return a && b && c && d && e;
         }
