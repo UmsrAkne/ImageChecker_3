@@ -119,6 +119,8 @@ namespace ImageChecker_3.ViewModels
         {
             var param = new DialogParameters { { nameof(AppSettings), AppSettings }, };
             dialogService.ShowDialog(nameof(SettingPage), param, (_) => { });
+
+            TagGenerator.SetSettings(AppSettings);
         });
 
         /// <summary>
