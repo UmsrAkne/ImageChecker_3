@@ -8,5 +8,37 @@
         <SolidColorBrush x:Key="BackgroundBrush" Color="#333344" />
         <SolidColorBrush x:Key="ForegroundBrush" Color="WhiteSmoke" />
         <converters:MultiplyConverter x:Key="MultiplyConverter" />
+        <Style TargetType="Button" />
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="Button">
+            <Border
+                Name="border"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                SnapsToDevicePixels="True">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <!--  マウスオーバー時  -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="border" Property="Background" Value="LightBlue" />
+                </Trigger>
+
+                <!--  クリック時  -->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="border" Property="Background" Value="LightSkyBlue" />
+                </Trigger>
+
+                <!--  ボタンが無効化された時  -->
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="border" Property="Background" Value="Gray" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
     </Application.Resources>
 </prism:PrismApplication>
