@@ -95,8 +95,8 @@ namespace ImageChecker_3.Models
         public static string GetTag(string baseText, SlideController slideController)
         {
             return baseText
-                .Replace("$distance", slideController.Duration.ToString("0", CultureInfo.InvariantCulture))
-                .Replace("$degree", slideController.Duration.ToString("0", CultureInfo.InvariantCulture))
+                .Replace("$distance", slideController.Distance.ToString("0", CultureInfo.InvariantCulture))
+                .Replace("$degree", slideController.Degree.ToString("0", CultureInfo.InvariantCulture))
                 .Replace("$duration", slideController.Duration.ToString("0", CultureInfo.InvariantCulture));
         }
 
