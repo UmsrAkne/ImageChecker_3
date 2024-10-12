@@ -1,14 +1,18 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows;
 using ImageChecker_3.Models.Images;
 using Prism.Commands;
+using Prism.Mvvm;
 
 namespace ImageChecker_3.Models
 {
-    public class TagGenerator
+    public class TagGenerator : BindableBase
     {
         public event EventHandler TagGenerated;
+
+        public ObservableCollection<string> ClipboardHistory { get; set; } = new ();
 
         public DelegateCommand<PreviewContainer> CopyImageTagCommand => new ((param) =>
         {
@@ -65,7 +69,19 @@ namespace ImageChecker_3.Models
                 return;
             }
 
+            var text = GetTag(SlideTagText, param);
             Clipboard.SetText(GetTag(SlideTagText, param));
+            ClipboardHistory.Add(text);
+        });
+
+        public DelegateCommand<string> CopySlideTagFromHistoryCommand => new ((param) =>
+        {
+            if (string.IsNullOrEmpty(param))
+            {
+                return;
+            }
+
+            Clipboard.SetText(param);
         });
 
         private string ImageTagText { get; set; } = string.Empty;
