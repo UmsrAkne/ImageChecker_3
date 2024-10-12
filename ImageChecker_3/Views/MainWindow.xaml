@@ -479,6 +479,13 @@
             </TabItem>
             <TabItem Header="Slide Tag History">
                 <ListBox Background="{StaticResource BackgroundBrush}" ItemsSource="{Binding TagGenerator.ClipboardHistory}">
+                    <ListBox.InputBindings>
+                        <KeyBinding
+                            Key="C"
+                            Command="{Binding TagGenerator.CopySlideTagFromHistoryCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}"
+                            Modifiers="Control" />
+                    </ListBox.InputBindings>
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type system:String}">
                             <StackPanel Orientation="Horizontal">

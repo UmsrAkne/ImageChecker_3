@@ -74,6 +74,16 @@ namespace ImageChecker_3.Models
             ClipboardHistory.Add(text);
         });
 
+        public DelegateCommand<string> CopySlideTagFromHistoryCommand => new ((param) =>
+        {
+            if (string.IsNullOrEmpty(param))
+            {
+                return;
+            }
+
+            Clipboard.SetText(param);
+        });
+
         private string ImageTagText { get; set; } = string.Empty;
 
         private string DrawTagText { get; set; } = string.Empty;
