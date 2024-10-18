@@ -385,6 +385,7 @@
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.Column="0"
+            Width="{Binding ElementName=StackPanel, Path=ActualWidth}"
             VerticalContentAlignment="Stretch"
             Background="{StaticResource BackgroundBrush}">
 
