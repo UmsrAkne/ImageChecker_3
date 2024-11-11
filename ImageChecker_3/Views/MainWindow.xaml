@@ -339,10 +339,17 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
                     <StackPanel
+                        Grid.Row="0"
                         Grid.Column="0"
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
+                        <StackPanel />
                         <Border Margin="5,0" />
                         <TextBlock Text="Degree : " />
                         <TextBox Width="40" Text="{Binding SlideController.Degree, UpdateSourceTrigger=PropertyChanged}" />
@@ -356,7 +363,39 @@
                         <TextBox Width="40" Text="{Binding SlideController.Duration, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
 
-                    <DockPanel Grid.Column="1">
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+
+                        <StackPanel Margin="10,3">
+                            <Button
+                                Width="85"
+                                Padding="0,2"
+                                HorizontalAlignment="Left"
+                                Command="{Binding SlideController.ChangeDegreeCommand}"
+                                CommandParameter="45"
+                                Content=" + 45°"
+                                Template="{StaticResource ButtonTemplate}" />
+
+                            <Border Height="0" Margin="0,1" />
+
+                            <Button
+                                Width="85"
+                                Padding="0,2"
+                                HorizontalAlignment="Left"
+                                Command="{Binding SlideController.ChangeDegreeCommand}"
+                                CommandParameter="-45"
+                                Content=" - 45°"
+                                Template="{StaticResource ButtonTemplate}" />
+
+                        </StackPanel>
+                    </StackPanel>
+
+                    <DockPanel
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="1">
                         <Button
                             Height="25"
                             Padding="10,1"
