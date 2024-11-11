@@ -1,3 +1,4 @@
+using System;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -43,6 +44,30 @@ namespace ImageChecker_3.Models.Images
             }
 
             PreviewContainer.MoveImage(Degree + 180, Distance);
+        });
+
+        public DelegateCommand<string> ChangeDegreeCommand => new (param =>
+        {
+            if (param == null)
+            {
+                return;
+            }
+
+            var value = int.Parse(param);
+            var d = Degree + value;
+
+            switch (d)
+            {
+                case >= 360:
+                    Degree = d % 360;
+                    return;
+                case < 0:
+                    var abs = Math.Abs(d) % 360;
+                    Degree = 360 - abs;
+                    return;
+            }
+
+            Degree = d;
         });
     }
 }

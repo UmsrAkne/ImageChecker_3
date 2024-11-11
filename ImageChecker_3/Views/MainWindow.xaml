@@ -373,6 +373,8 @@
                                 Width="85"
                                 Padding="0,2"
                                 HorizontalAlignment="Left"
+                                Command="{Binding SlideController.ChangeDegreeCommand}"
+                                CommandParameter="45"
                                 Content=" + 45°"
                                 Template="{StaticResource ButtonTemplate}" />
 
@@ -382,6 +384,8 @@
                                 Width="85"
                                 Padding="0,2"
                                 HorizontalAlignment="Left"
+                                Command="{Binding SlideController.ChangeDegreeCommand}"
+                                CommandParameter="-45"
                                 Content=" - 45°"
                                 Template="{StaticResource ButtonTemplate}" />
 
