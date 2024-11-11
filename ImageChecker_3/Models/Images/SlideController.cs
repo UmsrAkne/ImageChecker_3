@@ -46,6 +46,15 @@ namespace ImageChecker_3.Models.Images
             PreviewContainer.MoveImage(Degree + 180, Distance);
         });
 
+        /// <summary>
+        /// パラメーターに入力された string を数値に変換し、 Degree プロパティに加算します。
+        /// </summary>
+        /// <remarks>
+        /// Degree に数値を加算した結果が 0 未満である、または 360 より大きい場合、 以下のように調節されます。<br/>
+        /// Degree = 370° の場合 : Degree = 10° に調節。<br/>
+        /// Degree = -10° の場合 : Degree = 350° に調節。<br/>
+        /// パラメーターとして受け取った文字列が null または数値以外の文字列が指定された場合、本メソッドは何も行わずに終了します。
+        /// </remarks>
         public DelegateCommand<string> ChangeDegreeCommand => new (param =>
         {
             if (param == null)
