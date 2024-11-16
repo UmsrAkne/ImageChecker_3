@@ -396,6 +396,8 @@
                                 Width="90"
                                 Padding="0,2"
                                 HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDistanceCommand}"
+                                CommandParameter="50"
                                 Content="+ 50"
                                 Template="{StaticResource ButtonTemplate}" />
 
@@ -405,6 +407,8 @@
                                 Width="90"
                                 Padding="0,2"
                                 HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDistanceCommand}"
+                                CommandParameter="-50"
                                 Content="- 50"
                                 Template="{StaticResource ButtonTemplate}" />
                         </StackPanel>

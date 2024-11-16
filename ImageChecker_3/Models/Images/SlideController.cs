@@ -78,5 +78,27 @@ namespace ImageChecker_3.Models.Images
 
             Degree = d;
         });
+
+        /// <summary>
+        /// 距離を変更するコマンドです。<br/>
+        /// 指定されたパラメータの値を現在の距離に加算し、結果を更新します。<br/>
+        /// 更新後の距離は負の値にならないように制御されます。
+        /// </summary>
+        /// <remarks>
+        /// パラメーターには変更する距離を示す文字列を入力します。<br/>
+        /// 整数値に変換可能な文字列を指定してください。<br/>
+        /// パラメーターにnull が渡された場合、何も行いません。
+        /// </remarks>
+        public DelegateCommand<string> ChangeDistanceCommand => new (distanceDelta =>
+        {
+            if (distanceDelta == null)
+            {
+                return;
+            }
+
+            var value = int.Parse(distanceDelta);
+            var d = Distance + value;
+            Distance = Math.Max(0, d);
+        });
     }
 }
