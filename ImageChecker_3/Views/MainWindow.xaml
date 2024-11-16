@@ -354,7 +354,7 @@
                         <TextBlock Text="Degree : " />
                         <TextBox Width="40" Text="{Binding SlideController.Degree, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <Border Margin="5,0" />
+                        <Border Margin="10,0" />
                         <TextBlock Text="Distance : " />
                         <TextBox Width="40" Text="{Binding SlideController.Distance, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -389,6 +389,28 @@
                                 Content=" - 45°"
                                 Template="{StaticResource ButtonTemplate}" />
 
+                        </StackPanel>
+
+                        <StackPanel Margin="10,3">
+                            <Button
+                                Width="90"
+                                Padding="0,2"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDistanceCommand}"
+                                CommandParameter="50"
+                                Content="+ 50"
+                                Template="{StaticResource ButtonTemplate}" />
+
+                            <Border Height="0" Margin="0,1" />
+
+                            <Button
+                                Width="90"
+                                Padding="0,2"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDistanceCommand}"
+                                CommandParameter="-50"
+                                Content="- 50"
+                                Template="{StaticResource ButtonTemplate}" />
                         </StackPanel>
                     </StackPanel>
 
