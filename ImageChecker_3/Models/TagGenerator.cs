@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using ImageChecker_3.Models.Images;
 using Prism.Commands;
@@ -25,7 +26,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.Image;
-            Clipboard.SetText(GetTag(ImageTagText, param));
+            var tag = GetTag(ImageTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -37,7 +40,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.Draw;
-            Clipboard.SetText(GetTag(DrawTagText, param));
+            var tag = GetTag(DrawTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -49,7 +54,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.AnimationImage;
-            Clipboard.SetText(GetTag(AnimationImageTagText, param));
+            var tag = GetTag(AnimationImageTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -61,7 +68,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.AnimationDraw;
-            Clipboard.SetText(GetTag(AnimationDrawTagText, param));
+            var tag = GetTag(AnimationDrawTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -155,6 +164,12 @@ namespace ImageChecker_3.Models
             .Take(8).ToArray();
 
             return new string(alphabetId.ToArray());
+        }
+
+        private static string ExtractId(string input)
+        {
+            var match = Regex.Match(input, @"id=""(.*?)""");
+            return match.Success ? match.Groups[1].Value : string.Empty;
         }
     }
 }

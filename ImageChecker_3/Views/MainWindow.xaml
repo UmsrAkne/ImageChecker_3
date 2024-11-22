@@ -524,6 +524,7 @@
 
                                         <views:PreviewScreenArea />
 
+                                        <TextBlock Text="{Binding TagId, StringFormat=ID : {0}}" />
                                         <TextBlock Text="{Binding TagType}" />
                                         <TextBlock Text="{Binding ImageWrappers[0].ImageFileInfo.FileNameWithoutExtension, StringFormat=A : {0}}" />
                                         <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />
