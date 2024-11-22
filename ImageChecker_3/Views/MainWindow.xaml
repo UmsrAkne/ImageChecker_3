@@ -412,6 +412,28 @@
                                 Content="- 50"
                                 Template="{StaticResource ButtonTemplate}" />
                         </StackPanel>
+
+                        <StackPanel Margin="0,3">
+                            <Button
+                                Width="95"
+                                Padding="0,2"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDurationCommand}"
+                                CommandParameter="50"
+                                Content="+ 50"
+                                Template="{StaticResource ButtonTemplate}" />
+
+                            <Border Height="0" Margin="0,1" />
+
+                            <Button
+                                Width="95"
+                                Padding="0,2"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDurationCommand}"
+                                CommandParameter="-50"
+                                Content="- 50"
+                                Template="{StaticResource ButtonTemplate}" />
+                        </StackPanel>
                     </StackPanel>
 
                     <DockPanel

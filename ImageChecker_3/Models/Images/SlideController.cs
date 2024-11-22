@@ -100,5 +100,27 @@ namespace ImageChecker_3.Models.Images
             var d = Distance + value;
             Distance = Math.Max(0, d);
         });
+
+        /// <summary>
+        /// Duration を変更するコマンドです。<br/>
+        /// 指定されたパラメータの値を現在のDurationに加算し、結果を更新します。<br/>
+        /// 更新後、Durationは負の値にならないように制御されます。
+        /// </summary>
+        /// <remarks>
+        /// パラメーターには変更する距離を示す文字列を入力します。<br/>
+        /// 整数値に変換可能な文字列を指定してください。<br/>
+        /// パラメーターに null や空文字が渡された場合、何も行いません。
+        /// </remarks>
+        public DelegateCommand<string> ChangeDurationCommand => new DelegateCommand<string>((durationDelta) =>
+        {
+            if (string.IsNullOrWhiteSpace(durationDelta))
+            {
+                return;
+            }
+
+            var value = int.Parse(durationDelta);
+            var d = Duration + value;
+            Duration = Math.Max(0, d);
+        });
     }
 }
