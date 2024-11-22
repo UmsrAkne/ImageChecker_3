@@ -12,7 +12,7 @@ namespace ImageChecker_3.Models.Images
     public class PreviewContainer : BindableBase
     {
         private double previewScale = 0.4;
-        private BindableRect screenRect = new (0, 0, 1280, 720);
+        private BindableRect screenRect = new (0, 0, 0, 720);
         private double scale = 1.0;
         private bool isSelected;
         private List<ImageWrapper> originalImageWrappers;
