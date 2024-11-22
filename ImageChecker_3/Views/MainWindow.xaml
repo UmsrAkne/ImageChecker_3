@@ -412,6 +412,28 @@
                                 Content="- 50"
                                 Template="{StaticResource ButtonTemplate}" />
                         </StackPanel>
+
+                        <StackPanel Margin="0,3">
+                            <Button
+                                Width="95"
+                                Padding="0,2"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDurationCommand}"
+                                CommandParameter="50"
+                                Content="+ 50"
+                                Template="{StaticResource ButtonTemplate}" />
+
+                            <Border Height="0" Margin="0,1" />
+
+                            <Button
+                                Width="95"
+                                Padding="0,2"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding SlideController.ChangeDurationCommand}"
+                                CommandParameter="-50"
+                                Content="- 50"
+                                Template="{StaticResource ButtonTemplate}" />
+                        </StackPanel>
                     </StackPanel>
 
                     <DockPanel
@@ -502,6 +524,7 @@
 
                                         <views:PreviewScreenArea />
 
+                                        <TextBlock Text="{Binding TagId, StringFormat=ID : {0}}" />
                                         <TextBlock Text="{Binding TagType}" />
                                         <TextBlock Text="{Binding ImageWrappers[0].ImageFileInfo.FileNameWithoutExtension, StringFormat=A : {0}}" />
                                         <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />

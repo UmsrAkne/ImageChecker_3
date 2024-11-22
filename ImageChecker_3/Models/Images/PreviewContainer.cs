@@ -12,10 +12,11 @@ namespace ImageChecker_3.Models.Images
     public class PreviewContainer : BindableBase
     {
         private double previewScale = 0.4;
-        private BindableRect screenRect = new (0, 0, 1280, 720);
+        private BindableRect screenRect = new (0, 0, 0, 720);
         private double scale = 1.0;
         private bool isSelected;
         private List<ImageWrapper> originalImageWrappers;
+        private string tagId = string.Empty;
 
         public ObservableCollection<ImageWrapper> ImageWrappers { get; private init; } = new () { null, null, null, null, };
 
@@ -106,6 +107,11 @@ namespace ImageChecker_3.Models.Images
         /// デフォルトでは TagType.NoType(0) が割り当てられています。
         /// </summary>
         public TagType TagType { get; set; }
+
+        /// <summary>
+        /// このプレビューコンテナから、タグを生成した際に生成された TagId です。
+        /// </summary>
+        public string TagId { get => tagId; set => SetProperty(ref tagId, value); }
 
         /// <summary>
         /// プレビューコンテナの履歴エリアで、選択中のアイテムを取得するための使用します。
@@ -231,6 +237,7 @@ namespace ImageChecker_3.Models.Images
                 X = X,
                 Y = Y,
                 TagType = TagType,
+                TagId = TagId,
             };
         }
 

@@ -1,6 +1,10 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using ImageChecker_3.Models.Images;
 using Prism.Commands;
@@ -22,7 +26,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.Image;
-            Clipboard.SetText(GetTag(ImageTagText, param));
+            var tag = GetTag(ImageTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -34,7 +40,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.Draw;
-            Clipboard.SetText(GetTag(DrawTagText, param));
+            var tag = GetTag(DrawTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -46,7 +54,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.AnimationImage;
-            Clipboard.SetText(GetTag(AnimationImageTagText, param));
+            var tag = GetTag(AnimationImageTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -58,7 +68,9 @@ namespace ImageChecker_3.Models
             }
 
             param.TagType = TagType.AnimationDraw;
-            Clipboard.SetText(GetTag(AnimationDrawTagText, param));
+            var tag = GetTag(AnimationDrawTagText, param);
+            Clipboard.SetText(tag);
+            param.TagId = ExtractId(tag);
             TagGenerated?.Invoke(this, EventArgs.Empty);
         });
 
@@ -98,7 +110,7 @@ namespace ImageChecker_3.Models
         {
             var relPosition = previewContainer.RelativePosition;
             var ws = previewContainer.GetImageFileNames();
-            return baseText
+            var tag = baseText
                 .Replace("$a", ws[0])
                 .Replace("$b", ws[1])
                 .Replace("$c", ws[2])
@@ -106,14 +118,23 @@ namespace ImageChecker_3.Models
                 .Replace("$scale", previewContainer.Scale.ToString("0.0", CultureInfo.InvariantCulture))
                 .Replace("$x", ((int)relPosition.X).ToString(CultureInfo.CurrentCulture))
                 .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture));
+
+            var id = GetId(tag);
+            tag = tag.Replace("/>", $"id=\"{id}\" />");
+            return tag;
         }
 
         public static string GetTag(string baseText, SlideController slideController)
         {
-            return baseText
+            var tag = baseText
                 .Replace("$distance", slideController.Distance.ToString("0", CultureInfo.InvariantCulture))
                 .Replace("$degree", slideController.Degree.ToString("0", CultureInfo.InvariantCulture))
                 .Replace("$duration", slideController.Duration.ToString("0", CultureInfo.InvariantCulture));
+
+            var id = GetId(tag);
+            tag = tag.Replace("/>", $"id=\"{id}\" />");
+
+            return tag;
         }
 
         public void SetSettings(AppSettings appSettings)
@@ -123,6 +144,32 @@ namespace ImageChecker_3.Models
             AnimationImageTagText = appSettings.AnimationImageTagText;
             AnimationDrawTagText = appSettings.AnimationDrawTagText;
             SlideTagText = appSettings.SlideTagText;
+        }
+
+        private static string GetId(string input)
+        {
+            using var sha256 = SHA256.Create();
+            var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var base64Hash = Convert.ToBase64String(hashBytes);
+
+            var alphabetId = base64Hash.Select(c =>
+            {
+                if (c is >= '0' and <= '9')
+                {
+                    return (char)('g' + int.Parse(c.ToString()));
+                }
+
+                return c;
+            }).Select(c => c.ToString().ToLower().First())
+            .Take(8).ToArray();
+
+            return new string(alphabetId.ToArray());
+        }
+
+        private static string ExtractId(string input)
+        {
+            var match = Regex.Match(input, @"id=""(.*?)""");
+            return match.Success ? match.Groups[1].Value : string.Empty;
         }
     }
 }
