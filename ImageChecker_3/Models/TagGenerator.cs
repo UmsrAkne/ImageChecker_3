@@ -1,6 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows;
 using ImageChecker_3.Models.Images;
 using Prism.Commands;
@@ -123,6 +126,26 @@ namespace ImageChecker_3.Models
             AnimationImageTagText = appSettings.AnimationImageTagText;
             AnimationDrawTagText = appSettings.AnimationDrawTagText;
             SlideTagText = appSettings.SlideTagText;
+        }
+
+        private static string GetId(string input)
+        {
+            using var sha256 = SHA256.Create();
+            var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var base64Hash = Convert.ToBase64String(hashBytes);
+
+            var alphabetId = base64Hash.Select(c =>
+            {
+                if (c is >= '0' and <= '9')
+                {
+                    return (char)('g' + int.Parse(c.ToString()));
+                }
+
+                return c;
+            }).Select(c => c.ToString().ToLower().First())
+            .Take(8).ToArray();
+
+            return new string(alphabetId.ToArray());
         }
     }
 }
