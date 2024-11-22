@@ -11,7 +11,7 @@ namespace ImageChecker_3.Models.Images
     {
         private int distance;
         private int degree;
-        private int duration;
+        private int duration = 50;
 
         public SlideController(PreviewContainer container)
         {
