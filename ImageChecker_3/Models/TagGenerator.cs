@@ -101,7 +101,7 @@ namespace ImageChecker_3.Models
         {
             var relPosition = previewContainer.RelativePosition;
             var ws = previewContainer.GetImageFileNames();
-            return baseText
+            var tag = baseText
                 .Replace("$a", ws[0])
                 .Replace("$b", ws[1])
                 .Replace("$c", ws[2])
@@ -109,14 +109,23 @@ namespace ImageChecker_3.Models
                 .Replace("$scale", previewContainer.Scale.ToString("0.0", CultureInfo.InvariantCulture))
                 .Replace("$x", ((int)relPosition.X).ToString(CultureInfo.CurrentCulture))
                 .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture));
+
+            var id = GetId(tag);
+            tag = tag.Replace("/>", $"id=\"{id}\" />");
+            return tag;
         }
 
         public static string GetTag(string baseText, SlideController slideController)
         {
-            return baseText
+            var tag = baseText
                 .Replace("$distance", slideController.Distance.ToString("0", CultureInfo.InvariantCulture))
                 .Replace("$degree", slideController.Degree.ToString("0", CultureInfo.InvariantCulture))
                 .Replace("$duration", slideController.Duration.ToString("0", CultureInfo.InvariantCulture));
+
+            var id = GetId(tag);
+            tag = tag.Replace("/>", $"id=\"{id}\" />");
+
+            return tag;
         }
 
         public void SetSettings(AppSettings appSettings)
