@@ -30,7 +30,7 @@ namespace ImageChecker_3.Models
         [Conditional("RELEASE")]
         private void SetVersion()
         {
-            Version = "20241122" + "a";
+            Version = "20241211" + "a";
         }
 
         [Conditional("DEBUG")]
