@@ -146,11 +146,27 @@ namespace ImageChecker_3.Models
             SlideTagText = appSettings.SlideTagText;
         }
 
+        /// <summary>
+        /// 入力文字列から一意性の高い8桁のアルファベットのみで構成されたIDを生成します。
+        /// </summary>
+        /// <param name="input">ID生成の元となる入力文字列。</param>
+        /// <returns>生成された8桁のアルファベットで構成されるID。</returns>
+        /// <remarks>
+        /// このメソッドでは、入力文字列をSHA-256でハッシュ化し、そのハッシュ値をBase64エンコードします。
+        /// Base64エンコードで生成される文字列には「+」や「/」などの記号が含まれる可能性があるため、
+        /// それらをそれぞれ「x」および「y」に置き換えます。
+        /// また、数値が含まれる場合には「g」以降のアルファベットに変換されます。
+        /// 変換後の文字列の先頭8文字を小文字化してIDとして返します。
+        /// このIDは完全な一意性を保証するものではありませんが、軽量な識別子として利用できます。
+        /// </remarks>
         private static string GetId(string input)
         {
             using var sha256 = SHA256.Create();
             var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
             var base64Hash = Convert.ToBase64String(hashBytes);
+
+            // base64 には +, / が含まれるため、それをアルファベットに置き換えておく。
+            base64Hash = base64Hash.Replace('+', 'x').Replace('/', 'y');
 
             var alphabetId = base64Hash.Select(c =>
             {
