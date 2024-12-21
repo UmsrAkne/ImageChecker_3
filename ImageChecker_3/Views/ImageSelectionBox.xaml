@@ -22,10 +22,13 @@
 
     <DockPanel Background="Transparent">
         <DockPanel Margin="3,2" DockPanel.Dock="Top">
-            <CheckBox Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}" IsChecked="{Binding IsEnabled}" />
+            <CheckBox
+                Margin="3,0,5,0"
+                VerticalAlignment="Center"
+                Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.UpdatePreviewImagesCommand)}"
+                IsChecked="{Binding IsEnabled}" />
             <ComboBox
                 x:Name="ComboBox"
-                Margin="3,0"
                 IsEnabled="{Binding IsEnabled}"
                 ItemsSource="{Binding FilteredFiles}"
                 SelectedItem="{Binding CurrentFile}">
