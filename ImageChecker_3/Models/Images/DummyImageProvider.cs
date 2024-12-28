@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ImageChecker_3.Models.Images
 {
@@ -81,6 +82,11 @@ namespace ImageChecker_3.Models.Images
         public void Load(string directoryPath)
         {
             System.Diagnostics.Debug.WriteLine($"Load() が実行されました。指定パス : {directoryPath}(DummyImageProvider : 55)");
+        }
+
+        public int GetBaseWidth()
+        {
+            return 0;
         }
     }
 }

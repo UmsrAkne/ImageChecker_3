@@ -29,5 +29,11 @@ namespace ImageChecker_3.Models.Images
                     .Select(p => new ImageWrapper(new ImageFileInfo(p)))
                     .ToList();
         }
+
+        public int GetBaseWidth()
+        {
+            var baseSizeImage = imageWrappers.FirstOrDefault(w => w.ImageFileInfo.Width >= 1280 && w.ImageFileInfo.Width <= 1520);
+            return baseSizeImage == null ? 0 : (int)baseSizeImage.ImageFileInfo.Width;
+        }
     }
 }

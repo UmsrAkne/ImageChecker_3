@@ -12,5 +12,7 @@ namespace ImageChecker_3.Models.Images
         /// </summary>
         /// <param name="directoryPath">画像ファイルを含むディレクトリのパスを指定します。</param>
         void Load(string directoryPath);
+
+        int GetBaseWidth();
     }
 }
