@@ -10,7 +10,7 @@ namespace ImageChecker_3.Models
 
         public TitleBarText()
         {
-            Title = "ImageChecker3";
+            Title = "AppLauncher";
 
             SetVersion();
             AddDebugMark();
@@ -21,7 +21,6 @@ namespace ImageChecker_3.Models
             get => string.IsNullOrWhiteSpace(Version)
                 ? title
                 : title + " version : " + Version;
-
             private set => SetProperty(ref title, value);
         }
 
@@ -30,7 +29,13 @@ namespace ImageChecker_3.Models
         [Conditional("RELEASE")]
         private void SetVersion()
         {
-            Version = "20241221" + "a";
+            const int major = 1;
+            const int minor = 1;
+            const int patch = 0;
+            const string date = "20241228";
+            const string suffixId = "a";
+
+            Version = $"{major}.{minor}.{patch} ({date}{suffixId})";
         }
 
         [Conditional("DEBUG")]
