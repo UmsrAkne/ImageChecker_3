@@ -192,7 +192,7 @@ namespace ImageChecker_3.ViewModels
 
         /// <summary>
         /// 指定されたディレクトリのパスから画像ファイルを読み込みます。<br/>
-        /// また、読み込んだ画像から幅を取得し、PreviewContainer.ScreenRect.Width をセットします。
+        /// また、PreviewContainer.ScreenRect.Width がデフォルト値のとき、読み込んだ画像から幅を取得し、値をセットします。
         /// </summary>
         /// <param name="directoryPath">画像ファイルを含むディレクトリのパスを指定します。</param>
         private void LoadImages(string directoryPath)
@@ -211,7 +211,10 @@ namespace ImageChecker_3.ViewModels
                 ic.SelectSameGroupImages(ImageWrapperProvider.GetImageWrappers('A').FirstOrDefault());
             }
 
-            PreviewContainer.ScreenRect.Width = ImageWrapperProvider.GetBaseWidth();
+            if (PreviewContainer.ScreenRect.Width == 0)
+            {
+                PreviewContainer.ScreenRect.Width = ImageWrapperProvider.GetBaseWidth();
+            }
         }
     }
 }
