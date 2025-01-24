@@ -17,5 +17,20 @@ namespace ImageChecker_3.Models.Tags
         public double Scale { get; set; } = 1.0;
 
         public int TargetLayerIndex { get; set; } = 0;
+
+        public override string ToString()
+        {
+            return
+                $"<image "
+                + $@"a=""{A}"" "
+                + $@"b=""{B}"" "
+                + $@"c=""{C}"" "
+                + $@"d=""{D}"" "
+                + $@"x=""{X}"" "
+                + $@"y=""{Y}"" "
+                + $@"scale=""{Scale}"" "
+                + $@"targetLayerIndex=""{TargetLayerIndex}"" "
+                + "/>";
+        }
     }
 }

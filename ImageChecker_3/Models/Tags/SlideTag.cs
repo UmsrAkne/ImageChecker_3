@@ -15,5 +15,18 @@ namespace ImageChecker_3.Models.Tags
         public int Interval { get; set; }
 
         public int TargetLayerIndex { get; set; }
+
+        public override string ToString()
+        {
+            return
+                $"<image "
+                + $@"degree=""{Degree}"" "
+                + $@"distance=""{Distance}"" "
+                + $@"duration=""{Duration}"" "
+                + $@"delay=""{Delay}"" "
+                + $@"repeatCount=""{RepeatCount}"" "
+                + $@"targetLayerIndex=""{TargetLayerIndex}"" "
+                + "/>";
+        }
     }
 }

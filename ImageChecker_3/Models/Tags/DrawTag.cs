@@ -11,5 +11,17 @@ namespace ImageChecker_3.Models.Tags
         public string D { get; set; } = string.Empty;
 
         public int TargetLayerIndex { get; set; } = 0;
+
+        public override string ToString()
+        {
+            return
+                $"<image "
+                + $@"a=""{A}"" "
+                + $@"b=""{B}"" "
+                + $@"c=""{C}"" "
+                + $@"d=""{D}"" "
+                + $@"targetLayerIndex=""{TargetLayerIndex}"" "
+                + "/>";
+        }
     }
 }
