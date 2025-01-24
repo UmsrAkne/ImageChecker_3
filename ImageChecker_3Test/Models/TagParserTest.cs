@@ -49,12 +49,14 @@ namespace ImageChecker_3Test.Models
         [Test]
         public void LoadSlideTagTest()
         {
-            const string input = @"<slide degree=""10"" duration=""20"" distance=""30"" repeatCount=""5"" targetLayerIndex=""2""/>";
+            const string input = @"<anime name=""slide"" degree=""10"" duration=""20"" distance=""30"" interval=""6"" delay=""7"" repeatCount=""5"" targetLayerIndex=""2""/>";
             var actual = TagParser.LoadSlideTag(input);
             Assert.That(actual.Degree, Is.EqualTo(10));
             Assert.That(actual.Duration, Is.EqualTo(20));
             Assert.That(actual.Distance, Is.EqualTo(30));
             Assert.That(actual.RepeatCount, Is.EqualTo(5));
+            Assert.That(actual.Delay, Is.EqualTo(7));
+            Assert.That(actual.Interval, Is.EqualTo(6));
             Assert.That(actual.TargetLayerIndex, Is.EqualTo(2));
         }
     }

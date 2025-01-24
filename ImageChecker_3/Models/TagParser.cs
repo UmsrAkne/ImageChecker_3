@@ -69,6 +69,8 @@ namespace ImageChecker_3.Models
             result.Duration = int.Parse(attributes.GetValueOrDefault("duration", "0"));
             result.Distance = int.Parse(attributes.GetValueOrDefault("distance", "0"));
             result.Degree = int.Parse(attributes.GetValueOrDefault("degree", "0"));
+            result.Delay = int.Parse(attributes.GetValueOrDefault("delay", "0"));
+            result.Interval = int.Parse(attributes.GetValueOrDefault("interval", "0"));
             result.RepeatCount = int.Parse(attributes.GetValueOrDefault("repeatCount", "0"));
             result.TargetLayerIndex = int.Parse(attributes.GetValueOrDefault("targetLayerIndex", "0"));
             return result;

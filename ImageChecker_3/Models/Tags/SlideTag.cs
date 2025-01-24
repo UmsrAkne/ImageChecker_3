@@ -12,6 +12,8 @@ namespace ImageChecker_3.Models.Tags
 
         public int RepeatCount { get; set; }
 
+        public int Interval { get; set; }
+
         public int TargetLayerIndex { get; set; }
     }
 }
