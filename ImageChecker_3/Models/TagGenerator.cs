@@ -124,7 +124,16 @@ namespace ImageChecker_3.Models
             return tag;
         }
 
-        public static string GetTag(string baseText, SlideController slideController)
+        public void SetSettings(AppSettings appSettings)
+        {
+            ImageTagText = appSettings.ImageTagText;
+            DrawTagText = appSettings.DrawTagText;
+            AnimationImageTagText = appSettings.AnimationImageTagText;
+            AnimationDrawTagText = appSettings.AnimationDrawTagText;
+            SlideTagText = appSettings.SlideTagText;
+        }
+
+        private static string GetTag(string baseText, SlideController slideController)
         {
             var tag = baseText
                 .Replace("$distance", slideController.Distance.ToString("0", CultureInfo.InvariantCulture))
@@ -135,15 +144,6 @@ namespace ImageChecker_3.Models
             tag = tag.Replace("/>", $"id=\"{id}\" />");
 
             return tag;
-        }
-
-        public void SetSettings(AppSettings appSettings)
-        {
-            ImageTagText = appSettings.ImageTagText;
-            DrawTagText = appSettings.DrawTagText;
-            AnimationImageTagText = appSettings.AnimationImageTagText;
-            AnimationDrawTagText = appSettings.AnimationDrawTagText;
-            SlideTagText = appSettings.SlideTagText;
         }
 
         /// <summary>
