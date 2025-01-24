@@ -32,6 +32,48 @@ namespace ImageChecker_3.Models
             return result;
         }
 
+        public static DrawTag LoadDrawTag(string input)
+        {
+            var result = new DrawTag();
+
+            if (!Regex.IsMatch(input, tagPattern))
+            {
+                System.Diagnostics.Debug.WriteLine($"タグの形式が正しくありません(TagParser : 41)");
+                return result;
+            }
+
+            var attributes = ExtractAttributes(input);
+
+            // 属性値の変数に格納（適切な型に変換）
+            result.A = attributes.GetValueOrDefault("a", string.Empty);
+            result.B = attributes.GetValueOrDefault("b", string.Empty);
+            result.C = attributes.GetValueOrDefault("c", string.Empty);
+            result.D = attributes.GetValueOrDefault("d", string.Empty);
+
+            return result;
+        }
+
+        public static SlideTag LoadSlideTag(string input)
+        {
+            var result = new SlideTag();
+
+            if (!Regex.IsMatch(input, tagPattern))
+            {
+                System.Diagnostics.Debug.WriteLine($"タグの形式が正しくありません(TagParser : 62)");
+                return result;
+            }
+
+            var attributes = ExtractAttributes(input);
+
+            // 属性値の変数に格納（適切な型に変換）
+            result.Duration = int.Parse(attributes.GetValueOrDefault("duration", "0"));
+            result.Distance = int.Parse(attributes.GetValueOrDefault("distance", "0"));
+            result.Degree = int.Parse(attributes.GetValueOrDefault("degree", "0"));
+            result.RepeatCount = int.Parse(attributes.GetValueOrDefault("repeatCount", "0"));
+            result.TargetLayerIndex = int.Parse(attributes.GetValueOrDefault("targetLayerIndex", "0"));
+            return result;
+        }
+
         private static Dictionary<string, string> ExtractAttributes(string input)
         {
             // 属性を抽出する正規表現

@@ -34,5 +34,28 @@ namespace ImageChecker_3Test.Models
             Assert.That(actual.D, Is.EqualTo(string.Empty));
             Assert.Less(Math.Abs(actual.Scale - 1.1), 0.01);
         }
+
+        [Test]
+        public void LoadDrawTagTest()
+        {
+            const string input = @"<draw a=""imgA"" b=""imgB"" c=""imgC"" d=""imgD"" />";
+            var actual = TagParser.LoadDrawTag(input);
+            Assert.That(actual.A, Is.EqualTo("imgA"));
+            Assert.That(actual.B, Is.EqualTo("imgB"));
+            Assert.That(actual.C, Is.EqualTo("imgC"));
+            Assert.That(actual.D, Is.EqualTo("imgD"));
+        }
+
+        [Test]
+        public void LoadSlideTagTest()
+        {
+            const string input = @"<slide degree=""10"" duration=""20"" distance=""30"" repeatCount=""5"" targetLayerIndex=""2""/>";
+            var actual = TagParser.LoadSlideTag(input);
+            Assert.That(actual.Degree, Is.EqualTo(10));
+            Assert.That(actual.Duration, Is.EqualTo(20));
+            Assert.That(actual.Distance, Is.EqualTo(30));
+            Assert.That(actual.RepeatCount, Is.EqualTo(5));
+            Assert.That(actual.TargetLayerIndex, Is.EqualTo(2));
+        }
     }
 }
