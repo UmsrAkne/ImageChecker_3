@@ -31,8 +31,8 @@ namespace ImageChecker_3.Models
         {
             const int major = 1;
             const int minor = 1;
-            const int patch = 2;
-            const string date = "20250124";
+            const int patch = 3;
+            const string date = "20250125";
             const string suffixId = "a";
 
             Version = $"{major}.{minor}.{patch} ({date}{suffixId})";
