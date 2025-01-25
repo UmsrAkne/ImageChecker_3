@@ -106,7 +106,14 @@ namespace ImageChecker_3.Models
 
         private string SlideTagText { get; set; } = string.Empty;
 
-        public static string GetTag(string baseText, PreviewContainer previewContainer)
+        /// <summary>
+        /// タグを表すテキストと PreviewContainer を受け取り、入力したテキスト内の情報を PreviewContainer の値で置き換え、ユニークな ID を付与したタグを取得します。
+        /// </summary>
+        /// <param name="baseText">一つのタグを表すテキストを入力します。</param>
+        /// <param name="previewContainer">置き換える値のソースを入力します。</param>
+        /// <param name="includeId">出力にタグを含めるかどうか。入力しない場合は ID を付与して出力します。</param>
+        /// <returns>previewContainer の情報を使って生成したタグ。</returns>
+        public static string GetTag(string baseText, PreviewContainer previewContainer, bool includeId = true)
         {
             var relPosition = previewContainer.RelativePosition;
             var ws = previewContainer.GetImageFileNames();
@@ -119,8 +126,14 @@ namespace ImageChecker_3.Models
                 .Replace("$x", ((int)relPosition.X).ToString(CultureInfo.CurrentCulture))
                 .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture));
 
+            if (!includeId)
+            {
+                return tag;
+            }
+
             var id = GetId(tag);
             tag = tag.Replace("/>", $"id=\"{id}\" />");
+
             return tag;
         }
 
