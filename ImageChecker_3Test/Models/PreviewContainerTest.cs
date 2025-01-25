@@ -13,8 +13,14 @@ namespace ImageChecker_3Test.Models
         [SetUp]
         public void Setup()
         {
-            previewContainer = new PreviewContainer();
-            previewContainer.Scale = 1.0;
+            previewContainer = new PreviewContainer
+            {
+                ScreenRect =
+                {
+                    Width = 1280,
+                },
+                Scale = 1.0,
+            };
 
             previewContainer.SetImageWrappers(
                 new ImageWrapper(new ImageFileInfo(){Width = 1280, Height = 720,}),
