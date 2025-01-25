@@ -14,7 +14,13 @@ namespace ImageChecker_3Test.Models
         [SetUp]
         public void Setup()
         {
-            previewContainer = new PreviewContainer();
+            previewContainer = new PreviewContainer
+            {
+                ScreenRect =
+                {
+                    Width = 1280,
+                },
+            };
 
             previewContainer.SetImageWrappers(
             new ImageWrapper( new ImageFileInfo() { FileInfo = new FileInfo("A0101"), Width = 1280, Height = 720, }),
@@ -30,7 +36,7 @@ namespace ImageChecker_3Test.Models
             previewContainer.Y = 20;
 
             var tagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
-            var actual = TagGenerator.GetTag(tagText, previewContainer);
+            var actual = TagGenerator.GetTag(tagText, previewContainer, false);
             var expect = @"<image a=""A0101"" b=""B0101"" c=""C0101"" d=""D0101"" x=""10"" y=""-20"" scale=""1.0"" />";
 
             Assert.That(actual, Is.EqualTo(expect));
@@ -42,7 +48,7 @@ namespace ImageChecker_3Test.Models
             var container = new PreviewContainer();
             container.RelativePosition = new Point();
             var tagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
-            var actual = TagGenerator.GetTag(tagText, container);
+            var actual = TagGenerator.GetTag(tagText, container, false);
             var expect = @"<image a="""" b="""" c="""" d="""" x=""0"" y=""0"" scale=""1.0"" />";
 
             Assert.That(actual, Is.EqualTo(expect));
