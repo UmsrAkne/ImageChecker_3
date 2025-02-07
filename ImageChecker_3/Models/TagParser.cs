@@ -8,6 +8,11 @@ namespace ImageChecker_3.Models
     {
         private static string tagPattern = @"^<(\w+)(?:\s+(\w+)=""([^""]+)"")*\s*/>$";
 
+        /// <summary>
+        /// タグ（山括弧で囲まれた HTML タグ）のテキストを受け取って解析し、読み取った情報をセットした ImageTag を取得します。
+        /// </summary>
+        /// <param name="input">読み取るタグのテキスト</param>
+        /// <returns>入力値から読みった情報をセットした ImageTag</returns>
         public static ImageTag LoadImageTag(string input)
         {
             var result = new ImageTag();
@@ -32,6 +37,11 @@ namespace ImageChecker_3.Models
             return result;
         }
 
+        /// <summary>
+        /// タグ（山括弧で囲まれた HTML タグ）のテキストを受け取って解析し、読み取った情報をセットした DrawTag を取得します。
+        /// </summary>
+        /// <param name="input">読み取るタグのテキスト</param>
+        /// <returns>入力値から読みった情報をセットした DrawTag</returns>
         public static DrawTag LoadDrawTag(string input)
         {
             var result = new DrawTag();
@@ -53,6 +63,11 @@ namespace ImageChecker_3.Models
             return result;
         }
 
+        /// <summary>
+        /// タグ（山括弧で囲まれた HTML タグ）のテキストを受け取って解析し、読み取った情報をセットした SlideTag を取得します。
+        /// </summary>
+        /// <param name="input">読み取るタグのテキスト</param>
+        /// <returns>入力値から読みった情報をセットした SlideTag</returns>
         public static SlideTag LoadSlideTag(string input)
         {
             var result = new SlideTag();

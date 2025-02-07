@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
+using ImageChecker_3.Models.Tags;
 using ImageChecker_3.Views;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -162,6 +163,38 @@ namespace ImageChecker_3.ViewModels
             {
                 PreviewContainerHistory.RemoveAt(index);
             }
+        });
+
+        public DelegateCommand ShowTagLoadPageCommand => new DelegateCommand(() =>
+        {
+            var param = new DialogParameters();
+            dialogService.ShowDialog(nameof(TagLoadPage), param, result =>
+            {
+                if (result.Result != ButtonResult.OK)
+                {
+                    return;
+                }
+
+                var tag = result.Parameters.GetValue<object>("tag");
+                if (tag is ImageTag imageTag)
+                {
+                    var imageFileNames = new[] { imageTag.A, imageTag.B, imageTag.C, imageTag.D, };
+                    var wrappers = new List<ImageWrapper>() { null, null, null, null, };
+                    for (var i = 0; i < imageFileNames.Length; i++)
+                    {
+                        var w = ImageContainers[i].FilteredFiles.FirstOrDefault(w =>
+                            w != null && w.ImageFileInfo.FileNameWithoutExtension == imageFileNames[i]);
+
+                        wrappers[i] = w;
+                        ImageContainers[i].CurrentFile = w;
+                    }
+
+                    PreviewContainer.SetImageWrappers(wrappers);
+
+                    PreviewContainer.Scale = imageTag.Scale;
+                    PreviewContainer.RelativePosition = new Point(imageTag.X, imageTag.Y);
+                }
+            });
         });
 
         private AppSettings AppSettings { get; init; }
