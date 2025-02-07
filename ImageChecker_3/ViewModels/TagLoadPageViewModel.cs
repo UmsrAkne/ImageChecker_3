@@ -43,6 +43,32 @@ namespace ImageChecker_3.ViewModels
             }
         });
 
+        public DelegateCommand SendTagCommand => new DelegateCommand(() =>
+        {
+            var obj = new object();
+            if (string.IsNullOrWhiteSpace(ParsedResult))
+            {
+                if (InputText.StartsWith("<image"))
+                {
+                    obj = TagParser.LoadImageTag(InputText);
+                }
+
+                if (InputText.StartsWith("<draw"))
+                {
+                    obj = TagParser.LoadDrawTag(InputText);
+                }
+
+                if (InputText.StartsWith("<anime") && InputText.Contains(@"name=""slide"""))
+                {
+                    obj = TagParser.LoadSlideTag(InputText);
+                }
+            }
+
+            var result = new DialogResult(ButtonResult.OK);
+            result.Parameters.Add("tag", obj);
+            RequestClose?.Invoke(result);
+        });
+
         public bool CanCloseDialog() => true;
 
         public void OnDialogClosed()

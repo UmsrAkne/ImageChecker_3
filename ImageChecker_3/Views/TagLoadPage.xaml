@@ -9,6 +9,18 @@
     Width="800"
     d:DataContext="{d:DesignInstance viewModels:TagLoadPageViewModel}"
     mc:Ignorable="d">
+
+    <Page.InputBindings>
+        <KeyBinding
+            Key="Enter"
+            Command="{Binding ParseTagTextCommand}"
+            Modifiers="Control" />
+
+        <KeyBinding
+            Key="S"
+            Command="{Binding SendTagCommand}"
+            Modifiers="Control" />
+    </Page.InputBindings>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -26,6 +38,13 @@
             Grid.Row="1"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
+
+            <Button
+                Padding="15,2"
+                Command="{Binding SendTagCommand}"
+                Content="Send Tag (Ctrl + S)" />
+
+            <Border Width="0" Margin="5,0" />
 
             <Button
                 Padding="15,2"
