@@ -164,6 +164,12 @@ namespace ImageChecker_3.ViewModels
             }
         });
 
+        public DelegateCommand ShowTagLoadPageCommand => new DelegateCommand(() =>
+        {
+            var param = new DialogParameters();
+            dialogService.ShowDialog(nameof(TagLoadPage), param, (_) => { });
+        });
+
         private AppSettings AppSettings { get; init; }
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }

@@ -80,6 +80,11 @@
             Modifiers="Control" />
 
         <KeyBinding
+            Key="T"
+            Command="{Binding ShowTagLoadPageCommand}"
+            Modifiers="Control" />
+
+        <KeyBinding
             Key="d0"
             Command="{Binding PreviewContainer.ResetPositionCommand}"
             Modifiers="Control" />
