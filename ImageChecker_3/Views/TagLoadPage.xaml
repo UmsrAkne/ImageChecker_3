@@ -17,10 +17,9 @@
 
         <StackPanel Grid.Row="0">
             <TextBlock Text="Tag を入力 :" />
-            <TextBox
-                Margin="0,4"
-                FontSize="14"
-                Text="" />
+            <TextBox Margin="0,4" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="パース結果 :" />
+            <TextBlock Margin="0,2" Text="{Binding ParsedResult}" />
         </StackPanel>
 
         <StackPanel
