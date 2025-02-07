@@ -1,0 +1,62 @@
+<Page
+    x:Class="ImageChecker_3.Views.TagLoadPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
+    Title="TagLoadPage"
+    Width="800"
+    d:DataContext="{d:DesignInstance viewModels:TagLoadPageViewModel}"
+    mc:Ignorable="d">
+
+    <Page.InputBindings>
+        <KeyBinding
+            Key="Enter"
+            Command="{Binding ParseTagTextCommand}"
+            Modifiers="Control" />
+
+        <KeyBinding
+            Key="S"
+            Command="{Binding SendTagCommand}"
+            Modifiers="Control" />
+    </Page.InputBindings>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Tag を入力 :" />
+            <TextBox Margin="0,4" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="パース結果 :" />
+            <TextBlock Margin="0,2" Text="{Binding ParsedResult}" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+
+            <Button
+                Padding="15,2"
+                Command="{Binding SendTagCommand}"
+                Content="Send Tag (Ctrl + S)" />
+
+            <Border Width="0" Margin="5,0" />
+
+            <Button
+                Padding="15,2"
+                Command="{Binding ParseTagTextCommand}"
+                Content="Load Tag (Ctrl + Enter)" />
+
+            <Border Width="0" Margin="5,0" />
+
+            <Button
+                Padding="15,2"
+                Command="{Binding CloseCommand}"
+                Content="Close" />
+        </StackPanel>
+    </Grid>
+</Page>

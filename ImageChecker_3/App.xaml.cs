@@ -25,6 +25,7 @@ namespace ImageChecker_3
             #endif
 
                 containerRegistry.RegisterDialog<SettingPage, SettingPageViewModel>();
+                containerRegistry.RegisterDialog<TagLoadPage, TagLoadPageViewModel>();
         }
     }
 }
