@@ -27,19 +27,22 @@ namespace ImageChecker_3.ViewModels
 
         public DelegateCommand ParseTagTextCommand => new DelegateCommand(() =>
         {
-            if (InputText.StartsWith("<image"))
+            if (InputText.StartsWith("<image") || InputText.StartsWith("<draw"))
             {
                 ParsedResult = TagParser.LoadImageTag(InputText).ToString();
             }
 
-            if (InputText.StartsWith("<draw"))
+            if (InputText.StartsWith("<anime"))
             {
-                ParsedResult = TagParser.LoadDrawTag(InputText).ToString();
-            }
+                if (InputText.Contains(@"name=""slide"""))
+                {
+                    ParsedResult = TagParser.LoadSlideTag(InputText).ToString();
+                }
 
-            if (InputText.StartsWith("<anime") && InputText.Contains(@"name=""slide"""))
-            {
-                ParsedResult = TagParser.LoadSlideTag(InputText).ToString();
+                if (InputText.Contains(@"name=""image""") || InputText.Contains(@"name=""draw"""))
+                {
+                    ParsedResult = TagParser.LoadImageTag(InputText).ToString();
+                }
             }
         });
 
@@ -48,14 +51,17 @@ namespace ImageChecker_3.ViewModels
             var obj = new object();
             if (string.IsNullOrWhiteSpace(ParsedResult))
             {
-                if (InputText.StartsWith("<image"))
+                if (InputText.StartsWith("<image") || InputText.StartsWith("<draw"))
                 {
                     obj = TagParser.LoadImageTag(InputText);
                 }
 
-                if (InputText.StartsWith("<draw"))
+                if (InputText.StartsWith("<anime"))
                 {
-                    obj = TagParser.LoadDrawTag(InputText);
+                    if (InputText.Contains(@"""draw""") || InputText.Contains(@"""image"""))
+                    {
+                        obj = TagParser.LoadImageTag(InputText);
+                    }
                 }
 
                 if (InputText.StartsWith("<anime") && InputText.Contains(@"name=""slide"""))

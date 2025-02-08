@@ -36,17 +36,6 @@ namespace ImageChecker_3Test.Models
         }
 
         [Test]
-        public void LoadDrawTagTest()
-        {
-            const string input = @"<draw a=""imgA"" b=""imgB"" c=""imgC"" d=""imgD"" />";
-            var actual = TagParser.LoadDrawTag(input);
-            Assert.That(actual.A, Is.EqualTo("imgA"));
-            Assert.That(actual.B, Is.EqualTo("imgB"));
-            Assert.That(actual.C, Is.EqualTo("imgC"));
-            Assert.That(actual.D, Is.EqualTo("imgD"));
-        }
-
-        [Test]
         public void LoadSlideTagTest()
         {
             const string input = @"<anime name=""slide"" degree=""10"" duration=""20"" distance=""30"" interval=""6"" delay=""7"" repeatCount=""5"" targetLayerIndex=""2""/>";

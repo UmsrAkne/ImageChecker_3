@@ -23,6 +23,9 @@ namespace ImageChecker_3.Models
                 return result;
             }
 
+            result.IsDrawTag = input.Contains("<draw") || input.Contains(@"name=""draw""");
+            result.IsAnimation = input.Contains("<anime");
+
             var attributes = ExtractAttributes(input);
 
             // 属性値の変数に格納（適切な型に変換）
@@ -33,32 +36,6 @@ namespace ImageChecker_3.Models
             result.X = int.Parse(attributes.GetValueOrDefault("x", "0"));
             result.Y = int.Parse(attributes.GetValueOrDefault("y", "0"));
             result.Scale = double.Parse(attributes.GetValueOrDefault("scale", "1.0"));
-
-            return result;
-        }
-
-        /// <summary>
-        /// タグ（山括弧で囲まれた HTML タグ）のテキストを受け取って解析し、読み取った情報をセットした DrawTag を取得します。
-        /// </summary>
-        /// <param name="input">読み取るタグのテキスト</param>
-        /// <returns>入力値から読みった情報をセットした DrawTag</returns>
-        public static DrawTag LoadDrawTag(string input)
-        {
-            var result = new DrawTag();
-
-            if (!Regex.IsMatch(input, tagPattern))
-            {
-                System.Diagnostics.Debug.WriteLine($"タグの形式が正しくありません(TagParser : 41)");
-                return result;
-            }
-
-            var attributes = ExtractAttributes(input);
-
-            // 属性値の変数に格納（適切な型に変換）
-            result.A = attributes.GetValueOrDefault("a", string.Empty);
-            result.B = attributes.GetValueOrDefault("b", string.Empty);
-            result.C = attributes.GetValueOrDefault("c", string.Empty);
-            result.D = attributes.GetValueOrDefault("d", string.Empty);
 
             return result;
         }
