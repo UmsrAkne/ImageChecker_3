@@ -8,6 +8,7 @@
     Title="TagLoadPage"
     Width="800"
     d:DataContext="{d:DesignInstance viewModels:TagLoadPageViewModel}"
+    Background="{StaticResource BackgroundBrush}"
     mc:Ignorable="d">
 
     <Page.InputBindings>
@@ -21,6 +22,7 @@
             Command="{Binding SendTagCommand}"
             Modifiers="Control" />
     </Page.InputBindings>
+
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -28,6 +30,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+                </Style>
+            </StackPanel.Resources>
             <TextBlock Text="Tag を入力 :" />
             <TextBox Margin="0,4" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Text="パース結果 :" />

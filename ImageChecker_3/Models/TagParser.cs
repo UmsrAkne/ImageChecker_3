@@ -6,7 +6,7 @@ namespace ImageChecker_3.Models
 {
     public static class TagParser
     {
-        private static string tagPattern = @"^<(\w+)(?:\s+(\w+)=""([^""]+)"")*\s*/>$";
+        private static string tagPattern = @"^<(\w+)(?:\s+(\w+)=""([^""]*)"")*\s*/>$";
 
         /// <summary>
         /// タグ（山括弧で囲まれた HTML タグ）のテキストを受け取って解析し、読み取った情報をセットした ImageTag を取得します。
