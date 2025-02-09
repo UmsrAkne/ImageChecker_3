@@ -18,6 +18,9 @@ namespace ImageChecker_3Test.ViewModels
         [TestCase(
             @"<anime name=""draw"" a=""A0101"" b=""B0102"" c=""C0102"" d=""D0102"" />",
         @"<anime name=""draw"" a=""A0101"" b=""B0102"" c=""C0102"" d=""D0102"" targetLayerIndex=""0"" />")]
+        [TestCase(
+            @"<image a=""A0101"" b="""" c="""" d="""" x=""100"" y=""200"" />",
+        @"<image a=""A0101"" b="""" c="""" d="""" x=""100"" y=""200"" scale=""1"" targetLayerIndex=""0"" />")]
         [Test]
         public void ParseTagTextCommandTest(string input, string expected)
         {
