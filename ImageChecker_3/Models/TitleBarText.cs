@@ -7,6 +7,7 @@ namespace ImageChecker_3.Models
     {
         private string title;
         private string version = string.Empty;
+        private string currentDirectoryPath;
 
         public TitleBarText()
         {
@@ -19,9 +20,19 @@ namespace ImageChecker_3.Models
         public string Title
         {
             get => string.IsNullOrWhiteSpace(Version)
-                ? title
-                : title + " version : " + Version;
+                ? title + $" {CurrentDirectoryPath}"
+                : title + " version : " + Version + $" {CurrentDirectoryPath}";
             private set => SetProperty(ref title, value);
+        }
+
+        public string CurrentDirectoryPath
+        {
+            get => currentDirectoryPath;
+            set
+            {
+                SetProperty(ref currentDirectoryPath, value);
+                RaisePropertyChanged(nameof(Title));
+            }
         }
 
         private string Version { get => version; set => SetProperty(ref version, value); }

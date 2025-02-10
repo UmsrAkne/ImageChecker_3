@@ -221,6 +221,8 @@ namespace ImageChecker_3.ViewModels
                 w.ImageFileInfo.OpaqueRange =
                     await ImageBoundsCalculator.GetOpaquePixelBoundsAsync(w.ImageFileInfo.FileInfo.FullName);
             }
+
+            TitleBarText.CurrentDirectoryPath = directoryPath;
         }
 
         /// <summary>
