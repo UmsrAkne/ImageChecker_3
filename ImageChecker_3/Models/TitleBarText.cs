@@ -7,10 +7,11 @@ namespace ImageChecker_3.Models
     {
         private string title;
         private string version = string.Empty;
+        private string currentDirectoryPath;
 
         public TitleBarText()
         {
-            Title = "AppLauncher";
+            Title = "Image Checker3";
 
             SetVersion();
             AddDebugMark();
@@ -19,9 +20,19 @@ namespace ImageChecker_3.Models
         public string Title
         {
             get => string.IsNullOrWhiteSpace(Version)
-                ? title
-                : title + " version : " + Version;
+                ? title + $" {CurrentDirectoryPath}"
+                : title + " version : " + Version + $" {CurrentDirectoryPath}";
             private set => SetProperty(ref title, value);
+        }
+
+        public string CurrentDirectoryPath
+        {
+            get => currentDirectoryPath;
+            set
+            {
+                SetProperty(ref currentDirectoryPath, value);
+                RaisePropertyChanged(nameof(Title));
+            }
         }
 
         private string Version { get => version; set => SetProperty(ref version, value); }
@@ -31,8 +42,8 @@ namespace ImageChecker_3.Models
         {
             const int major = 1;
             const int minor = 2;
-            const int patch = 2;
-            const string date = "20250209";
+            const int patch = 3;
+            const string date = "20250210";
             const string suffixId = "a";
 
             Version = $"{major}.{minor}.{patch} ({date}{suffixId})";

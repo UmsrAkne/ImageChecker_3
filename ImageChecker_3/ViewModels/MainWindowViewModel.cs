@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -103,7 +102,7 @@ namespace ImageChecker_3.ViewModels
 
         public PreviewContainer PreviewContainer { get; private set; } = new ();
 
-        public ObservableCollection<PreviewContainer> PreviewContainerHistory { get; set; } = new ();
+        public PreviewContainerHistory PreviewContainerHistory { get; set; } = new ();
 
         public SlideController SlideController { get; private set; }
 
@@ -158,7 +157,7 @@ namespace ImageChecker_3.ViewModels
                 return;
             }
 
-            var index = PreviewContainerHistory.IndexOf(param);
+            var index = PreviewContainerHistory.Items.IndexOf(param);
             if (index != -1)
             {
                 PreviewContainerHistory.RemoveAt(index);
@@ -221,6 +220,8 @@ namespace ImageChecker_3.ViewModels
                 w.ImageFileInfo.OpaqueRange =
                     await ImageBoundsCalculator.GetOpaquePixelBoundsAsync(w.ImageFileInfo.FileInfo.FullName);
             }
+
+            TitleBarText.CurrentDirectoryPath = directoryPath;
         }
 
         /// <summary>
