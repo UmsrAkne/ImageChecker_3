@@ -482,7 +482,7 @@
                 <ListBox
                     Name="ListBox"
                     Background="Transparent"
-                    ItemsSource="{Binding PreviewContainerHistory}">
+                    ItemsSource="{Binding PreviewContainerHistory.Items}">
                     <ListBox.InputBindings>
                         <KeyBinding
                             Key="Back"
