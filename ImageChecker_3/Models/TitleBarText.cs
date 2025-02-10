@@ -11,7 +11,7 @@ namespace ImageChecker_3.Models
 
         public TitleBarText()
         {
-            Title = "AppLauncher";
+            Title = "Image Checker3";
 
             SetVersion();
             AddDebugMark();
