@@ -37,6 +37,7 @@
 | Ctrl + Shift + I | 現在の表示状態を image(anime) タグとしてクリップボードに転送 |
 | Ctrl + Shift + D | 現在の表示状態を draw(anime) タグとしてクリップボードに転送  |
 | Ctrl + S         | スライドタグを出力                             |
+| Ctrl + T         | タグ（テキスト）からデータを読み込むための画面を開きます          |
 
 ## タグのフォーマット
 
@@ -60,3 +61,10 @@
 
     <image a="$a" b="$b" c="$c" d="$d" x="$x" y="$y" scale="$scale" targetLayerIndex="0" />
     <anime name="slide" duration="$duration" distance="$distance" degree="$degree"  repeatCount="0" />
+
+### パース可能なタグ例
+
+    <image a="A0101" b="B0102" c="C0103" d="D0103" x="100" y="200" scale="1" targetLayerIndex="0" />
+    <draw a="A0101" b="B0102" c="C0103" d="D0103" targetLayerIndex="0" />
+    <anime name="image" a="A0101" b="B0102" c="C0103" d="D0103" x="100" y="200" scale="1" targetLayerIndex="0" />
+    <anime name="draw" a="A0101" b="B0102" c="C0103" d="D0103" targetLayerIndex="0" />
