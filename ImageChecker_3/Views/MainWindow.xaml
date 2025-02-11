@@ -479,93 +479,157 @@
 
             <TabItem Header="Tag History">
                 <!--  コピー履歴表示用ListBox  -->
-                <ListBox
-                    Name="ListBox"
-                    Background="Transparent"
-                    ItemsSource="{Binding PreviewContainerHistory.Items}">
-                    <ListBox.InputBindings>
-                        <KeyBinding
-                            Key="Back"
-                            Command="{Binding DeleteHistoryCommand}"
-                            CommandParameter="{Binding ElementName=ListBox, Path=SelectedItem}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                    </ListBox.InputBindings>
+                    <StackPanel Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
 
-                    <ListBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type images:PreviewContainer}">
-                            <ContentControl>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseDoubleClick">
-                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Path=DataContext.RestorePreviewContainerCommand}" CommandParameter="{Binding}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
+                            <ToggleButton
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="2"
+                                Command="{Binding PreviewContainerHistory.UpdateFilteredHistoryCommand}"
+                                Content="ImageTag"
+                                IsChecked="{Binding PreviewContainerHistory.HistoryFilterConditions.IncludeImageTag}" />
 
-                                <Border BorderBrush="Gray" BorderThickness="1">
-                                    <StackPanel Margin="3">
-                                        <StackPanel.Resources>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
-                                            </Style>
-                                        </StackPanel.Resources>
+                            <ToggleButton
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="2"
+                                Command="{Binding PreviewContainerHistory.UpdateFilteredHistoryCommand}"
+                                Content="DrawTag"
+                                IsChecked="{Binding PreviewContainerHistory.HistoryFilterConditions.IncludeDrawTag}" />
 
-                                        <Border
-                                            Height="5"
-                                            Margin="0,2"
-                                            Background="Tomato">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding IsSelected}" Value="False">
-                                                            <Setter Property="Visibility" Value="Hidden" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
+                            <ToggleButton
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="2"
+                                Command="{Binding PreviewContainerHistory.UpdateFilteredHistoryCommand}"
+                                Content="Animation ImageTag"
+                                IsChecked="{Binding PreviewContainerHistory.HistoryFilterConditions.IncludeAnimationImageTag}" />
+
+                            <ToggleButton
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="2"
+                                Command="{Binding PreviewContainerHistory.UpdateFilteredHistoryCommand}"
+                                Content="Animation DrawTag"
+                                IsChecked="{Binding PreviewContainerHistory.HistoryFilterConditions.IncludeAnimationDrawTag}" />
+
+                            <Button
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="2"
+                                Content="Toggle All Tag" />
+                        </Grid>
+
+                    </StackPanel>
+
+                    <ListBox
+                        Name="ListBox"
+                        Grid.Row="1"
+                        Background="Transparent"
+                        ItemsSource="{Binding PreviewContainerHistory.Items}">
+                        <ListBox.InputBindings>
+                            <KeyBinding
+                                Key="Back"
+                                Command="{Binding DeleteHistoryCommand}"
+                                CommandParameter="{Binding ElementName=ListBox, Path=SelectedItem}" />
+
+                        </ListBox.InputBindings>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type images:PreviewContainer}">
+                                <ContentControl>
+
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDoubleClick">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Path=DataContext.RestorePreviewContainerCommand}" CommandParameter="{Binding}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+
+                                    <Border BorderBrush="Gray" BorderThickness="1">
+                                        <StackPanel Margin="3">
+                                            <StackPanel.Resources>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
                                                 </Style>
-                                            </Border.Style>
-                                        </Border>
+                                            </StackPanel.Resources>
 
-                                        <views:PreviewScreenArea />
+                                            <Border
+                                                Height="5"
+                                                Margin="0,2"
+                                                Background="Tomato">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
 
-                                        <TextBlock Text="{Binding TagId, StringFormat=ID : {0}}" />
-                                        <TextBlock Text="{Binding TagType}" />
-                                        <TextBlock Text="{Binding ImageWrappers[0].ImageFileInfo.FileNameWithoutExtension, StringFormat=A : {0}}" />
-                                        <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />
-                                        <TextBlock Text="{Binding ImageWrappers[2].ImageFileInfo.FileNameWithoutExtension, StringFormat=C : {0}}" />
-                                        <TextBlock Text="{Binding ImageWrappers[3].ImageFileInfo.FileNameWithoutExtension, StringFormat=D : {0}}" />
-                                        <TextBlock Text="{Binding Scale, StringFormat=Scale : {0}}" />
-                                        <TextBlock Text="{Binding X, StringFormat=X : {0}}" />
-                                        <TextBlock Text="{Binding Y, StringFormat=Y : {0}}" />
+                                            <views:PreviewScreenArea />
 
-                                        <!--  PreviewContainer から位置だけを抽出してセットするボタン。ListBoxItem に含まれるため、ダブルクリックした場合は EventTrigger を拾ってしまう。  -->
-                                        <Button
-                                            Height="24"
-                                            Margin="8"
-                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=DataContext.RestorePositionFromPcCommand}"
-                                            CommandParameter="{Binding}"
-                                            Content="位置をセット"
-                                            Template="{StaticResource ButtonTemplate}" />
-                                    </StackPanel>
-                                </Border>
-                            </ContentControl>
+                                            <TextBlock Text="{Binding TagId, StringFormat=ID : {0}}" />
+                                            <TextBlock Text="{Binding TagType}" />
+                                            <TextBlock Text="{Binding ImageWrappers[0].ImageFileInfo.FileNameWithoutExtension, StringFormat=A : {0}}" />
+                                            <TextBlock Text="{Binding ImageWrappers[1].ImageFileInfo.FileNameWithoutExtension, StringFormat=B : {0}}" />
+                                            <TextBlock Text="{Binding ImageWrappers[2].ImageFileInfo.FileNameWithoutExtension, StringFormat=C : {0}}" />
+                                            <TextBlock Text="{Binding ImageWrappers[3].ImageFileInfo.FileNameWithoutExtension, StringFormat=D : {0}}" />
+                                            <TextBlock Text="{Binding Scale, StringFormat=Scale : {0}}" />
+                                            <TextBlock Text="{Binding X, StringFormat=X : {0}}" />
+                                            <TextBlock Text="{Binding Y, StringFormat=Y : {0}}" />
 
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
+                                            <!--  PreviewContainer から位置だけを抽出してセットするボタン。ListBoxItem に含まれるため、ダブルクリックした場合は EventTrigger を拾ってしまう。  -->
+                                            <Button
+                                                Height="24"
+                                                Margin="8"
+                                                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=DataContext.RestorePositionFromPcCommand}"
+                                                CommandParameter="{Binding}"
+                                                Content="位置をセット"
+                                                Template="{StaticResource ButtonTemplate}" />
+                                        </StackPanel>
+                                    </Border>
+                                </ContentControl>
 
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-                        </Style>
-                    </ListBox.ItemContainerStyle>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
 
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Slide Tag History">
                 <ListBox Background="{StaticResource BackgroundBrush}" ItemsSource="{Binding TagGenerator.ClipboardHistory}">
