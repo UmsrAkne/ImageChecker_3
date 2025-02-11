@@ -196,6 +196,8 @@ namespace ImageChecker_3.ViewModels
             });
         });
 
+        public HistoryFilterConditions HistoryFilterConditions { get; set; } = new ();
+
         private AppSettings AppSettings { get; init; }
 
         private IImageWrapperProvider ImageWrapperProvider { get; set; }
