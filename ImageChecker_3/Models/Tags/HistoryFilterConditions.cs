@@ -27,5 +27,13 @@ namespace ImageChecker_3.Models.Tags
             get => includeAnimationDrawTag;
             set => SetProperty(ref includeAnimationDrawTag, value);
         }
+
+        public void SetAllFlags(bool flag)
+        {
+            IncludeImageTag = flag;
+            IncludeDrawTag = flag;
+            IncludeAnimationImageTag = flag;
+            IncludeAnimationDrawTag = flag;
+        }
     }
 }

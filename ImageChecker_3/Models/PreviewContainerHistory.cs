@@ -44,6 +44,25 @@ namespace ImageChecker_3.Models
             }
         });
 
+        public DelegateCommand ToggleFilterConditionsCommand => new DelegateCommand(() =>
+        {
+            var f1 = HistoryFilterConditions.IncludeImageTag;
+            var f2 = HistoryFilterConditions.IncludeDrawTag;
+            var f3 = HistoryFilterConditions.IncludeAnimationImageTag;
+            var f4 = HistoryFilterConditions.IncludeAnimationDrawTag;
+
+            if (f1 || f2 || f3 || f4)
+            {
+                HistoryFilterConditions.SetAllFlags(false);
+            }
+            else
+            {
+                HistoryFilterConditions.SetAllFlags(true);
+            }
+
+            UpdateFilteredHistoryCommand.Execute();
+        });
+
         private ObservableCollection<PreviewContainer> OriginalItems { get; set; }
 
         private ObservableCollection<PreviewContainer> FilteredItems { get; set; }

@@ -535,6 +535,7 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 Margin="2"
+                                Command="{Binding PreviewContainerHistory.ToggleFilterConditionsCommand}"
                                 Content="Toggle All Tag" />
                         </Grid>
 
