@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using ImageChecker_3.Models;
 using ImageChecker_3.Models.Images;
@@ -52,6 +54,17 @@ namespace ImageChecker_3Test.Models
             var expect = @"<image a="""" b="""" c="""" d="""" x=""0"" y=""0"" scale=""1.0"" />";
 
             Assert.That(actual, Is.EqualTo(expect));
+        }
+
+        [Test]
+        [TestCase(new[] { "A0101", "B0101", "C0101", "D0101", }, 0)]
+        [TestCase(new[] { "A1101", "B0101", "C0101", "D0101", }, 1)]
+        [TestCase(new[] { "", "", }, 0)]
+        [TestCase(new[] { "A1101", "B2101", "C3101", }, 1)]
+        [TestCase(new[] { "InvalidFormatName", }, 0)]
+        public void GetLayerIndex_Test(string[] imageFileNames, int expect)
+        {
+            Assert.That(TagGenerator.GetLayerIndex(imageFileNames.ToList()), Is.EqualTo(expect));
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -81,8 +82,8 @@ namespace ImageChecker_3.Models
                 return;
             }
 
-            var text = GetTag(SlideTagText, param);
-            Clipboard.SetText(GetTag(SlideTagText, param));
+            var text = GetTag(SlideTagText, param, GetLayerIndex(param.PreviewContainer.GetImageFileNames()));
+            Clipboard.SetText(text);
             ClipboardHistory.Add(text);
         });
 
@@ -124,7 +125,8 @@ namespace ImageChecker_3.Models
                 .Replace("$d", ws[3])
                 .Replace("$scale", previewContainer.Scale.ToString("0.0", CultureInfo.InvariantCulture))
                 .Replace("$x", ((int)relPosition.X).ToString(CultureInfo.CurrentCulture))
-                .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture));
+                .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture))
+                .Replace("$targetLayerIndex", GetLayerIndex(ws).ToString());
 
             if (!includeId)
             {
@@ -137,6 +139,24 @@ namespace ImageChecker_3.Models
             return tag;
         }
 
+        public static int GetLayerIndex(List<string> imageFileNames)
+        {
+            if (imageFileNames == null || imageFileNames.All(string.IsNullOrWhiteSpace))
+            {
+                return 0;
+            }
+
+            foreach (var imageFileName in imageFileNames)
+            {
+                if (int.TryParse(imageFileName.AsSpan(1, 1), out var n))
+                {
+                    return n;
+                }
+            }
+
+            return 0;
+        }
+
         public void SetSettings(AppSettings appSettings)
         {
             ImageTagText = appSettings.ImageTagText;
@@ -146,12 +166,13 @@ namespace ImageChecker_3.Models
             SlideTagText = appSettings.SlideTagText;
         }
 
-        private static string GetTag(string baseText, SlideController slideController)
+        private static string GetTag(string baseText, SlideController slideController, int targetLayerIndex = 0)
         {
             var tag = baseText
                 .Replace("$distance", slideController.Distance.ToString("0", CultureInfo.InvariantCulture))
                 .Replace("$degree", slideController.Degree.ToString("0", CultureInfo.InvariantCulture))
-                .Replace("$duration", slideController.Duration.ToString("0", CultureInfo.InvariantCulture));
+                .Replace("$duration", slideController.Duration.ToString("0", CultureInfo.InvariantCulture))
+                .Replace("$targetLayerIndex", targetLayerIndex.ToString());
 
             var id = GetId(tag);
             tag = tag.Replace("/>", $"id=\"{id}\" />");
