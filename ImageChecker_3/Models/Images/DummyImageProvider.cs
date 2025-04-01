@@ -23,6 +23,10 @@ namespace ImageChecker_3.Models.Images
                     {
                         Width = 1280, Height = 720, Index = 1, SubIndex = 4, FileInfo = new FileInfo("A0104.png"),
                     }),
+                    new (new ImageFileInfo()
+                    {
+                        Width = 1280, Height = 720, Index = 1, SubIndex = 4, FileInfo = new FileInfo("A2104.png"),
+                    }),
                 }
             },
             {
