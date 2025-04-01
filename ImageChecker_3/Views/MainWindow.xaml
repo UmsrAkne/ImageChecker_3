@@ -650,6 +650,31 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </TabItem>
+            <TabItem Header="Replace Attribute">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox
+                        Grid.Row="0"
+                        AcceptsReturn="True"
+                        Text="{Binding TagReplaceAreaViewModel.InputText, UpdateSourceTrigger=PropertyChanged}"
+                        TextWrapping="Wrap" />
+
+                    <StackPanel
+                        Grid.Row="1"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="3"
+                            Padding="10,1"
+                            Command="{Binding TagReplaceAreaViewModel.ReplaceAndCopyCommand}"
+                            Content="Copy Replaced Text" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
         </TabControl>
 
         <ItemsControl

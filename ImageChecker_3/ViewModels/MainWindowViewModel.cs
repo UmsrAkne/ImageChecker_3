@@ -80,6 +80,8 @@ namespace ImageChecker_3.ViewModels
                 }
             };
 
+            TagReplaceAreaViewModel.PreviewContainer = PreviewContainer;
+
             this.dialogService = dialogService;
         }
 
@@ -105,6 +107,8 @@ namespace ImageChecker_3.ViewModels
         public PreviewContainerHistory PreviewContainerHistory { get; set; } = new ();
 
         public SlideController SlideController { get; private set; }
+
+        public TagReplaceAreaViewModel TagReplaceAreaViewModel { get; init; } = new ();
 
         /// <summary>
         /// ImageContainers の内容に応じて、PreviewImageContainer を更新します。
