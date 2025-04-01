@@ -9,11 +9,11 @@ namespace ImageChecker_3.Models
         // ReSharper disable once ArrangeModifiersOrder
         public const string SettingFileName = "appSetting.json";
 
-        private string imageTagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""0"" />";
-        private string drawTagText = @"<draw b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""0"" />";
-        private string animationImageTagText = @"<anime name=""image"" a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""0"" />";
-        private string animationDrawTagText = @"<anime name=""draw"" b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""0"" />";
-        private string slideTagText = @"<anime name=""slide"" duration=""$duration"" distance=""$distance"" degree=""$degree"" repeatCount=""0"" targetLayerIndex=""0"" />";
+        private string imageTagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""$targetLayerIndex"" />";
+        private string drawTagText = @"<draw b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""$targetLayerIndex"" />";
+        private string animationImageTagText = @"<anime name=""image"" a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" targetLayerIndex=""$targetLayerIndex"" />";
+        private string animationDrawTagText = @"<anime name=""draw"" b=""$b"" c=""$c"" d=""$d"" targetLayerIndex=""$targetLayerIndex"" />";
+        private string slideTagText = @"<anime name=""slide"" duration=""$duration"" distance=""$distance"" degree=""$degree"" repeatCount=""0"" targetLayerIndex=""$targetLayerIndex"" />";
 
         public string ImageTagText { get => imageTagText; set => SetProperty(ref imageTagText, value); }
 
