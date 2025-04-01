@@ -669,6 +669,7 @@
                         Orientation="Horizontal">
                         <Button
                             Margin="3"
+                            Padding="10,1"
                             Command="{Binding TagReplaceAreaViewModel.ReplaceAndCopyCommand}"
                             Content="Copy Replaced Text" />
                     </StackPanel>
