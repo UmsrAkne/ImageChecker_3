@@ -650,6 +650,23 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </TabItem>
+            <TabItem Header="Replace Attribute">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0" />
+
+                    <StackPanel
+                        Grid.Row="1"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <Button Margin="3" Content="Copy Replaced Text" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
         </TabControl>
 
         <ItemsControl
