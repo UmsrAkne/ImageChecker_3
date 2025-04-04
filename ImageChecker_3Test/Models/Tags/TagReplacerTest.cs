@@ -30,7 +30,8 @@ namespace ImageChecker_3Test.Models.Tags
                     new (new ImageFileInfo(@"C:\MyFiles\temp\pngs\D0101.png") { Width = 1280, Height = 720, })
                 );
 
-            Assert.That(TagReplacer.ReplaceImageNames(tag, container), Is.EqualTo(expected));
+            var actual = TagReplacer.ReplaceImageNames(tag, container, false);
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }

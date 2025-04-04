@@ -6,7 +6,7 @@ namespace ImageChecker_3.Models.Tags
 {
     public static class TagReplacer
     {
-        public static string ReplaceImageNames(string tag, PreviewContainer container)
+        public static string ReplaceImageNames(string tag, PreviewContainer container, bool includeId = true)
         {
             var imageFileNames = container.GetImageFileNames();
             var names = new List<(string Key, string Name)>
@@ -20,6 +20,16 @@ namespace ImageChecker_3.Models.Tags
             foreach (var name in names)
             {
                 tag = Regex.Replace(tag, @$"{name.Key}=""[^""]*""", @$"{name.Key}=""{name.Name}""");
+            }
+
+            if (includeId)
+            {
+                var reg = new Regex(@"id="".*""");
+                tag = reg.Replace(tag, string.Empty);
+
+                var id = TagGenerator.GetId(tag);
+                var regex = new Regex(@"\s>");
+                tag = regex.Replace(tag, $@" id=""{id}"">", 1);
             }
 
             return tag;
