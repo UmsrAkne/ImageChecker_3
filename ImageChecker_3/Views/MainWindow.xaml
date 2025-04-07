@@ -26,6 +26,7 @@
     <Window.Resources>
         <converters:NegativeMultiplierConverter x:Key="NegativeMultiplierConverter" />
         <converters:TruncateDoubleConverter x:Key="TruncateDoubleConverter" />
+        <converters:RoundDoubleConverter x:Key="RoundDoubleConverter" />
     </Window.Resources>
 
     <Window.InputBindings>
@@ -293,7 +294,7 @@
                 <Border Margin="10,0" />
 
                 <TextBlock Text="Scale :" />
-                <TextBlock Width="50" Text="{Binding PreviewContainer.Scale}" />
+                <TextBlock Width="50" Text="{Binding PreviewContainer.Scale, Converter={StaticResource RoundDoubleConverter}}" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
