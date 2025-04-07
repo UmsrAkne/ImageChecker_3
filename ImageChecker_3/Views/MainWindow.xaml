@@ -265,7 +265,7 @@
                     IsSnapToTickEnabled="True"
                     Maximum="4"
                     Minimum="1"
-                    TickFrequency="0.5"
+                    TickFrequency="0.05"
                     Value="{Binding PreviewContainer.Scale}" />
             </DockPanel>
 
