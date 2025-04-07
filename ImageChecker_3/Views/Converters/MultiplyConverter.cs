@@ -18,7 +18,7 @@ namespace ImageChecker_3.Views.Converters
             var enumerable = doubles as double[] ?? doubles.ToArray();
             if (enumerable.Length != 0)
             {
-                return enumerable.Aggregate((now, next) => now * next).ToString(CultureInfo.CurrentCulture);
+                return enumerable.Aggregate((now, next) => now * next).ToString("F0");
             }
 
             return Binding.DoNothing;
