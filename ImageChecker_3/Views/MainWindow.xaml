@@ -465,7 +465,7 @@
                             Height="25"
                             Padding="15,1"
                             Command="{Binding SlideController.MovePreviewImageCommand}"
-                            Content="Slide Onece"
+                            Content="Slide Once"
                             DockPanel.Dock="Bottom"
                             Template="{StaticResource ButtonTemplate}" />
                     </DockPanel>
