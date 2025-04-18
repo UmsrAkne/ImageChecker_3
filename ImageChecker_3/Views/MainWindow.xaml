@@ -11,7 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:ImageChecker_3.Models"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:tags="clr-namespace:ImageChecker_3.Models.Tags"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     xmlns:views="clr-namespace:ImageChecker_3.Views"
     x:Name="Window"
@@ -647,13 +647,21 @@
                             Modifiers="Control" />
                     </ListBox.InputBindings>
                     <ListBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type system:String}">
+                        <DataTemplate DataType="{x:Type tags:SlideTag}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="{Binding}" />
+                                <ContentControl>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDoubleClick">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=DataContext.SlideController.ApplySlideTagCommand}" CommandParameter="{Binding}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="{Binding}" />
+                                </ContentControl>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
             </TabItem>
             <TabItem Header="Replace Attribute">
                 <Grid>
