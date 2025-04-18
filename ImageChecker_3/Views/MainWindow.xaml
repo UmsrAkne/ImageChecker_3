@@ -638,7 +638,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Slide Tag History">
-                <ListBox Background="{StaticResource BackgroundBrush}" ItemsSource="{Binding TagGenerator.ClipboardHistory}">
+                <ListBox Background="{StaticResource BackgroundBrush}" ItemsSource="{Binding TagGenerator.SlideTags}">
                     <ListBox.InputBindings>
                         <KeyBinding
                             Key="C"
