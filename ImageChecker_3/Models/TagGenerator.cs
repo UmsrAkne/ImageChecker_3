@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using ImageChecker_3.Models.Images;
+using ImageChecker_3.Models.Tags;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -18,6 +19,8 @@ namespace ImageChecker_3.Models
         public event EventHandler TagGenerated;
 
         public ObservableCollection<string> ClipboardHistory { get; set; } = new ();
+
+        public ObservableCollection<SlideTag> SlideTags { get; } = new ();
 
         public DelegateCommand<PreviewContainer> CopyImageTagCommand => new ((param) =>
         {
@@ -84,6 +87,10 @@ namespace ImageChecker_3.Models
 
             var text = GetTag(SlideTagText, param, GetLayerIndex(param.PreviewContainer.GetImageFileNames()));
             Clipboard.SetText(text);
+
+            var slideTag = TagParser.LoadSlideTag(text);
+            SlideTags.Add(slideTag);
+
             ClipboardHistory.Add(text);
         });
 

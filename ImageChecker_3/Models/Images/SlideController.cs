@@ -1,4 +1,5 @@
 using System;
+using ImageChecker_3.Models.Tags;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -121,6 +122,17 @@ namespace ImageChecker_3.Models.Images
             var value = int.Parse(durationDelta);
             var d = Duration + value;
             Duration = Math.Max(0, d);
+        });
+
+        /// <summary>
+        /// 入力されたスライドタグのプロパティをエリアのテキストボックスに反映します。
+        /// </summary>
+        public DelegateCommand<SlideTag> ApplySlideTagCommand => new ((slideTag) =>
+        {
+            System.Diagnostics.Debug.WriteLine($"{slideTag}(MainWindowViewModel : 205)");
+            Duration = slideTag.Duration;
+            Distance = slideTag.Distance;
+            Degree = slideTag.Degree;
         });
     }
 }

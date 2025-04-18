@@ -11,7 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:ImageChecker_3.Models"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:tags="clr-namespace:ImageChecker_3.Models.Tags"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     xmlns:views="clr-namespace:ImageChecker_3.Views"
     x:Name="Window"
@@ -343,7 +343,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -446,7 +446,8 @@
                     <DockPanel
                         Grid.Row="0"
                         Grid.RowSpan="2"
-                        Grid.Column="1">
+                        Grid.Column="1"
+                        Margin="10,0">
                         <Button
                             Height="25"
                             Padding="15,1"
@@ -464,7 +465,7 @@
                             Height="25"
                             Padding="15,1"
                             Command="{Binding SlideController.MovePreviewImageCommand}"
-                            Content="Slide Onece"
+                            Content="Slide Once"
                             DockPanel.Dock="Bottom"
                             Template="{StaticResource ButtonTemplate}" />
                     </DockPanel>
@@ -638,7 +639,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Slide Tag History">
-                <ListBox Background="{StaticResource BackgroundBrush}" ItemsSource="{Binding TagGenerator.ClipboardHistory}">
+                <ListBox Background="{StaticResource BackgroundBrush}" ItemsSource="{Binding TagGenerator.SlideTags}">
                     <ListBox.InputBindings>
                         <KeyBinding
                             Key="C"
@@ -647,13 +648,21 @@
                             Modifiers="Control" />
                     </ListBox.InputBindings>
                     <ListBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type system:String}">
+                        <DataTemplate DataType="{x:Type tags:SlideTag}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="{Binding}" />
+                                <ContentControl>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDoubleClick">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=DataContext.SlideController.ApplySlideTagCommand}" CommandParameter="{Binding}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="{Binding}" />
+                                </ContentControl>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
             </TabItem>
             <TabItem Header="Replace Attribute">
                 <Grid>
