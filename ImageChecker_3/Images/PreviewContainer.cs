@@ -4,10 +4,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using ImageChecker_3.Models;
+using ImageChecker_3.Tags;
 using Prism.Commands;
 using Prism.Mvvm;
 
-namespace ImageChecker_3.Models.Images
+namespace ImageChecker_3.Images
 {
     public class PreviewContainer : BindableBase
     {

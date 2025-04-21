@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
-using ImageChecker_3.Models.Images;
-using ImageChecker_3.Models.Tags;
+using ImageChecker_3.Images;
+using ImageChecker_3.Tags;
 using Prism.Commands;
 
 namespace ImageChecker_3.Models

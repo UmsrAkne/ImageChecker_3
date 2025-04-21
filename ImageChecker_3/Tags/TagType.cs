@@ -1,4 +1,4 @@
-namespace ImageChecker_3.Models
+namespace ImageChecker_3.Tags
 {
     public enum TagType
     {

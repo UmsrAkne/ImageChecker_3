@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
-using ImageChecker_3.Models.Images;
+using ImageChecker_3.Images;
 using Microsoft.Xaml.Behaviors;
 
 namespace ImageChecker_3.Views.Behaviors

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ImageChecker_3.Models.Tags;
 
-namespace ImageChecker_3.Models
+namespace ImageChecker_3.Tags
 {
     public static class TagParser
     {

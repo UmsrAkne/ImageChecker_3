@@ -1,6 +1,6 @@
 using System.Windows;
-using ImageChecker_3.Models.Images;
-using ImageChecker_3.Models.Tags;
+using ImageChecker_3.Images;
+using ImageChecker_3.Tags;
 using Prism.Commands;
 using Prism.Mvvm;
 

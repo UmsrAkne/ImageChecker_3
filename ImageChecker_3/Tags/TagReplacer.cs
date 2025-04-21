@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ImageChecker_3.Models.Images;
+using ImageChecker_3.Images;
 
-namespace ImageChecker_3.Models.Tags
+namespace ImageChecker_3.Tags
 {
     public static class TagReplacer
     {

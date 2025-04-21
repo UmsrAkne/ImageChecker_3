@@ -1,4 +1,4 @@
-namespace ImageChecker_3.Models.Tags
+namespace ImageChecker_3.Tags
 {
     public class SlideTag
     {

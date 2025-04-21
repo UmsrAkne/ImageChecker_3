@@ -7,11 +7,11 @@
     xmlns:converters="clr-namespace:ImageChecker_3.Views.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:images="clr-namespace:ImageChecker_3.Models.Images"
+    xmlns:images1="clr-namespace:ImageChecker_3.Images"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:ImageChecker_3.Models"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:tags="clr-namespace:ImageChecker_3.Models.Tags"
+    xmlns:tags1="clr-namespace:ImageChecker_3.Tags"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     xmlns:views="clr-namespace:ImageChecker_3.Views"
     x:Name="Window"
@@ -561,7 +561,7 @@
                         </ListBox.InputBindings>
 
                         <ListBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type images:PreviewContainer}">
+                            <DataTemplate DataType="{x:Type images1:PreviewContainer}">
                                 <ContentControl>
 
                                     <i:Interaction.Triggers>
@@ -648,7 +648,7 @@
                             Modifiers="Control" />
                     </ListBox.InputBindings>
                     <ListBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type tags:SlideTag}">
+                        <DataTemplate DataType="{x:Type tags1:SlideTag}">
                             <StackPanel Orientation="Horizontal">
                                 <ContentControl>
                                     <i:Interaction.Triggers>
