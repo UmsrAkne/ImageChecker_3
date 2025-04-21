@@ -1,5 +1,6 @@
 using System;
 using ImageChecker_3.Models;
+using ImageChecker_3.Tags;
 using NUnit.Framework;
 
 namespace ImageChecker_3Test.Models

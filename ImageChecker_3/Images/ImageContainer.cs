@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Prism.Mvvm;
 
-namespace ImageChecker_3.Models.Images
+namespace ImageChecker_3.Images
 {
     public class ImageContainer : BindableBase
     {

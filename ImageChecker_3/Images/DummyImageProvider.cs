@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace ImageChecker_3.Models.Images
+namespace ImageChecker_3.Images
 {
     public class DummyImageProvider : IImageWrapperProvider
     {

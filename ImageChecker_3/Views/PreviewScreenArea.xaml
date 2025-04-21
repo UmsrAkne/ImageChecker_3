@@ -4,10 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:ImageChecker_3.Views.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:images="clr-namespace:ImageChecker_3.Models.Images"
+    xmlns:images1="clr-namespace:ImageChecker_3.Images"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="UserControl"
-    d:DataContext="{d:DesignInstance images:PreviewContainer}"
+    d:DataContext="{d:DesignInstance images1:PreviewContainer}"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -62,7 +62,7 @@
         </ItemsControl.ItemContainerStyle>
 
         <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="{x:Type images:ImageWrapper}">
+            <DataTemplate DataType="{x:Type images1:ImageWrapper}">
                 <Image>
                     <Image.Style>
                         <Style TargetType="Image">

@@ -7,12 +7,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using ImageChecker_3.Models.Images;
-using ImageChecker_3.Models.Tags;
+using ImageChecker_3.Images;
+using ImageChecker_3.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 
-namespace ImageChecker_3.Models
+namespace ImageChecker_3.Tags
 {
     public class TagGenerator : BindableBase
     {

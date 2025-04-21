@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Prism.Mvvm;
 
-namespace ImageChecker_3.Models.Images
+namespace ImageChecker_3.Images
 {
     public class ImageFileInfo : BindableBase
     {

@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using ImageChecker_3.Images;
 using ImageChecker_3.Models;
-using ImageChecker_3.Models.Images;
-using ImageChecker_3.Models.Tags;
+using ImageChecker_3.Tags;
 using ImageChecker_3.Views;
 using Prism.Commands;
 using Prism.Mvvm;

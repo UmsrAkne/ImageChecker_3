@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ImageChecker_3.Models.Images
+namespace ImageChecker_3.Images
 {
     public interface IImageWrapperProvider
     {

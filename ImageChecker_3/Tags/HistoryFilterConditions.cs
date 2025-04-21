@@ -1,6 +1,6 @@
 using Prism.Mvvm;
 
-namespace ImageChecker_3.Models.Tags
+namespace ImageChecker_3.Tags
 {
     /// <summary>
     /// PreviewContainer の履歴をフィルタリングする際の条件を保持するためのクラスです。

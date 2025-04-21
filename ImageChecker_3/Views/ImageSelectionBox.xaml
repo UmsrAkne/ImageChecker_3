@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:images="clr-namespace:ImageChecker_3.Models.Images"
+    xmlns:images1="clr-namespace:ImageChecker_3.Images"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:ImageChecker_3.ViewModels"
     x:Name="Root"
-    d:DataContext="{d:DesignInstance images:ImageContainer}"
+    d:DataContext="{d:DesignInstance images1:ImageContainer}"
     d:DesignHeight="300"
     d:DesignWidth="300"
     Background="Transparent"
@@ -34,7 +34,7 @@
                 SelectedItem="{Binding CurrentFile}">
 
                 <ComboBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type images:ImageWrapper}">
+                    <DataTemplate DataType="{x:Type images1:ImageWrapper}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding ImageFileInfo.FileNameWithoutExtension}" />
                         </StackPanel>
@@ -71,7 +71,7 @@
 
             <ListBox.ItemTemplate>
 
-                <DataTemplate DataType="{x:Type images:ImageWrapper}">
+                <DataTemplate DataType="{x:Type images1:ImageWrapper}">
                     <DataTemplate.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />

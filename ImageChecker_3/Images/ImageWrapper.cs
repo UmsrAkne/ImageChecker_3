@@ -1,7 +1,7 @@
 using System.Windows;
 using Prism.Mvvm;
 
-namespace ImageChecker_3.Models.Images
+namespace ImageChecker_3.Images
 {
     public class ImageWrapper : BindableBase
     {

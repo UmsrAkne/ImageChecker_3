@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace ImageChecker_3.Models.Images
+namespace ImageChecker_3.Images
 {
     public static class ImageBoundsCalculator
     {

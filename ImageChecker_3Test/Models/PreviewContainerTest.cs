@@ -1,6 +1,6 @@
 using System.Windows;
+using ImageChecker_3.Images;
 using ImageChecker_3.Models;
-using ImageChecker_3.Models.Images;
 using NUnit.Framework;
 
 namespace ImageChecker_3Test.Models
