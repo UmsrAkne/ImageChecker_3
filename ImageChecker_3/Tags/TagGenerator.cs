@@ -18,8 +18,6 @@ namespace ImageChecker_3.Tags
     {
         public event EventHandler TagGenerated;
 
-        public ObservableCollection<string> ClipboardHistory { get; set; } = new ();
-
         public ObservableCollection<SlideTag> SlideTags { get; } = new ();
 
         public DelegateCommand<PreviewContainer> CopyImageTagCommand => new ((param) =>
@@ -90,8 +88,6 @@ namespace ImageChecker_3.Tags
 
             var slideTag = TagParser.LoadSlideTag(text);
             SlideTags.Add(slideTag);
-
-            ClipboardHistory.Add(text);
         });
 
         public DelegateCommand<string> CopySlideTagFromHistoryCommand => new ((param) =>
