@@ -45,6 +45,23 @@ namespace ImageChecker_3Test.Models
             Assert.That(actual, Is.EqualTo(expect));
         }
 
+        [TestCase(1.0, "1.0")]
+        [TestCase(1.05, "1.05")]
+        [TestCase(1.1, "1.1")]
+        public void GetTagTest_precise_scaleValue(double scale, string expected)
+        {
+            var pc = new PreviewContainer
+            {
+                Scale = scale,
+            };
+
+            var tagText = @"<image a=""$a"" b=""$b"" c=""$c"" d=""$d"" x=""$x"" y=""$y"" scale=""$scale"" />";
+            var actual = TagGenerator.GetTag(tagText, pc, false);
+            var expect = $@"<image a="""" b="""" c="""" d="""" x=""0"" y=""360"" scale=""{expected}"" />";
+
+            Assert.That(actual, Is.EqualTo(expect));
+        }
+
         [Test]
         public void GetTagTest_EmptyValues()
         {
