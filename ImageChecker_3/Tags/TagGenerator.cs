@@ -157,12 +157,19 @@ namespace ImageChecker_3.Tags
         {
             var relPosition = previewContainer.RelativePosition;
             var ws = previewContainer.GetImageFileNames();
+
+            var scl = previewContainer.Scale.ToString("0.00", CultureInfo.InvariantCulture);
+            if (Regex.IsMatch(scl, @"\.\d0"))
+            {
+                scl = Regex.Replace(scl, "0$", string.Empty);
+            }
+
             var tag = baseText
                 .Replace("$a", ws[0])
                 .Replace("$b", ws[1])
                 .Replace("$c", ws[2])
                 .Replace("$d", ws[3])
-                .Replace("$scale", previewContainer.Scale.ToString("0.0", CultureInfo.InvariantCulture))
+                .Replace("$scale", scl)
                 .Replace("$x", ((int)relPosition.X).ToString(CultureInfo.CurrentCulture))
                 .Replace("$y", ((int)relPosition.Y).ToString(CultureInfo.CurrentCulture))
                 .Replace("$targetLayerIndex", GetLayerIndex(ws).ToString());
