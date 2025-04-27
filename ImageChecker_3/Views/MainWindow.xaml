@@ -190,6 +190,11 @@
                     <i:Interaction.Behaviors>
                         <behaviors:DragBehavior />
                     </i:Interaction.Behaviors>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseWheel">
+                            <i:InvokeCommandAction Command="{Binding ChangeScaleCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </views:PreviewScreenArea>
                 <Button CommandParameter="{x:Static models:Position.Right}" Content="180" />
             </StackPanel>
