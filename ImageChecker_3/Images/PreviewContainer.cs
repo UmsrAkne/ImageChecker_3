@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using ImageChecker_3.Models;
 using ImageChecker_3.Tags;
 using Prism.Commands;
@@ -185,6 +186,23 @@ namespace ImageChecker_3.Images
         {
             Scale = 1.0;
             RelativePosition = default;
+        });
+
+        public DelegateCommand<object> ChangeScaleCommand => new DelegateCommand<object>((param) =>
+        {
+            if (param is not MouseWheelEventArgs args)
+            {
+                return;
+            }
+
+            if (args.Delta >= 0)
+            {
+                Scale += 0.05;
+            }
+            else
+            {
+                Scale = Math.Max(Scale - 0.05, 1.0);
+            }
         });
 
         public void SetImageWrappers(ImageWrapper a, ImageWrapper b, ImageWrapper c, ImageWrapper d)

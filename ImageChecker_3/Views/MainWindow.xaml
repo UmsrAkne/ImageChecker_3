@@ -87,6 +87,50 @@
             Modifiers="Control" />
 
         <KeyBinding
+            Key="A"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="a" />
+
+        <KeyBinding
+            Key="A"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="A"
+            Modifiers="Shift" />
+
+        <KeyBinding
+            Key="B"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="b" />
+
+        <KeyBinding
+            Key="B"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="B"
+            Modifiers="Shift" />
+
+        <KeyBinding
+            Key="C"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="c" />
+
+        <KeyBinding
+            Key="C"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="C"
+            Modifiers="Shift" />
+
+        <KeyBinding
+            Key="D"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="d" />
+
+        <KeyBinding
+            Key="D"
+            Command="{Binding MoveImageContainerCursorCommandCommand}"
+            CommandParameter="D"
+            Modifiers="Shift" />
+
+        <KeyBinding
             Key="d0"
             Command="{Binding PreviewContainer.ResetPositionCommand}"
             Modifiers="Control" />
@@ -190,6 +234,11 @@
                     <i:Interaction.Behaviors>
                         <behaviors:DragBehavior />
                     </i:Interaction.Behaviors>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseWheel">
+                            <i:InvokeCommandAction Command="{Binding ChangeScaleCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </views:PreviewScreenArea>
                 <Button CommandParameter="{x:Static models:Position.Right}" Content="180" />
             </StackPanel>

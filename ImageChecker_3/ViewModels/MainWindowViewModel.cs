@@ -168,6 +168,24 @@ namespace ImageChecker_3.ViewModels
             }
         });
 
+        public DelegateCommand<object> MoveImageContainerCursorCommandCommand => new DelegateCommand<object>((param) =>
+        {
+            var keyStr = (string)param;
+            if (string.IsNullOrWhiteSpace(keyStr))
+            {
+                return;
+            }
+
+            var target = ImageContainers.FirstOrDefault(c => c.KeyChar == keyStr.ToUpper());
+            if (target == null)
+            {
+                return;
+            }
+
+            var changeAmount = char.IsLower(keyStr[0]) ? 1 : -1;
+            target.SelectedIndex += changeAmount;
+        });
+
         public DelegateCommand ShowTagLoadPageCommand => new DelegateCommand(() =>
         {
             var param = new DialogParameters();
