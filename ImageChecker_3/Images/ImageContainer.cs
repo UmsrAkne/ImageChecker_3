@@ -54,7 +54,15 @@ namespace ImageChecker_3.Images
 
         public bool Drawing { get => drawing; set => SetProperty(ref drawing, value); }
 
-        public int SelectedIndex { get => selectedIndex; set => SetProperty(ref selectedIndex, value); }
+        public int SelectedIndex
+        {
+            get => selectedIndex;
+            set
+            {
+                value = Math.Max(0, Math.Min(value, FilteredFiles.Count - 1));
+                SetProperty(ref selectedIndex, value);
+            }
+        }
 
         public bool IsEnabled
         {
