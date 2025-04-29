@@ -32,7 +32,7 @@ namespace ImageChecker_3.Images
 
         public int GetBaseWidth()
         {
-            var baseSizeImage = imageWrappers.FirstOrDefault(w => w.ImageFileInfo.Width >= 1280 && w.ImageFileInfo.Width <= 1520);
+            var baseSizeImage = imageWrappers.FirstOrDefault(w => w.ImageFileInfo.Width is >= 960 and <= 1920);
             return baseSizeImage == null ? 0 : (int)baseSizeImage.ImageFileInfo.Width;
         }
     }
