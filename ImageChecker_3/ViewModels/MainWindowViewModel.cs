@@ -5,6 +5,7 @@ using System.Windows;
 using ImageChecker_3.Images;
 using ImageChecker_3.Models;
 using ImageChecker_3.Tags;
+using ImageChecker_3.Utils;
 using ImageChecker_3.Views;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -85,7 +86,7 @@ namespace ImageChecker_3.ViewModels
             this.dialogService = dialogService;
         }
 
-        public TitleBarText TitleBarText { get; set; } = new ();
+        public AppVersionInfo TitleBarText { get; set; } = new ();
 
         public List<ImageContainer> ImageContainers { get; private set; }
             = new[] { "A", "B", "C", "D", }.Select(key => new ImageContainer(key)).ToList();
@@ -242,8 +243,6 @@ namespace ImageChecker_3.ViewModels
                 w.ImageFileInfo.OpaqueRange =
                     await ImageBoundsCalculator.GetOpaquePixelBoundsAsync(w.ImageFileInfo.FileInfo.FullName);
             }
-
-            TitleBarText.CurrentDirectoryPath = directoryPath;
         }
 
         /// <summary>
