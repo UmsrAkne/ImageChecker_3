@@ -195,13 +195,20 @@ namespace ImageChecker_3.Images
                 return;
             }
 
+            const double smallStep = 0.05;
+            const double largeStep = 0.25;
+
             if (args.Delta >= 0)
             {
-                Scale += 0.05;
+                Scale += (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift
+                    ? largeStep
+                    : smallStep;
             }
             else
             {
-                Scale = Math.Max(Scale - 0.05, 1.0);
+                Scale = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift
+                    ? Math.Max(Scale - largeStep, 1.0)
+                    : Math.Max(Scale - smallStep, 1.0);
             }
         });
 

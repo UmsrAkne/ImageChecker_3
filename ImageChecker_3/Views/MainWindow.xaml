@@ -317,6 +317,7 @@
                     Maximum="4"
                     Minimum="1"
                     TickFrequency="0.05"
+                    Ticks="1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0"
                     Value="{Binding PreviewContainer.Scale}" />
             </DockPanel>
 
