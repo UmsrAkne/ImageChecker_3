@@ -129,7 +129,11 @@ namespace ImageChecker_3.Images
         /// </summary>
         public DelegateCommand<SlideTag> ApplySlideTagCommand => new ((slideTag) =>
         {
-            System.Diagnostics.Debug.WriteLine($"{slideTag}(MainWindowViewModel : 205)");
+            if (slideTag == null)
+            {
+                return;
+            }
+
             Duration = slideTag.Duration;
             Distance = slideTag.Distance;
             Degree = slideTag.Degree;
