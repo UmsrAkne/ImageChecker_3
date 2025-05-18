@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -38,9 +39,16 @@ namespace ImageChecker_3.Views.Behaviors
 
             if (files?.Length == 1 && Directory.Exists(files.First()))
             {
-                // files の要素数が 1 でドロップアイテムがディレクトリならば、画像用ディレクトリがドロップされたということなので
-                // ディレクトリの内容をロードして渡す。
-                _ = vm.LoadImagesAsync(files.FirstOrDefault());
+                // files の要素数が 1 でドロップアイテムがディレクトリかどうかを確認。
+                // ディレクトリ名に Mask を含む場合は、通常画像フォルダではなく、マスク画像のフォルダと見なす。
+                var directory = files.FirstOrDefault() ?? string.Empty;
+                if (directory.Contains("mask", StringComparison.OrdinalIgnoreCase))
+                {
+                    vm.LoadMaskImages(directory);
+                    return;
+                }
+
+                _ = vm.LoadImagesAsync(directory);
             }
         }
 

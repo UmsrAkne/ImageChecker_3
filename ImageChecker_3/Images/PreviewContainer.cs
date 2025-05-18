@@ -20,6 +20,7 @@ namespace ImageChecker_3.Images
         private bool isSelected;
         private List<ImageWrapper> originalImageWrappers;
         private string tagId = string.Empty;
+        private string maskImagePath;
 
         public ObservableCollection<ImageWrapper> ImageWrappers { get; private init; } = new () { null, null, null, null, };
 
@@ -115,6 +116,8 @@ namespace ImageChecker_3.Images
         /// このプレビューコンテナから、タグを生成した際に生成された TagId です。
         /// </summary>
         public string TagId { get => tagId; set => SetProperty(ref tagId, value); }
+
+        public string MaskImagePath { get => maskImagePath; set => SetProperty(ref maskImagePath, value); }
 
         /// <summary>
         /// プレビューコンテナの履歴エリアで、選択中のアイテムを取得するための使用します。
