@@ -12,6 +12,7 @@
 
     <UserControl.Resources>
         <converters:PreviewScaleMultiConverter x:Key="PreviewScaleMultiConverter" />
+        <converters:StringToImageBrushConverter x:Key="StringToImageSourceConverter" />
     </UserControl.Resources>
 
     <ItemsControl ItemsSource="{Binding ImageWrappers}">
@@ -63,7 +64,7 @@
 
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type images1:ImageWrapper}">
-                <Image>
+                <Image OpacityMask="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Path=DataContext.MaskImagePath, Converter={StaticResource StringToImageSourceConverter}}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Style.Triggers>

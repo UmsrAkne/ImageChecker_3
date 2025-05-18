@@ -15,11 +15,13 @@ namespace ImageChecker_3.Images
     public class PreviewContainer : BindableBase
     {
         private double previewScale = 0.4;
+        private string cachedMaskPath;
         private BindableRect screenRect = new (0, 0, 0, 720);
         private double scale = 1.0;
         private bool isSelected;
         private List<ImageWrapper> originalImageWrappers;
         private string tagId = string.Empty;
+        private string maskImagePath;
 
         public ObservableCollection<ImageWrapper> ImageWrappers { get; private init; } = new () { null, null, null, null, };
 
@@ -116,6 +118,8 @@ namespace ImageChecker_3.Images
         /// </summary>
         public string TagId { get => tagId; set => SetProperty(ref tagId, value); }
 
+        public string MaskImagePath { get => maskImagePath; set => SetProperty(ref maskImagePath, value); }
+
         /// <summary>
         /// プレビューコンテナの履歴エリアで、選択中のアイテムを取得するための使用します。
         /// </summary>
@@ -209,6 +213,19 @@ namespace ImageChecker_3.Images
                 Scale = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift
                     ? Math.Max(Scale - largeStep, 1.0)
                     : Math.Max(Scale - smallStep, 1.0);
+            }
+        });
+
+        public DelegateCommand ToggleMaskVisibilityCommand => new DelegateCommand(() =>
+        {
+            if (string.IsNullOrEmpty(MaskImagePath))
+            {
+                MaskImagePath = cachedMaskPath;
+            }
+            else
+            {
+                cachedMaskPath = MaskImagePath;
+                MaskImagePath = string.Empty;
             }
         });
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -243,6 +244,12 @@ namespace ImageChecker_3.ViewModels
                 w.ImageFileInfo.OpaqueRange =
                     await ImageBoundsCalculator.GetOpaquePixelBoundsAsync(w.ImageFileInfo.FileInfo.FullName);
             }
+        }
+
+        public void LoadMaskImages(string directoryPath)
+        {
+            var imageFiles = Directory.GetFiles(directoryPath).Where(f => f.EndsWith(".png"));
+            PreviewContainer.MaskImagePath = imageFiles.FirstOrDefault();
         }
 
         /// <summary>
